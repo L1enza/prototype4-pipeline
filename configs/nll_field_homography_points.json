@@ -1,0 +1,172 @@
+{
+  "_comment": "Manual homography correspondences. Use stable white field lines/painted markings, not the center logo. At least 4 non-collinear points are required; 6 to 8 spread across the visible field is preferred.",
+  "video_frame": "outputs/nll-test1/short_clip_tracking_stabilized/frames/frame_005_tracking_overlay.png",
+  "field_template": "assets/field_templates/nll_field_topdown.png",
+  "points": [
+    {
+      "name": "center_faceoff_dot",
+      "video_xy": [
+        307,
+        310.8
+      ],
+      "field_xy": [
+        401,
+        4.8
+      ]
+    },
+    {
+      "name": "center_circle_left_edge",
+      "video_xy": [
+        1073,
+        332.8
+      ],
+      "field_xy": [
+        748.5,
+        39.8
+      ]
+    },
+    {
+      "name": "center_circle_right_edge",
+      "video_xy": [
+        330.5,
+        322.8
+      ],
+      "field_xy": [
+        426.5,
+        34.8
+      ]
+    },
+    {
+      "name": "white_line_intersection_1",
+      "video_xy": [
+        711,
+        324.8
+      ],
+      "field_xy": [
+        591.5,
+        35.8
+      ]
+    },
+    {
+      "name": "white_line_intersection_2",
+      "video_xy": [
+        20,
+        438.3
+      ],
+      "field_xy": [
+        402,
+        345.3
+      ]
+    },
+    {
+      "name": "restraining_line_intersection_1",
+      "video_xy": [
+        1061,
+        410.8
+      ],
+      "field_xy": [
+        748,
+        183.8
+      ]
+    },
+    {
+      "name": "restraining_line_intersection_2",
+      "video_xy": [
+        1032.5,
+        656.8
+      ],
+      "field_xy": [
+        747.5,
+        489.8
+      ]
+    },
+    {
+      "name": "boards_or_boundary_intersection",
+      "video_xy": [
+        374,
+        487.8
+      ],
+      "field_xy": [
+        544.5,
+        347.8
+      ]
+    },
+    {
+      "name": "point_09",
+      "video_xy": [
+        1231,
+        379.3
+      ],
+      "field_xy": [
+        917,
+        110.3
+      ]
+    },
+    {
+      "name": "point_10",
+      "video_xy": [
+        1045,
+        500.3
+      ],
+      "field_xy": [
+        742,
+        355.3
+      ]
+    },
+    {
+      "name": "point_11",
+      "video_xy": [
+        1232,
+        335.3
+      ],
+      "field_xy": [
+        917,
+        34.3
+      ]
+    },
+    {
+      "name": "point_12",
+      "video_xy": [
+        225,
+        642.3
+      ],
+      "field_xy": [
+        554,
+        524.3
+      ]
+    },
+    {
+      "name": "point_13",
+      "video_xy": [
+        520,
+        397.3
+      ],
+      "field_xy": [
+        576,
+        182.3
+      ]
+    },
+    {
+      "name": "point_14",
+      "video_xy": [
+        763.5,
+        488.3
+      ],
+      "field_xy": [
+        658.5,
+        352.3
+      ]
+    },
+    {
+      "name": "point_15",
+      "video_xy": [
+        1270,
+        502.3
+      ],
+      "field_xy": [
+        823,
+        352.3
+      ]
+    }
+  ]
+}
