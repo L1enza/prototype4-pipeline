@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+.venv/
+outputs/
+
+# Python/env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local/model/cache files
+.hf_cache/
+.cache/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# Generated outputs
+outputs/
+*.npy
+*.npz
+*.ply
+
+# OS/editor
+.DS_Store
+.vscode/

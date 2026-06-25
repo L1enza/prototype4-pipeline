@@ -1,0 +1,16 @@
+inherits: default.yaml
+
+machine:
+  hostname: ece020.ece.local.cmu.edu
+  workspace: /afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline
+
+paths:
+  vggt_repo: ../vggt
+  sam3_repo: ../sam3
+  sam_body4d_repo: ../sam-body4d
+  output_root: outputs
+
+runtime:
+  run_heavy_inference: false
+  allow_model_downloads: false
+  allow_training: false

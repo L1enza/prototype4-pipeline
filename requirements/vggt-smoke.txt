@@ -1,0 +1,24 @@
+# Lightweight VGGT import-smoke dependencies copied from ../vggt/requirements.txt.
+# Install this only when you want to verify local imports. It is not enough to
+# run the full Prototype 4 pipeline, and it does not install/download weights.
+#
+# IMPORTANT: choose the correct CUDA-specific PyTorch wheel/index for ece020.
+# The upstream VGGT requirement pins torch/torchvision versions, but the install
+# command may need an explicit --index-url such as the PyTorch CUDA index.
+torch==2.3.1
+torchvision==0.18.1
+numpy==1.26.1
+Pillow
+huggingface_hub
+einops
+safetensors
+
+# Needed by ../vggt/demo_colmap.py import/export path, but not by the bare
+# vggt.models.vggt import itself. Keep these here because Prototype 4's VGGT
+# stage is planned around the COLMAP export demo.
+pycolmap
+trimesh
+
+# Needed by VGGT tracking helpers imported through the planned COLMAP path.
+hydra-core
+git+https://github.com/cvg/LightGlue.git

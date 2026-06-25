@@ -1,0 +1,51 @@
+project:
+  name: prototype4_lacrosse_pipeline
+  mode: dry_run
+
+paths:
+  vggt_repo: ../vggt
+  sam3_repo: ../sam3
+  sam_body4d_repo: ../sam-body4d
+  output_root: outputs
+
+video:
+  sample_fps: 2.0
+  max_frames: 48
+  image_ext: jpg
+
+field:
+  sport: lacrosse
+  coordinate_system: lacrosse_field_yards_midfield_origin
+  playing_surface_polygon: []
+
+segmentation:
+  text_prompts:
+    players: active lacrosse player on the field
+    referees: lacrosse referee
+    bench: person on sideline or bench
+    crowd: spectator in the crowd
+  min_track_frames: 3
+  min_field_overlap: 0.25
+
+filters:
+  enable_field_boundary_filter: true
+  enable_referee_rejection: true
+  enable_bench_crowd_suppression: true
+
+models:
+  vggt:
+    enabled: false
+    scene_subdir: vggt_scene
+    use_bundle_adjustment: false
+    checkpoint: facebook/VGGT-1B
+  sam3:
+    enabled: false
+    checkpoint: facebook/sam3.1
+  sam_body4d:
+    enabled: false
+    config: ../sam-body4d/configs/body4d.yaml
+
+metadata_hooks:
+  jersey_number_recognition: false
+  roster_player_metadata: false
+  heatmap_generation: false
