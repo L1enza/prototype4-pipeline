@@ -332,7 +332,7 @@ def save_filter_debug_overlay(image, masks, records, output_path, field_polygon_
     return str(output_path)
 
 
-def run_filtered_masks(project_root, run_id, repo_path, output_dir, prompt, frame_count, device, dtype_name, allow_download_weights, disable_fused_kernels=True, config=None):
+def run_filtered_masks(project_root, run_id, repo_path, output_dir, prompt, frame_count, device, dtype_name, allow_download_weights, disable_fused_kernels=True, config=None, frame_paths=None, require_allow_download_weights=True):
     result = {
         "status": "not_run",
         "run_id": run_id,
@@ -341,9 +341,11 @@ def run_filtered_masks(project_root, run_id, repo_path, output_dir, prompt, fram
         "prompt": prompt,
         "prompt_slug": slugify_prompt(prompt),
         "frame_count_requested": frame_count,
+        "explicit_frame_paths_supplied": frame_paths is not None,
         "device": device,
         "selected_dtype": dtype_name,
         "allow_download_weights_supplied": bool(allow_download_weights),
+        "require_allow_download_weights": bool(require_allow_download_weights),
         "disable_fused_kernels": bool(disable_fused_kernels),
         "frames": [],
         "frame_metadata": [],
@@ -368,9 +370,14 @@ def run_filtered_masks(project_root, run_id, repo_path, output_dir, prompt, fram
         raise ValueError("filter_mode must be one of {}".format(sorted(FILTER_MODES)))
     result["filter_config"] = defaults
     output_dir.mkdir(parents=True, exist_ok=True)
-    frames = sampled_frames(project_root, run_id, frame_count)
+    if frame_paths is None:
+        frames = sampled_frames(project_root, run_id, frame_count)
+    else:
+        frames = [Path(path) for path in frame_paths]
+        if frame_count:
+            frames = frames[:frame_count]
     result["frames"] = [str(path) for path in frames]
-    if not allow_download_weights:
+    if require_allow_download_weights and not allow_download_weights:
         result["status"] = "skipped"
         result["error"] = {"type": "RuntimeError", "message": "Filtered mask smoke requires --allow-download-weights."}
         return result

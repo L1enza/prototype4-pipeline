@@ -180,6 +180,27 @@ def write_mp4(frame_paths, output_path, fps):
     return str(output_path)
 
 
+def write_gif(frame_paths, output_path, fps):
+    if not frame_paths:
+        raise ValueError("No rendered frames were provided for GIF writing.")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    duration_ms = max(1, int(round(1000.0 / max(float(fps), 1e-6))))
+    images = [Image.open(path).convert("P", palette=Image.ADAPTIVE) for path in frame_paths]
+    try:
+        images[0].save(
+            output_path,
+            save_all=True,
+            append_images=images[1:],
+            duration=duration_ms,
+            loop=0,
+            optimize=True,
+        )
+    finally:
+        for image in images:
+            image.close()
+    return str(output_path)
+
+
 def main():
     args = parse_args()
     tracklet_metadata_path = Path(args.tracklet_metadata) if args.tracklet_metadata else PROJECT_ROOT / "outputs" / args.run_id / "player_tracks" / "tracklet_smoke" / "tracklet_metadata.json"
@@ -216,7 +237,14 @@ def main():
         })
 
     mp4_path = output_dir / "tracklet_overlay_smoke.mp4"
-    mp4 = write_mp4(rendered_frames, mp4_path, args.fps)
+    gif_path = output_dir / "tracklet_overlay_smoke.gif"
+    mp4 = None
+    mp4_error = None
+    try:
+        mp4 = write_mp4(rendered_frames, mp4_path, args.fps)
+    except Exception as exc:
+        mp4_error = {"type": exc.__class__.__name__, "message": str(exc)}
+    gif = write_gif(rendered_frames, gif_path, args.fps)
     metadata = {
         "status": "complete",
         "stage": "tracklet_overlay_video_smoke",
@@ -231,11 +259,14 @@ def main():
             "mask_alpha": args.mask_alpha,
             "line_width": args.line_width,
             "mp4_writer": "opencv mp4v",
+            "gif_writer": "PIL",
         },
         "frames": frame_records,
         "known_limitations": KNOWN_LIMITATIONS,
         "artifacts": {
             "mp4": mp4,
+            "mp4_error": mp4_error,
+            "gif": gif,
             "rendered_frames_dir": str(frames_dir),
             "rendered_frames": [str(path) for path in rendered_frames],
         },
