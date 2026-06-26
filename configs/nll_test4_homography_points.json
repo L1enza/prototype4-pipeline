@@ -1,0 +1,238 @@
+{
+  "_comment": "Manual homography correspondences. Use stable white field lines/painted markings, not the center logo. At least 4 non-collinear points are required; 6 to 8 spread across the visible field is preferred.",
+  "video_frame": "outputs/nll_test4/segment_tests/segment_20s_3s/frames/frame_004_tracking_overlay.png",
+  "field_template": "assets/field_templates/nll_field_topdown.png",
+  "points": [
+    {
+      "name": "visible_center_line_mark_1",
+      "video_xy": [
+        31.75,
+        360.7
+      ],
+      "field_xy": [
+        1100.26,
+        9.7
+      ]
+    },
+    {
+      "name": "visible_center_line_mark_2",
+      "video_xy": [
+        821.75,
+        633.7
+      ],
+      "field_xy": [
+        1099.76,
+        698.7
+      ]
+    },
+    {
+      "name": "center_circle_visible_edge_1",
+      "video_xy": [
+        1067.5,
+        356.2
+      ],
+      "field_xy": [
+        1442.26,
+        427.2
+      ]
+    },
+    {
+      "name": "center_circle_visible_edge_2",
+      "video_xy": [
+        817.25,
+        362.2
+      ],
+      "field_xy": [
+        1309.26,
+        365.2
+      ]
+    },
+    {
+      "name": "restraining_line_visible_intersection_1",
+      "video_xy": [
+        838.25,
+        334.2
+      ],
+      "field_xy": [
+        1390.26,
+        280.2
+      ]
+    },
+    {
+      "name": "restraining_line_visible_intersection_2",
+      "video_xy": [
+        389.75,
+        482.45
+      ],
+      "field_xy": [
+        1101.01,
+        363.45
+      ]
+    },
+    {
+      "name": "side_line_or_boards_line_intersection_1",
+      "video_xy": [
+        206.75,
+        420.45
+      ],
+      "field_xy": [
+        1099.26,
+        185.45
+      ]
+    },
+    {
+      "name": "side_line_or_boards_line_intersection_2",
+      "video_xy": [
+        608,
+        559.45
+      ],
+      "field_xy": [
+        1098.26,
+        522.7
+      ]
+    },
+    {
+      "name": "visible_white_line_reference_1",
+      "video_xy": [
+        655.5,
+        409.7
+      ],
+      "field_xy": [
+        1205.26,
+        364.7
+      ]
+    },
+    {
+      "name": "visible_white_line_reference_2",
+      "video_xy": [
+        991.88,
+        322.2
+      ],
+      "field_xy": [
+        1501.26,
+        363.2
+      ]
+    },
+    {
+      "name": "point_11",
+      "video_xy": [
+        645.13,
+        299.7
+      ],
+      "field_xy": [
+        1425.26,
+        37.7
+      ]
+    },
+    {
+      "name": "point_12",
+      "video_xy": [
+        1196.75,
+        513.7
+      ],
+      "field_xy": [
+        1276.26,
+        701.7
+      ]
+    },
+    {
+      "name": "point_13",
+      "video_xy": [
+        340.75,
+        319.7
+      ],
+      "field_xy": [
+        1251.26,
+        8.7
+      ]
+    },
+    {
+      "name": "point_14",
+      "video_xy": [
+        1265.25,
+        401.7
+      ],
+      "field_xy": [
+        1449.26,
+        578.7
+      ]
+    },
+    {
+      "name": "point_15",
+      "video_xy": [
+        494.75,
+        369.7
+      ],
+      "field_xy": [
+        1211.76,
+        204.95
+      ]
+    },
+    {
+      "name": "point_16",
+      "video_xy": [
+        1035,
+        368.2
+      ],
+      "field_xy": [
+        1392.26,
+        444.2
+      ]
+    },
+    {
+      "name": "point_17",
+      "video_xy": [
+        909.25,
+        463.45
+      ],
+      "field_xy": [
+        1267.26,
+        529.95
+      ]
+    },
+    {
+      "name": "point_18",
+      "video_xy": [
+        113,
+        388.95
+      ],
+      "field_xy": [
+        1099.26,
+        92.95
+      ]
+    },
+    {
+      "name": "point_19",
+      "video_xy": [
+        301.75,
+        452.95
+      ],
+      "field_xy": [
+        1100.26,
+        271.95
+      ]
+    },
+    {
+      "name": "point_20",
+      "video_xy": [
+        492.75,
+        521.95
+      ],
+      "field_xy": [
+        1098.26,
+        442.95
+      ]
+    },
+    {
+      "name": "point_21",
+      "video_xy": [
+        717.5,
+        597.45
+      ],
+      "field_xy": [
+        1100.26,
+        613.45
+      ]
+    }
+  ]
+}

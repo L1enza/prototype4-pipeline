@@ -43,6 +43,7 @@ COLORS = [
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Pick matching points for configs/nll_field_homography_points.json.")
+    parser.add_argument("--config", default=None, help="Existing homography config JSON to load video_frame, field_template, point names, and output path from.")
     parser.add_argument("--video-frame", default=DEFAULT_VIDEO_FRAME, help="Broadcast/video frame image to click.")
     parser.add_argument("--field-template", default=DEFAULT_FIELD_TEMPLATE, help="Top-down field template image to click.")
     parser.add_argument("--output-config", default=DEFAULT_OUTPUT_CONFIG, help="Output homography config JSON.")
@@ -73,6 +74,10 @@ def rel_path(path):
 def write_json(path, payload):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def load_json(path):
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def color_for(index):
@@ -220,22 +225,27 @@ def write_html_picker(video_frame, field_template, output_config, html_output, n
     body { font-family: system-ui, sans-serif; margin: 18px; background: #f7f7f4; color: #1c1c1c; }
     .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
     .pane { background: white; border: 1px solid #ccc; padding: 10px; }
-    .imgbox { position: relative; width: 100%; overflow: auto; border: 1px solid #ddd; }
-    img { display: block; max-width: none; }
-    canvas { position: absolute; left: 0; top: 0; pointer-events: none; }
+    .imgbox { position: relative; width: 100%; overflow: auto; border: 1px solid #ddd; cursor: crosshair; }
+    img { display: block; max-width: none; cursor: crosshair; user-select: none; }
+    canvas { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 2; }
     button { margin: 8px 8px 8px 0; padding: 6px 10px; }
     textarea { width: 100%; min-height: 240px; font-family: ui-monospace, monospace; }
     code { background: #eee; padding: 1px 4px; }
+    #status { display: inline-block; margin-left: 10px; font-weight: 700; }
+    #pointList { background: #fff; border: 1px solid #ccc; padding: 10px 14px; min-height: 42px; }
+    #pointList li { margin: 4px 0; font-family: ui-monospace, monospace; }
   </style>
 </head>
 <body>
   <h1>NLL Field Homography Point Picker</h1>
   <p>Click one landmark on the video frame, then the matching landmark on the top-down template. Use stable white field lines and painted markings, not the logo. Copy the JSON into <code>__OUTPUT_CONFIG__</code>.</p>
-  <div><button id=\"undo\">Undo</button><button id=\"clear\">Clear</button><button id=\"copy\">Copy JSON</button><span id=\"status\"></span></div>
+  <div><button id=\"undo\">Undo</button><button id=\"clear\">Clear</button><button id=\"copy\">Copy JSON</button><span id=\"status\">Click video point</span></div>
   <div class=\"wrap\">
     <div class=\"pane\"><h2>Video frame</h2><div id=\"videoBox\" class=\"imgbox\"><img id=\"videoImg\" src=\"__VIDEO_URI__\" width=\"__VIDEO_W__\" height=\"__VIDEO_H__\"><canvas id=\"videoCanvas\" width=\"__VIDEO_W__\" height=\"__VIDEO_H__\"></canvas></div></div>
     <div class=\"pane\"><h2>Field template</h2><div id=\"fieldBox\" class=\"imgbox\"><img id=\"fieldImg\" src=\"__FIELD_URI__\" width=\"__FIELD_W__\" height=\"__FIELD_H__\"><canvas id=\"fieldCanvas\" width=\"__FIELD_W__\" height=\"__FIELD_H__\"></canvas></div></div>
   </div>
+  <h2>Point pairs</h2>
+  <ol id=\"pointList\"></ol>
   <h2>Generated config JSON</h2>
   <textarea id=\"jsonOut\"></textarea>
   <script>
@@ -244,11 +254,18 @@ def write_html_picker(video_frame, field_template, output_config, html_output, n
     const points = [];
     let pendingVideo = null;
     const colors = ['#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd','#8c564b','#e377c2','#7f7f7f','#bcbd22','#17becf'];
+    const statusEl = document.getElementById('status');
+    const jsonOut = document.getElementById('jsonOut');
+    const pointList = document.getElementById('pointList');
+    function setStatus(text) { statusEl.textContent = text; }
     function localXY(event, img) {
       const rect = img.getBoundingClientRect();
       const sx = img.naturalWidth / rect.width;
       const sy = img.naturalHeight / rect.height;
-      return [Number(((event.clientX - rect.left) * sx).toFixed(2)), Number(((event.clientY - rect.top) * sy).toFixed(2))];
+      const x = (event.clientX - rect.left) * sx;
+      const y = (event.clientY - rect.top) * sy;
+      if (x < 0 || y < 0 || x > img.naturalWidth || y > img.naturalHeight) return null;
+      return [Number(x.toFixed(2)), Number(y.toFixed(2))];
     }
     function drawCanvas(canvas, entries, key) {
       const ctx = canvas.getContext('2d');
@@ -257,9 +274,33 @@ def write_html_picker(video_frame, field_template, output_config, html_output, n
         const xy = p[key];
         ctx.fillStyle = colors[i % colors.length];
         ctx.strokeStyle = 'white';
-        ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(xy[0], xy[1], 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-        ctx.font = '14px sans-serif'; ctx.fillText(p.name, xy[0] + 9, xy[1] - 8);
+        ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(xy[0], xy[1], 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'black';
+        ctx.font = 'bold 14px sans-serif';
+        const n = String(i + 1);
+        ctx.strokeText(n, xy[0] - 4, xy[1] + 5);
+        ctx.fillText(n, xy[0] - 4, xy[1] + 5);
+        ctx.fillStyle = colors[i % colors.length];
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 3;
+        ctx.strokeText(p.name, xy[0] + 13, xy[1] - 10);
+        ctx.fillText(p.name, xy[0] + 13, xy[1] - 10);
+      });
+    }
+    function renderPointList() {
+      pointList.innerHTML = '';
+      if (points.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = 'No point pairs yet.';
+        pointList.appendChild(li);
+        return;
+      }
+      points.forEach(function(p, i) {
+        const li = document.createElement('li');
+        li.textContent = String(i + 1) + '. ' + p.name + ': video [' + p.video_xy[0] + ', ' + p.video_xy[1] + '] -> field [' + p.field_xy[0] + ', ' + p.field_xy[1] + ']';
+        pointList.appendChild(li);
       });
     }
     function redraw() {
@@ -267,26 +308,44 @@ def write_html_picker(video_frame, field_template, output_config, html_output, n
       drawCanvas(document.getElementById('fieldCanvas'), points, 'field_xy');
       if (pendingVideo) {
         const ctx = document.getElementById('videoCanvas').getContext('2d');
-        ctx.strokeStyle = 'black'; ctx.fillStyle = 'white'; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(pendingVideo[0], pendingVideo[1], 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-        ctx.fillStyle = 'black'; ctx.fillText('pending', pendingVideo[0] + 9, pendingVideo[1] - 8);
+        ctx.strokeStyle = 'black'; ctx.fillStyle = 'white'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(pendingVideo[0], pendingVideo[1], 10, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.font = 'bold 14px sans-serif';
+        ctx.fillStyle = 'black'; ctx.fillText('pending', pendingVideo[0] + 14, pendingVideo[1] - 10);
       }
-      const cfg = {...baseConfig, points};
-      document.getElementById('jsonOut').value = JSON.stringify(cfg, null, 2) + '\n';
-      document.getElementById('status').textContent = points.length + ' pairs' + (pendingVideo ? ' | waiting for template click' : '');
+      const cfg = Object.assign({}, baseConfig, {points: points});
+      jsonOut.value = JSON.stringify(cfg, null, 2) + "\\n";
+      renderPointList();
+      setStatus(pendingVideo ? 'Click matching template point' : 'Click video point');
     }
-    document.getElementById('videoImg').addEventListener('click', event => { pendingVideo = localXY(event, event.target); redraw(); });
-    document.getElementById('fieldImg').addEventListener('click', event => {
-      if (!pendingVideo) { document.getElementById('status').textContent = 'Click video frame first.'; return; }
-      const fieldXY = localXY(event, event.target);
+    function handleVideoClick(event) {
+      const xy = localXY(event, document.getElementById('videoImg'));
+      if (!xy) return;
+      pendingVideo = xy;
+      redraw();
+    }
+    function handleFieldClick(event) {
+      if (!pendingVideo) { setStatus('Click video point'); return; }
+      const fieldXY = localXY(event, document.getElementById('fieldImg'));
+      if (!fieldXY) return;
       const name = names[points.length] || ('point_' + String(points.length + 1).padStart(2, '0'));
       points.push({name, video_xy: pendingVideo, field_xy: fieldXY});
       pendingVideo = null;
       redraw();
-    });
+    }
+    document.getElementById('videoBox').addEventListener('click', handleVideoClick);
+    document.getElementById('fieldBox').addEventListener('click', handleFieldClick);
     document.getElementById('undo').onclick = () => { if (pendingVideo) pendingVideo = null; else points.pop(); redraw(); };
     document.getElementById('clear').onclick = () => { pendingVideo = null; points.splice(0, points.length); redraw(); };
-    document.getElementById('copy').onclick = async () => { await navigator.clipboard.writeText(document.getElementById('jsonOut').value); document.getElementById('status').textContent = 'Copied JSON to clipboard.'; };
+    document.getElementById('copy').onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(jsonOut.value);
+        setStatus('Copied JSON to clipboard.');
+      } catch (err) {
+        jsonOut.focus(); jsonOut.select();
+        setStatus('Clipboard blocked; JSON selected for manual copy.');
+      }
+    };
     redraw();
   </script>
 </body>
@@ -308,6 +367,29 @@ def write_html_picker(video_frame, field_template, output_config, html_output, n
 
 def main():
     args = parse_args()
+    config_path = project_path(args.config) if args.config else None
+    config_payload = None
+    if config_path:
+        config_payload = load_json(config_path)
+        if args.video_frame == DEFAULT_VIDEO_FRAME and config_payload.get("video_frame"):
+            args.video_frame = config_payload["video_frame"]
+        if args.field_template == DEFAULT_FIELD_TEMPLATE and config_payload.get("field_template"):
+            args.field_template = config_payload["field_template"]
+        if args.output_config == DEFAULT_OUTPUT_CONFIG:
+            args.output_config = str(config_path)
+        if args.html_output == DEFAULT_HTML:
+            stem = config_path.stem
+            if "nll_test4" in stem:
+                args.html_output = "outputs/nll_test4/field_calibration_smoke/point_picker.html"
+            elif "nll_field" in stem:
+                args.html_output = DEFAULT_HTML
+        if args.video_debug == "configs/nll_field_homography_points_video_debug.png" and "nll_test4" in config_path.stem:
+            args.video_debug = "configs/nll_test4_homography_points_video_debug.png"
+        if args.template_debug == "configs/nll_field_homography_points_template_debug.png" and "nll_test4" in config_path.stem:
+            args.template_debug = "configs/nll_test4_homography_points_template_debug.png"
+        config_names = [point.get("name") for point in config_payload.get("points", []) if point.get("name")]
+        if args.point_names == ",".join(DEFAULT_POINT_NAMES) and config_names:
+            args.point_names = ",".join(config_names)
     video_frame = project_path(args.video_frame)
     field_template = project_path(args.field_template)
     output_config = project_path(args.output_config)
