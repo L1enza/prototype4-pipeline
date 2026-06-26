@@ -47,7 +47,9 @@ def parse_args():
     parser.add_argument("--alpha", type=float, default=0.55, help="Heatmap overlay alpha from 0 to 1.")
     parser.add_argument("--point-weight", type=float, default=1.0, help="Density increment per projected point.")
     parser.add_argument("--make-by-frame-gif", action=argparse.BooleanOptionalAction, default=True, help="Write cumulative heatmap_by_frame.gif.")
+    parser.add_argument("--make-by-frame-mp4", action=argparse.BooleanOptionalAction, default=True, help="Write cumulative heatmap_by_frame.mp4 directly from PNG animation frames.")
     parser.add_argument("--gif-fps", type=float, default=6.0, help="By-frame GIF FPS.")
+    parser.add_argument("--mp4-fps", type=float, default=None, help="By-frame MP4 FPS. Defaults to --gif-fps.")
     return parser.parse_args()
 
 
@@ -159,29 +161,73 @@ def save_track_point_overlay(points, template_image, output_path):
     return str(output_path)
 
 
-def write_by_frame_gif(points, template_image, output_path, sigma, alpha, point_weight, fps):
-    frames = sorted({int(point["frame_index"]) for point in points})
-    if not frames:
-        return None
-    images = []
+def write_mp4(frame_paths, output_path, fps):
+    if not frame_paths:
+        return None, {"type": "ValueError", "message": "No frames available for MP4 writing."}
+    first = cv2.imread(str(frame_paths[0]))
+    if first is None:
+        return None, {"type": "ValueError", "message": "Could not read {}".format(frame_paths[0])}
+    height, width = first.shape[:2]
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    writer = cv2.VideoWriter(str(output_path), cv2.VideoWriter_fourcc(*"mp4v"), float(fps), (width, height))
+    if not writer.isOpened():
+        return None, {"type": "RuntimeError", "message": "OpenCV could not open MP4 writer for {}".format(output_path)}
     try:
-        for frame_index in frames:
-            frame_points = [point for point in points if int(point["frame_index"]) <= frame_index]
-            scratch_heat = output_path.parent / "_heat_frame_{:03d}.png".format(frame_index)
-            scratch_overlay = output_path.parent / "_overlay_frame_{:03d}.png".format(frame_index)
-            save_heatmap_images(frame_points, template_image, scratch_heat, scratch_overlay, sigma, alpha, point_weight)
-            frame = Image.open(scratch_overlay).convert("RGB")
-            draw = ImageDraw.Draw(frame)
-            draw.text((12, 12), "frame <= {:03d}".format(frame_index), fill=(0, 0, 0))
-            images.append(frame.convert("P", palette=Image.ADAPTIVE))
-            scratch_heat.unlink(missing_ok=True)
-            scratch_overlay.unlink(missing_ok=True)
-        duration_ms = max(1, int(round(1000.0 / max(float(fps), 1e-6))))
+        for path in frame_paths:
+            frame = cv2.imread(str(path))
+            if frame is None:
+                return None, {"type": "ValueError", "message": "Could not read {}".format(path)}
+            if frame.shape[:2] != (height, width):
+                frame = cv2.resize(frame, (width, height), interpolation=cv2.INTER_AREA)
+            writer.write(frame)
+    finally:
+        writer.release()
+    return str(output_path), None
+
+
+def write_gif(frame_paths, output_path, fps):
+    if not frame_paths:
+        return None
+    images = [Image.open(path).convert("P", palette=Image.ADAPTIVE) for path in frame_paths]
+    duration_ms = max(1, int(round(1000.0 / max(float(fps), 1e-6))))
+    try:
         images[0].save(output_path, save_all=True, append_images=images[1:], duration=duration_ms, loop=0, optimize=True)
-        return str(output_path)
     finally:
         for image in images:
             image.close()
+    return str(output_path)
+
+
+def write_by_frame_animation(points, template_image, frames_dir, gif_path, mp4_path, sigma, alpha, point_weight, gif_fps, mp4_fps, make_gif=True, make_mp4=True):
+    frames = sorted({int(point["frame_index"]) for point in points})
+    if not frames:
+        return {"frames": [], "gif": None, "mp4": None, "mp4_error": None, "status": "skipped_no_frames"}
+    frames_dir.mkdir(parents=True, exist_ok=True)
+    rendered_frames = []
+    for frame_index in frames:
+        frame_points = [point for point in points if int(point["frame_index"]) <= frame_index]
+        scratch_heat = frames_dir / "_heat_frame_{:03d}.png".format(frame_index)
+        output_frame = frames_dir / "frame_{:03d}_heatmap.png".format(frame_index)
+        save_heatmap_images(frame_points, template_image, scratch_heat, output_frame, sigma, alpha, point_weight)
+        frame = Image.open(output_frame).convert("RGB")
+        draw = ImageDraw.Draw(frame)
+        draw.text((12, 12), "frame <= {:03d}".format(frame_index), fill=(0, 0, 0))
+        frame.save(output_frame)
+        rendered_frames.append(output_frame)
+        scratch_heat.unlink(missing_ok=True)
+    gif = write_gif(rendered_frames, gif_path, gif_fps) if make_gif else None
+    mp4 = None
+    mp4_error = None
+    if make_mp4:
+        mp4, mp4_error = write_mp4(rendered_frames, mp4_path, mp4_fps)
+    return {
+        "status": "complete",
+        "frames": [str(path) for path in rendered_frames],
+        "frames_dir": str(frames_dir),
+        "gif": gif,
+        "mp4": mp4,
+        "mp4_error": mp4_error,
+    }
 
 
 def main():
@@ -223,17 +269,20 @@ def main():
         stats = save_heatmap_images(rows, template, heat_path, overlay_path, args.sigma, args.alpha, args.point_weight)
         per_track.append({"track_id": int(track_id), "status": "written", "point_count": len(rows), **stats})
 
-    by_frame_gif = None
-    if args.make_by_frame_gif:
-        by_frame_gif = write_by_frame_gif(
-            included_points,
-            template,
-            output_dir / "heatmap_by_frame.gif",
-            args.sigma,
-            args.alpha,
-            args.point_weight,
-            args.gif_fps,
-        )
+    by_frame_animation = write_by_frame_animation(
+        included_points,
+        template,
+        output_dir / "frames",
+        output_dir / "heatmap_by_frame.gif",
+        output_dir / "heatmap_by_frame.mp4",
+        args.sigma,
+        args.alpha,
+        args.point_weight,
+        args.gif_fps,
+        args.mp4_fps if args.mp4_fps else args.gif_fps,
+        make_gif=args.make_by_frame_gif,
+        make_mp4=args.make_by_frame_mp4,
+    )
 
     metadata = {
         "status": "complete",
@@ -251,7 +300,9 @@ def main():
             "alpha": args.alpha,
             "point_weight": args.point_weight,
             "make_by_frame_gif": args.make_by_frame_gif,
+            "make_by_frame_mp4": args.make_by_frame_mp4,
             "gif_fps": args.gif_fps,
+            "mp4_fps": args.mp4_fps if args.mp4_fps else args.gif_fps,
         },
         "calibration_status": calibration_metadata.get("status") if calibration_metadata else None,
         "tracks": {
@@ -266,7 +317,11 @@ def main():
             "heatmap_all_players_overlay": all_heat["overlay"],
             "projected_points_used_for_heatmap": trails_path,
             "heatmap_by_track_dir": str(by_track_dir),
-            "heatmap_by_frame_gif": by_frame_gif,
+            "heatmap_animation_frames_dir": by_frame_animation.get("frames_dir"),
+            "heatmap_animation_frames": by_frame_animation.get("frames", []),
+            "heatmap_by_frame_gif": by_frame_animation.get("gif"),
+            "heatmap_by_frame_mp4": by_frame_animation.get("mp4"),
+            "heatmap_by_frame_mp4_error": by_frame_animation.get("mp4_error"),
         },
     }
     summary = {
@@ -285,7 +340,10 @@ def main():
             "tracks_filtered_out": len(tracks_filtered_out),
             "per_track_heatmaps_written": sum(1 for row in per_track if row["status"] == "written"),
             "per_track_heatmaps_skipped": sum(1 for row in per_track if row["status"] == "skipped"),
+            "heatmap_animation_frames": len(by_frame_animation.get("frames", [])),
         },
+        "mp4_status": "complete" if by_frame_animation.get("mp4") else "failed" if by_frame_animation.get("mp4_error") else "skipped",
+        "mp4_error": by_frame_animation.get("mp4_error"),
         "tracks_included": sorted(int(track_id) for track_id in included_tracks),
         "tracks_filtered_out": tracks_filtered_out,
         "artifacts": metadata["artifacts"],
