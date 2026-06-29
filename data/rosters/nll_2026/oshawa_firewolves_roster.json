@@ -1,0 +1,208 @@
+{
+  "schema": "nll_roster_v1",
+  "team": {
+    "name": "Oshawa FireWolves",
+    "abbreviation": "OSH",
+    "source_url": "https://oshawafirewolves.com/team/players/"
+  },
+  "field_notes": {
+    "number": "jersey number as listed on team roster page",
+    "position_codes": {
+      "F": "Forward",
+      "T": "Transition",
+      "D": "Defense",
+      "G": "Goalie"
+    }
+  },
+  "players": [
+    {
+      "name": "Alex Simmons",
+      "number": 6,
+      "height": "5'11\"",
+      "weight_lbs": 180,
+      "position": "F"
+    },
+    {
+      "name": "Will Johansen",
+      "number": 43,
+      "height": "6'3\"",
+      "weight_lbs": 175,
+      "position": "T"
+    },
+    {
+      "name": "Tye Kurtz",
+      "number": 2,
+      "height": "6'0\"",
+      "weight_lbs": 185,
+      "position": "F"
+    },
+    {
+      "name": "Taggart Clark",
+      "number": 41,
+      "height": "6'3\"",
+      "weight_lbs": 193,
+      "position": "F"
+    },
+    {
+      "name": "Andrew Kidd",
+      "number": 29,
+      "height": "6'0\"",
+      "weight_lbs": 170,
+      "position": "G"
+    },
+    {
+      "name": "Carson Moyer",
+      "number": 45,
+      "height": "6'1\"",
+      "weight_lbs": 185,
+      "position": "F"
+    },
+    {
+      "name": "Dyson Williams",
+      "number": 51,
+      "height": "6'2\"",
+      "weight_lbs": 210,
+      "position": "F"
+    },
+    {
+      "name": "Johnathan Peshko",
+      "number": 21,
+      "height": "6'4\"",
+      "weight_lbs": 200,
+      "position": "F"
+    },
+    {
+      "name": "Jaxon Fridge",
+      "number": 66,
+      "height": "5'10\"",
+      "weight_lbs": 160,
+      "position": "D"
+    },
+    {
+      "name": "Dante Kulas",
+      "number": 88,
+      "height": "6'2\"",
+      "weight_lbs": 184,
+      "position": "F"
+    },
+    {
+      "name": "Zach Richards",
+      "number": 35,
+      "height": "6'0\"",
+      "weight_lbs": 230,
+      "position": "G"
+    },
+    {
+      "name": "Ryan Benesch",
+      "number": 77,
+      "height": "5'9\"",
+      "weight_lbs": 180,
+      "position": "F"
+    },
+    {
+      "name": "Kyle Rubisch",
+      "number": 4,
+      "height": "6'2\"",
+      "weight_lbs": 225,
+      "position": "D"
+    },
+    {
+      "name": "Doug Jamieson",
+      "number": 30,
+      "height": "6'3\"",
+      "weight_lbs": 275,
+      "position": "G"
+    },
+    {
+      "name": "Joel Coyle",
+      "number": 9,
+      "height": "5'11\"",
+      "weight_lbs": 195,
+      "position": "D"
+    },
+    {
+      "name": "Colton Watkinson",
+      "number": 17,
+      "height": "6'4\"",
+      "weight_lbs": 195,
+      "position": "T"
+    },
+    {
+      "name": "Nick Chaykowsky",
+      "number": 22,
+      "height": "6'2\"",
+      "weight_lbs": 190,
+      "position": "D"
+    },
+    {
+      "name": "Jackson Nishimura",
+      "number": 11,
+      "height": "6'1\"",
+      "weight_lbs": 162,
+      "position": "D"
+    },
+    {
+      "name": "Dawson Theede",
+      "number": 15,
+      "height": "6'4\"",
+      "weight_lbs": 250,
+      "position": "F"
+    },
+    {
+      "name": "Mike Byrne",
+      "number": 27,
+      "height": "5'11\"",
+      "weight_lbs": 180,
+      "position": "D"
+    },
+    {
+      "name": "Joe Nardella",
+      "number": 91,
+      "height": "5'10\"",
+      "weight_lbs": 190,
+      "position": "T"
+    },
+    {
+      "name": "John Wagner",
+      "number": 77,
+      "height": "6'2\"",
+      "weight_lbs": 190,
+      "position": "D"
+    },
+    {
+      "name": "Ethan Walker",
+      "number": 57,
+      "height": "5'9\"",
+      "weight_lbs": 170,
+      "position": "F"
+    },
+    {
+      "name": "Blake Gibson-McDonald",
+      "number": 73,
+      "height": "6'1\"",
+      "weight_lbs": 185,
+      "position": "T"
+    },
+    {
+      "name": "Patrick Kaschalk",
+      "number": 19,
+      "height": "6'0\"",
+      "weight_lbs": 200,
+      "position": "T"
+    },
+    {
+      "name": "Zac Masson",
+      "number": 16,
+      "height": "6'2\"",
+      "weight_lbs": 195,
+      "position": "D"
+    },
+    {
+      "name": "Emerson Clark",
+      "number": 7,
+      "height": "5'10\"",
+      "weight_lbs": 205,
+      "position": "F"
+    }
+  ]
+}

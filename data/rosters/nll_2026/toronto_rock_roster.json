@@ -1,0 +1,222 @@
+{
+  "schema": "nll_roster_v1",
+  "team": {
+    "name": "Toronto Rock",
+    "abbreviation": "TOR",
+    "source_url": "https://torontorock.com/team/players/"
+  },
+  "field_notes": {
+    "number": "jersey number as listed on team roster page",
+    "position_codes": {
+      "F": "Forward",
+      "T": "Transition",
+      "D": "Defense",
+      "G": "Goalie"
+    }
+  },
+  "players": [
+    {
+      "name": "Nicholas Rowlett",
+      "number": 73,
+      "height": "6'0\"",
+      "weight_lbs": 175,
+      "position": "T"
+    },
+    {
+      "name": "Josh Jackson",
+      "number": 44,
+      "height": "6'3\"",
+      "weight_lbs": 215,
+      "position": "D"
+    },
+    {
+      "name": "Zack Kearney",
+      "number": 5,
+      "height": "6'0\"",
+      "weight_lbs": 190,
+      "position": "F"
+    },
+    {
+      "name": "Jake Darlison",
+      "number": 22,
+      "height": "6'0\"",
+      "weight_lbs": 180,
+      "position": "D"
+    },
+    {
+      "name": "Dante Mancini",
+      "number": 35,
+      "height": "6'2\"",
+      "weight_lbs": 215,
+      "position": "G"
+    },
+    {
+      "name": "Sam English",
+      "number": 15,
+      "height": "6'1\"",
+      "weight_lbs": 170,
+      "position": "T"
+    },
+    {
+      "name": "Lucas Hucal",
+      "number": 45,
+      "height": "6'2\"",
+      "weight_lbs": 195,
+      "position": "D"
+    },
+    {
+      "name": "Owen Hiltz",
+      "number": 77,
+      "height": "5'8\"",
+      "weight_lbs": 186,
+      "position": "F"
+    },
+    {
+      "name": "Kobe Handsor",
+      "number": 16,
+      "height": "6'1\"",
+      "weight_lbs": 195,
+      "position": "D"
+    },
+    {
+      "name": "Hugh Kelleher",
+      "number": 27,
+      "height": "6'3\"",
+      "weight_lbs": 220,
+      "position": "D"
+    },
+    {
+      "name": "Isiah Moran-Weekes",
+      "number": 88,
+      "height": "5'9\"",
+      "weight_lbs": 165,
+      "position": "F"
+    },
+    {
+      "name": "CJ Kirst",
+      "number": 1,
+      "height": "6'1\"",
+      "weight_lbs": 190,
+      "position": "F"
+    },
+    {
+      "name": "Nick Rose",
+      "number": 66,
+      "height": "6'0\"",
+      "weight_lbs": 285,
+      "position": "G"
+    },
+    {
+      "name": "Mark Matthews",
+      "number": 42,
+      "height": "6'5\"",
+      "weight_lbs": 230,
+      "position": "F"
+    },
+    {
+      "name": "Billy Hostrawser",
+      "number": 91,
+      "height": "5'11\"",
+      "weight_lbs": 180,
+      "position": "D"
+    },
+    {
+      "name": "Brad Kri",
+      "number": 20,
+      "height": "6'3\"",
+      "weight_lbs": 220,
+      "position": "D"
+    },
+    {
+      "name": "Challen Rogers",
+      "number": 23,
+      "height": "6'4\"",
+      "weight_lbs": 220,
+      "position": "F"
+    },
+    {
+      "name": "Latrell Harris",
+      "number": 93,
+      "height": "6'0\"",
+      "weight_lbs": 215,
+      "position": "D"
+    },
+    {
+      "name": "Dan Craig",
+      "number": 25,
+      "height": "6'1\"",
+      "weight_lbs": 180,
+      "position": "F"
+    },
+    {
+      "name": "Chris Boushy",
+      "number": 21,
+      "height": "6'0\"",
+      "weight_lbs": 210,
+      "position": "F"
+    },
+    {
+      "name": "Josh Jubenville",
+      "number": 33,
+      "height": "5'9\"",
+      "weight_lbs": 185,
+      "position": "D"
+    },
+    {
+      "name": "Robert Hudson",
+      "number": 37,
+      "height": "6'3\"",
+      "weight_lbs": 200,
+      "position": "T"
+    },
+    {
+      "name": "Phil Mazzuca",
+      "number": 14,
+      "height": "6'0\"",
+      "weight_lbs": 205,
+      "position": "T"
+    },
+    {
+      "name": "Chris Weier",
+      "number": 55,
+      "height": "6'1\"",
+      "weight_lbs": 200,
+      "position": "D"
+    },
+    {
+      "name": "Troy Holowchuk",
+      "number": 92,
+      "height": "6'3\"",
+      "weight_lbs": 190,
+      "position": "G"
+    },
+    {
+      "name": "Steve Orleman",
+      "number": 30,
+      "height": "6'0\"",
+      "weight_lbs": 185,
+      "position": "G"
+    },
+    {
+      "name": "Josh Dawick",
+      "number": 8,
+      "height": "5'10\"",
+      "weight_lbs": 190,
+      "position": "F"
+    },
+    {
+      "name": "Elijah Gash",
+      "number": 81,
+      "height": "6'4\"",
+      "weight_lbs": 210,
+      "position": "D"
+    },
+    {
+      "name": "Justin J. Martin",
+      "number": 24,
+      "height": "5'11\"",
+      "weight_lbs": 190,
+      "position": "D"
+    }
+  ]
+}
