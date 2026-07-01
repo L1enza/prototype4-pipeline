@@ -1,0 +1,98 @@
+{
+  "artifact_status": {
+    "calibration_projection_summary": "written",
+    "heatmap_all_players_overlay": "written",
+    "heatmap_by_frame_gif": "written",
+    "heatmap_by_frame_mp4": "written",
+    "heatmap_summary": "written",
+    "projected_tracks_topdown": "written",
+    "side_by_side_summary": "written",
+    "side_by_side_tracking_field_gif": "written",
+    "side_by_side_tracking_field_mp4": "written",
+    "tracking_overlay_gif": "written",
+    "tracking_overlay_mp4": "written",
+    "tracking_summary": "written"
+  },
+  "artifacts": {
+    "calibration_projection_summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/calibration_projection_summary.json",
+    "heatmap_all_players_overlay": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/heatmap_all_players_overlay.png",
+    "heatmap_by_frame_gif": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/heatmap_by_frame.gif",
+    "heatmap_by_frame_mp4": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/heatmap_by_frame.mp4",
+    "heatmap_summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/heatmap_summary.json",
+    "projected_tracks_topdown": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/projected_tracks_topdown.png",
+    "side_by_side_summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/side_by_side_summary.json",
+    "side_by_side_tracking_field_gif": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/side_by_side_tracking_field.gif",
+    "side_by_side_tracking_field_mp4": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/side_by_side_tracking_field.mp4",
+    "tracking_overlay_gif": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_overlay.gif",
+    "tracking_overlay_mp4": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_overlay.mp4",
+    "tracking_summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_summary.json"
+  },
+  "commands": [
+    "tracking",
+    "calibration_projection",
+    "heatmap",
+    "side_by_side"
+  ],
+  "counts": {
+    "calibration_projection": {
+      "calibration_points": 21,
+      "projected_points": 625,
+      "projected_points_inside_template": 612,
+      "projected_tracks": 21
+    },
+    "heatmap": {
+      "heatmap_animation_frames": 60,
+      "number_of_tracks": 21,
+      "per_track_heatmaps_skipped": 3,
+      "per_track_heatmaps_written": 18,
+      "points_included_after_track_filter": 612,
+      "points_inside_bounds": 612,
+      "points_outside_bounds": 13,
+      "total_projected_points": 625,
+      "tracks_filtered_out": 0,
+      "tracks_included": 21
+    },
+    "side_by_side": {
+      "frames_rendered": 60,
+      "missing_projected_points": 0,
+      "points_outside_bounds_skipped": 13,
+      "projected_points_rendered": 612,
+      "tracks_rendered": 21
+    },
+    "tracking": {
+      "decoded_frames": 60,
+      "detections": 625,
+      "fragment_merges": 1,
+      "frames_rendered": 60,
+      "match_events": 603,
+      "multi_frame_tracklets": 18,
+      "rendered_tracks": 18,
+      "single_frame_tracklets": 3,
+      "tracklets": 21,
+      "tracks_killed": 13
+    }
+  },
+  "inputs": {
+    "field_template": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/assets/field_templates/nll_field_topdown.png",
+    "homography_config": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/configs/nll_test4_homography_points.json",
+    "video": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4"
+  },
+  "output_dir": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated",
+  "output_tag": "segment_20s_10s_calibrated",
+  "parameters": {
+    "device": "cuda",
+    "dtype": "float32",
+    "duration": 10.0,
+    "frame_stride": 5,
+    "max_frames": 75,
+    "start_time": 20.0
+  },
+  "run_id": "nll_test4",
+  "stage": "calibrated_segment_demo",
+  "status": "complete",
+  "warnings": [
+    "Existing homography is reused for this whole segment; verify manually if the broadcast camera cuts, pans, or zooms.",
+    "This is a short-clip calibrated demo, not full-game inference.",
+    "Segment duration is longer than the original 3-second calibration check; camera-view validity should be visually inspected."
+  ]
+}

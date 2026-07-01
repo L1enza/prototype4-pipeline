@@ -1,15 +1,12 @@
 # nll_test4 Progress Outputs
 
-This folder contains a small curated checkpoint of generated outputs for review.
+Curated progress artifacts for review.
 
-It intentionally does not include the full `outputs/` folder, raw crops, videos, GIFs, model artifacts, or large generated directories.
+Includes:
+- side-by-side tracking/heatmap videos
+- tracking overlay video
+- heatmap visualization
+- jersey crop/contact sheet visualizations
+- JSON summaries for crops, OCR baseline, roster validation, and calibrated demo
 
-Main progress shown:
-- clean jersey crop extraction
-- crop visibility audit
-- jersey OCR baseline structure
-- roster metadata validation
-- heatmap / field projection summaries
-
-Current OCR note:
-The OCR pipeline is structurally ready, but Tesseract is not available on ECE yet, so no real jersey numbers have been accepted automatically.
+The full `outputs/` folder is not committed because it contains large generated artifacts.
