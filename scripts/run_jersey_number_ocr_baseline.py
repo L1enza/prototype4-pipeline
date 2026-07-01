@@ -49,6 +49,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Use existing packaged number-region images instead of regenerating them.",
     )
+    parser.add_argument(
+        "--number-region-manifest",
+        default=None,
+        help="Use enhanced regions from a manifest; clean crop/audit inputs become optional.",
+    )
     parser.add_argument("--output-dir", default=DEFAULT_OUTPUT)
     parser.add_argument("--engine", choices=["auto", "tesseract", "none"], default="auto")
     parser.add_argument("--top-k", type=int, default=5, help="Unique source frames selected per track.")
@@ -212,6 +217,79 @@ def select_top_crops(records: list[dict], top_k: int, all_crops: bool) -> list[d
     return selected
 
 
+def enhanced_manifest_records(payload: dict, manifest_path: Path) -> list[dict]:
+    records = payload.get("regions", [])
+    if not isinstance(records, list) or not records:
+        raise ValueError("Enhanced number-region manifest must contain a non-empty regions array")
+    output = []
+    for record in records:
+        region_path = Path(record.get("region_path", "")).expanduser()
+        if not region_path.is_absolute():
+            region_path = manifest_path.parent / region_path
+        if not region_path.is_file():
+            raise FileNotFoundError("Missing enhanced number region: {}".format(region_path))
+        row = dict(record)
+        row.update(
+            {
+                "region_path": str(region_path),
+                "crop_path": record.get("source_crop_path", record.get("crop_path")),
+                "ocr_readiness_score": float(record.get("ocr_readiness_score") or 0.0),
+                "heuristic_likely_view": record.get("likely_view", "unknown"),
+                "audit_ocr_candidate": bool(record.get("audit_ocr_candidate", True)),
+                "number_region_guess": record.get("number_region_guess", "unknown"),
+                "manifest_preprocessed_region": bool(
+                    record.get("manifest_preprocessed_region", True)
+                ),
+            }
+        )
+        output.append(row)
+    return output
+
+
+def select_manifest_regions(records: list[dict], top_k: int, all_crops: bool) -> list[dict]:
+    if all_crops:
+        return sorted(
+            records,
+            key=lambda row: (
+                int(row["track_id"]),
+                int(row.get("ocr_readiness_rank_within_track", 0)),
+                int(row["frame_index"]),
+                row.get("variant_name", ""),
+            ),
+        )
+
+    grouped = defaultdict(lambda: defaultdict(list))
+    for row in records:
+        key = (
+            int(row["frame_index"]),
+            str(row.get("source_crop_path", row.get("crop_path", ""))),
+        )
+        grouped[int(row["track_id"])][key].append(row)
+
+    selected = []
+    for track_id in sorted(grouped):
+        source_groups = list(grouped[track_id].items())
+        source_groups.sort(
+            key=lambda item: (
+                -max(float(row["ocr_readiness_score"]) for row in item[1]),
+                0 if any(row.get("crop_type") == "torso" for row in item[1]) else 1,
+                item[0][0],
+            )
+        )
+        used_frames = set()
+        selected_sources = []
+        for (frame_index, _source_path), rows in source_groups:
+            if frame_index in used_frames:
+                continue
+            used_frames.add(frame_index)
+            selected_sources.append(rows)
+            if len(selected_sources) >= top_k:
+                break
+        for rows in selected_sources:
+            selected.extend(sorted(rows, key=lambda row: row.get("variant_name", "")))
+    return selected
+
+
 def default_number_region_box(image: np.ndarray, crop_type: str) -> dict:
     height, width = image.shape[:2]
     if crop_type == "torso":
@@ -291,6 +369,24 @@ def load_number_region(row: dict, number_regions_root: Path) -> dict:
         "width": int(width),
         "height": int(height),
         "source": "pre_extracted_number_region",
+    }
+
+
+def load_manifest_number_region(row: dict) -> dict:
+    path = Path(row["region_path"])
+    image = cv2.imread(str(path), cv2.IMREAD_COLOR)
+    if image is None:
+        raise RuntimeError("Could not read enhanced number region: {}".format(path))
+    height, width = image.shape[:2]
+    return {
+        "image": image,
+        "path": str(path),
+        "box": row.get("source_region_box"),
+        "width": int(width),
+        "height": int(height),
+        "source": "enhanced_number_region_manifest",
+        "variant_name": row.get("variant_name"),
+        "manifest_preprocessed_region": bool(row.get("manifest_preprocessed_region", True)),
     }
 
 
@@ -446,6 +542,8 @@ def predict_crop(
         "number_region_box": region["box"],
         "number_region_width": region["width"],
         "number_region_height": region["height"],
+        "number_region_variant": region.get("variant_name", row.get("variant_name")),
+        "number_region_source": region.get("source"),
         "ocr_engine": engine["name"],
         "preprocessing_variant": None,
         "page_segmentation_mode": None,
@@ -464,7 +562,18 @@ def predict_crop(
         return record
 
     attempts = []
-    for variant in preprocessing_variants(region["image"]):
+    variants = (
+        [
+            {
+                "name": region.get("variant_name", "enhanced_manifest_region"),
+                "image": region["image"],
+                "psm_modes": [7, 8, 13],
+            }
+        ]
+        if region.get("manifest_preprocessed_region")
+        else preprocessing_variants(region["image"])
+    )
+    for variant in variants:
         for psm in variant["psm_modes"]:
             attempts.append(
                 run_tesseract_attempt(
@@ -529,7 +638,8 @@ def aggregate_tracks(
         grouped[int(prediction["track_id"])].append(prediction)
     output = []
     for track_id in sorted(grouped):
-        rows = grouped[track_id]
+        all_rows = grouped[track_id]
+        rows = collapse_same_frame_predictions(all_rows)
         usable = [row for row in rows if row.get("candidate_number")]
         raw_counts = Counter(row["candidate_number"] for row in usable)
         two_digit_values = {number for number in raw_counts if len(number) == 2}
@@ -611,12 +721,76 @@ def aggregate_tracks(
                 "low_confidence_reason": None if accepted else reason,
                 "reason": reason,
                 "selected_crop_count": len(rows),
+                "variant_prediction_count": len(all_rows),
                 "usable_prediction_count": len(usable),
                 "partial_digit_downweights": partial_downweights,
                 "evidence": rows,
             }
         )
     return output
+
+
+def collapse_same_frame_predictions(rows: list[dict]) -> list[dict]:
+    grouped = defaultdict(list)
+    for row in rows:
+        grouped[int(row["frame_index"])].append(row)
+    collapsed = []
+    for frame_index in sorted(grouped):
+        frame_rows = grouped[frame_index]
+        usable = [row for row in frame_rows if row.get("candidate_number")]
+        if not usable:
+            representative = dict(
+                max(frame_rows, key=lambda row: float(row.get("ocr_readiness_score") or 0.0))
+            )
+            representative["variant_prediction_count"] = len(frame_rows)
+            representative["frame_variant_candidate_votes"] = []
+            representative["frame_variant_consensus"] = 0.0
+            collapsed.append(representative)
+            continue
+
+        by_number = defaultdict(list)
+        for row in usable:
+            by_number[row["candidate_number"]].append(row)
+        ranking = []
+        for number, number_rows in by_number.items():
+            confidence_sum = sum(
+                float(row["confidence"]) if row.get("confidence") is not None else 0.25
+                for row in number_rows
+            )
+            ranking.append(
+                {
+                    "number": number,
+                    "variant_vote_count": len(number_rows),
+                    "confidence_sum": confidence_sum,
+                }
+            )
+        supported_two_digits = [
+            row for row in ranking if len(row["number"]) == 2 and row["variant_vote_count"] >= 2
+        ]
+        pool = supported_two_digits or ranking
+        pool.sort(
+            key=lambda row: (-row["variant_vote_count"], -row["confidence_sum"], row["number"])
+        )
+        winner = pool[0]["number"]
+        winning_rows = by_number[winner]
+        representative = dict(
+            max(
+                winning_rows,
+                key=lambda row: (
+                    float(row["confidence"]) if row.get("confidence") is not None else 0.0,
+                    float(row.get("ocr_readiness_score") or 0.0),
+                ),
+            )
+        )
+        total_votes = sum(row["variant_vote_count"] for row in ranking)
+        ranking.sort(
+            key=lambda row: (-row["variant_vote_count"], -row["confidence_sum"], row["number"])
+        )
+        representative["variant_prediction_count"] = len(frame_rows)
+        representative["frame_variant_candidate_votes"] = ranking
+        representative["frame_variant_consensus"] = len(winning_rows) / max(total_votes, 1)
+        collapsed.append(representative)
+    return collapsed
 
 
 def make_contact_sheet(
@@ -684,40 +858,68 @@ def main() -> int:
     clean_path = project_path(args.crop_metadata)
     audit_path = project_path(args.visibility_predictions)
     track_audit_path = project_path(args.track_visibility_summary)
+    manifest_path = (
+        project_path(args.number_region_manifest) if args.number_region_manifest else None
+    )
     number_regions_input = (
         project_path(args.number_regions_dir) if args.number_regions_dir else None
     )
+    if manifest_path is not None and number_regions_input is not None:
+        raise ValueError("Use either --number-region-manifest or --number-regions-dir, not both")
     output_dir = project_path(args.output_dir)
-    if not track_audit_path.is_file():
-        packaged_track_audit = audit_path.parent / "track_visibility_summary.json"
-        if packaged_track_audit.is_file():
-            track_audit_path = packaged_track_audit
-    for path, label in ((clean_path, "clean crop metadata"), (audit_path, "crop visibility audit")):
-        if not path.is_file():
-            raise FileNotFoundError(f"Missing {label}: {path}")
-    if number_regions_input is not None and not number_regions_input.is_dir():
-        raise FileNotFoundError(f"Missing number regions directory: {number_regions_input}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    clean_payload = read_json(clean_path)
-    audit_payload = read_json(audit_path)
-    track_audit = read_json(track_audit_path) if track_audit_path.is_file() else {"tracks": []}
-    combined = combine_clean_and_audit(
-        clean_payload,
-        audit_payload,
-        require_clean_crop_files=number_regions_input is None,
-    )
-    selected = select_top_crops(combined, args.top_k, args.all_crops)
+    if manifest_path is not None:
+        if not manifest_path.is_file():
+            raise FileNotFoundError(f"Missing enhanced number-region manifest: {manifest_path}")
+        manifest_payload = read_json(manifest_path)
+        combined = enhanced_manifest_records(manifest_payload, manifest_path)
+        selected = select_manifest_regions(combined, args.top_k, args.all_crops)
+        region_root = manifest_path.parent / "regions"
+        track_audit = (
+            read_json(track_audit_path) if track_audit_path.is_file() else {"tracks": []}
+        )
+        selection_method = "top_ocr_readiness_source_frames_with_all_enhanced_variants"
+    else:
+        if not track_audit_path.is_file():
+            packaged_track_audit = audit_path.parent / "track_visibility_summary.json"
+            if packaged_track_audit.is_file():
+                track_audit_path = packaged_track_audit
+        for path, label in (
+            (clean_path, "clean crop metadata"),
+            (audit_path, "crop visibility audit"),
+        ):
+            if not path.is_file():
+                raise FileNotFoundError(f"Missing {label}: {path}")
+        if number_regions_input is not None and not number_regions_input.is_dir():
+            raise FileNotFoundError(f"Missing number regions directory: {number_regions_input}")
+        clean_payload = read_json(clean_path)
+        audit_payload = read_json(audit_path)
+        track_audit = (
+            read_json(track_audit_path) if track_audit_path.is_file() else {"tracks": []}
+        )
+        combined = combine_clean_and_audit(
+            clean_payload,
+            audit_payload,
+            require_clean_crop_files=number_regions_input is None,
+        )
+        selected = select_top_crops(combined, args.top_k, args.all_crops)
+        region_root = number_regions_input or (output_dir / "number_regions")
+        selection_method = "top_ocr_readiness_unique_frames_per_track"
+
     inspection = inspect_ocr_engines()
     engine = choose_engine(args.engine, inspection)
-    region_root = number_regions_input or (output_dir / "number_regions")
 
     predictions = []
     for row in selected:
         region = (
-            load_number_region(row, region_root)
-            if number_regions_input is not None
-            else extract_number_region(row, region_root)
+            load_manifest_number_region(row)
+            if manifest_path is not None
+            else (
+                load_number_region(row, region_root)
+                if number_regions_input is not None
+                else extract_number_region(row, region_root)
+            )
         )
         predictions.append(
             predict_crop(row, region, engine, inspection, args.minimum_ocr_confidence)
@@ -732,9 +934,16 @@ def main() -> int:
     )
 
     clean_crops_available = all(Path(row["crop_path"]).is_file() for row in predictions)
-    review_image_key = "crop_path" if clean_crops_available else "number_region_path"
+    review_image_key = (
+        "number_region_path"
+        if manifest_path is not None
+        else ("crop_path" if clean_crops_available else "number_region_path")
+    )
+    contact_predictions = (
+        per_track_evidence(predictions, count=8) if len(predictions) > 180 else predictions
+    )
     ocr_sheet = make_contact_sheet(
-        predictions,
+        contact_predictions,
         review_image_key,
         output_dir / "jersey_ocr_contact_sheet.png",
         args.contact_thumb_width,
@@ -742,7 +951,7 @@ def main() -> int:
         "Top-K clean crops with OCR predictions",
     )
     region_sheet = make_contact_sheet(
-        predictions,
+        contact_predictions,
         "number_region_path",
         output_dir / "number_region_contact_sheet.png",
         args.contact_thumb_width,
@@ -763,17 +972,24 @@ def main() -> int:
         "status": status,
         "stage": "jersey_number_ocr_crop_predictions",
         "inputs": {
-            "clean_crop_metadata": str(clean_path),
-            "visibility_audit": str(audit_path),
+            "clean_crop_metadata": str(clean_path) if manifest_path is None else None,
+            "visibility_audit": str(audit_path) if manifest_path is None else None,
             "track_visibility_summary": str(track_audit_path) if track_audit_path.is_file() else None,
             "number_regions_dir": str(number_regions_input) if number_regions_input else None,
+            "number_region_manifest": str(manifest_path) if manifest_path else None,
         },
         "selection": {
-            "method": "top_ocr_readiness_unique_frames_per_track",
+            "method": selection_method,
             "top_k": args.top_k,
             "all_crops": bool(args.all_crops),
             "view_used_as_filter": False,
             "torso_used_as_tiebreak_only": True,
+            "enhanced_variants_per_selected_source": (
+                len({row.get("variant_name") for row in selected})
+                if manifest_path is not None
+                else None
+            ),
+            "contact_sheet_prediction_count": len(contact_predictions),
         },
         "ocr_engine": engine,
         "predictions": predictions,
@@ -809,6 +1025,7 @@ def main() -> int:
             "accepted_track_numbers": sum(row["accepted_number"] is not None for row in tracks),
             "low_confidence_tracks": sum(bool(row["low_confidence"]) for row in tracks),
             "number_regions_written": len(predictions),
+            "number_regions_processed": len(predictions),
         },
         "artifacts": {
             "crop_ocr_predictions": str(output_dir / "crop_ocr_predictions.json"),
@@ -826,6 +1043,7 @@ def main() -> int:
             "No OCR package, model, or language data is installed or downloaded automatically.",
             "No team, roster, player-name, or identity assignment is performed.",
             "Portable mode consumes pre-extracted number regions and does not require original clean crop image paths.",
+            "Enhanced-manifest mode treats each manifest image as an OCR input and does not regenerate regions.",
         ],
     }
     write_json(output_dir / "crop_ocr_predictions.json", crop_payload)
