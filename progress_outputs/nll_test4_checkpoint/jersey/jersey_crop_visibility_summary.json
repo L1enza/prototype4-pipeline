@@ -1,0 +1,48 @@
+{
+  "artifacts": {
+    "best_back_candidates_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/best_back_candidates_contact_sheet.png",
+    "best_front_candidates_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/best_front_candidates_contact_sheet.png",
+    "best_ocr_ready_crops_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/best_ocr_ready_crops_contact_sheet.png",
+    "crop_visibility_predictions": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/crop_visibility_predictions.json",
+    "manual_review_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/manual_review_sheet.csv",
+    "rejected_or_borderline_crops_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/rejected_or_borderline_crops_contact_sheet.png",
+    "summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/jersey_crop_visibility_summary.json",
+    "top3_ocr_candidates_per_track_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/top3_ocr_candidates_per_track_contact_sheet.png",
+    "track_visibility_summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/track_visibility_summary.json"
+  },
+  "counts": {
+    "back_candidates": 63,
+    "borderline_crops": 57,
+    "borderline_tracks": 4,
+    "front_candidates": 8,
+    "not_ready_tracks": 2,
+    "ocr_ready_crops": 201,
+    "ready_tracks": 15,
+    "rejected_crops": 18,
+    "side_candidates": 0,
+    "total_crops_audited": 276,
+    "tracks_audited": 21,
+    "unknown_view_candidates": 130
+  },
+  "identity_assignment_performed": false,
+  "inputs": {
+    "clean_crop_metadata": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json"
+  },
+  "known_limitations": [
+    "View direction is heuristic; helmets, low resolution, and occlusion make face detection unreliable.",
+    "A back label is weak evidence from number-like image structure, not pose estimation.",
+    "Number visibility is estimated from contrast, edges, and component geometry without OCR.",
+    "Tracking identity switches can place different players in one track folder.",
+    "Manual review remains required before OCR evaluation."
+  ],
+  "ocr_performed": false,
+  "stage": "jersey_crop_visibility_audit_summary",
+  "status": "complete",
+  "thresholds": {
+    "borderline": 0.68,
+    "candidate": 0.78,
+    "maximum_bbox_overlap": 0.65,
+    "minimum_contrast": 0.12,
+    "minimum_sharpness": 0.24
+  }
+}

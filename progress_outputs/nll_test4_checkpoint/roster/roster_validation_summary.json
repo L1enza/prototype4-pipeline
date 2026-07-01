@@ -1,0 +1,84 @@
+{
+  "artifacts": {
+    "ambiguous_numbers": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/roster_metadata_validation/ambiguous_numbers.json",
+    "jersey_number_lookup": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/roster_metadata_validation/jersey_number_lookup.json",
+    "roster_validation_summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/roster_metadata_validation/roster_validation_summary.json",
+    "team_roster_lookup": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/roster_metadata_validation/team_roster_lookup.json"
+  },
+  "counts": {
+    "players": 56,
+    "shared_numbers_across_teams": 13,
+    "teams": 2,
+    "within_team_duplicate_numbers": 1
+  },
+  "duplicate_numbers_by_team": {
+    "OSH": [
+      77
+    ],
+    "TOR": []
+  },
+  "identity_pipeline": "track -> team assignment -> jersey number prediction -> roster lookup -> player name",
+  "inputs": [
+    "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+    "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json"
+  ],
+  "lookup_examples": {
+    "OSH_21": {
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "name": "Johnathan Peshko",
+          "number": 21,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        }
+      ],
+      "confidence": "exact_roster_lookup",
+      "jersey_number": 21,
+      "status": "resolved",
+      "team_abbreviation": "OSH"
+    },
+    "TOR_21": {
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "name": "Chris Boushy",
+          "number": 21,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "confidence": "exact_roster_lookup",
+      "jersey_number": 21,
+      "status": "resolved",
+      "team_abbreviation": "TOR"
+    }
+  },
+  "parameters": {
+    "allow_team_duplicates": true
+  },
+  "player_identity_assignment_performed": false,
+  "shared_jersey_numbers": [
+    15,
+    16,
+    21,
+    22,
+    27,
+    30,
+    35,
+    45,
+    66,
+    73,
+    77,
+    88,
+    91
+  ],
+  "stage": "roster_metadata_validation",
+  "status": "valid_with_warnings"
+}

@@ -1,0 +1,421 @@
+{
+  "schema": "nll_roster_ambiguities_v1",
+  "shared_across_teams": [
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Dawson Theede",
+          "number": 15,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Sam English",
+          "number": 15,
+          "position": "T",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 15,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Zac Masson",
+          "number": 16,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Kobe Handsor",
+          "number": 16,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 16,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Johnathan Peshko",
+          "number": 21,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Chris Boushy",
+          "number": 21,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 21,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Nick Chaykowsky",
+          "number": 22,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Jake Darlison",
+          "number": 22,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 22,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Mike Byrne",
+          "number": 27,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Hugh Kelleher",
+          "number": 27,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 27,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Doug Jamieson",
+          "number": 30,
+          "position": "G",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Steve Orleman",
+          "number": 30,
+          "position": "G",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 30,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Zach Richards",
+          "number": 35,
+          "position": "G",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Dante Mancini",
+          "number": 35,
+          "position": "G",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 35,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Carson Moyer",
+          "number": 45,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Lucas Hucal",
+          "number": 45,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 45,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Jaxon Fridge",
+          "number": 66,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Nick Rose",
+          "number": 66,
+          "position": "G",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 66,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Blake Gibson-McDonald",
+          "number": 73,
+          "position": "T",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Nicholas Rowlett",
+          "number": 73,
+          "position": "T",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 73,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 3,
+      "candidates": [
+        {
+          "name": "Ryan Benesch",
+          "number": 77,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "John Wagner",
+          "number": 77,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Owen Hiltz",
+          "number": 77,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 77,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Dante Kulas",
+          "number": 88,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Isiah Moran-Weekes",
+          "number": 88,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 88,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    },
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Joe Nardella",
+          "number": 91,
+          "position": "T",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "Billy Hostrawser",
+          "number": 91,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/toronto_rock_roster.json",
+          "roster_source_url": "https://torontorock.com/team/players/",
+          "team_abbreviation": "TOR",
+          "team_name": "Toronto Rock"
+        }
+      ],
+      "jersey_number": 91,
+      "team_abbreviations": [
+        "OSH",
+        "TOR"
+      ]
+    }
+  ],
+  "shared_jersey_numbers": [
+    15,
+    16,
+    21,
+    22,
+    27,
+    30,
+    35,
+    45,
+    66,
+    73,
+    77,
+    88,
+    91
+  ],
+  "within_team_duplicates": [
+    {
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "name": "Ryan Benesch",
+          "number": 77,
+          "position": "F",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        },
+        {
+          "name": "John Wagner",
+          "number": 77,
+          "position": "D",
+          "roster_source_file": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/data/rosters/nll_2026/oshawa_firewolves_roster.json",
+          "roster_source_url": "https://oshawafirewolves.com/team/players/",
+          "team_abbreviation": "OSH",
+          "team_name": "Oshawa FireWolves"
+        }
+      ],
+      "jersey_number": 77,
+      "team_abbreviation": "OSH",
+      "team_name": "Oshawa FireWolves"
+    }
+  ]
+}

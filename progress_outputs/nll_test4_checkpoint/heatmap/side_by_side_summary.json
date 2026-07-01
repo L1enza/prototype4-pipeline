@@ -1,0 +1,64 @@
+{
+  "artifacts": {
+    "frames_dir": "outputs/nll_test4/side_by_side_field_tracking_smoke/frames",
+    "gif": "outputs/nll_test4/side_by_side_field_tracking_smoke/side_by_side_tracking_field.gif",
+    "mp4": "outputs/nll_test4/side_by_side_field_tracking_smoke/side_by_side_tracking_field.mp4",
+    "mp4_error": null,
+    "rendered_frames": [
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_000_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_001_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_002_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_003_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_004_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_005_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_006_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_007_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_008_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_009_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_010_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_011_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_012_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_013_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_014_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_015_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_016_side_by_side.png",
+      "outputs/nll_test4/side_by_side_field_tracking_smoke/frames/frame_017_side_by_side.png"
+    ]
+  },
+  "counts": {
+    "frames_rendered": 18,
+    "missing_projected_points": 0,
+    "points_outside_bounds_skipped": 0,
+    "projected_points_rendered": 196,
+    "tracks_rendered": 15
+  },
+  "known_limitations": [
+    "Manual homography is approximate.",
+    "Tracking IDs may still switch.",
+    "Referee may still be included.",
+    "Player foot points are noisy.",
+    "This is a short-clip smoke visualization, not final full-game analytics."
+  ],
+  "metadata": "outputs/nll_test4/side_by_side_field_tracking_smoke/side_by_side_metadata.json",
+  "output_dir": "outputs/nll_test4/side_by_side_field_tracking_smoke",
+  "run_id": "nll_test4",
+  "stage": "side_by_side_field_tracking_summary",
+  "status": "complete",
+  "tracks_rendered": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    15,
+    16
+  ]
+}

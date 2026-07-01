@@ -1,0 +1,54 @@
+{
+  "artifacts": {
+    "crop_ocr_predictions": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/crop_ocr_predictions.json",
+    "jersey_ocr_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/jersey_ocr_contact_sheet.png",
+    "number_region_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/number_region_contact_sheet.png",
+    "number_regions": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/number_regions",
+    "per_track_evidence_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/per_track_evidence_contact_sheet.png",
+    "summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/jersey_ocr_summary.json",
+    "track_jersey_number_predictions": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/track_jersey_number_predictions.json"
+  },
+  "counts": {
+    "accepted_track_numbers": 0,
+    "crops_processed": 90,
+    "low_confidence_tracks": 21,
+    "number_regions_written": 90,
+    "ocr_unavailable_crops": 90,
+    "readable_crops": 0,
+    "tracks_processed": 21,
+    "tracks_with_any_candidate_number": 0,
+    "uncertain_crops": 0,
+    "unreadable_crops": 0
+  },
+  "future_identity_path": "track -> team assignment -> jersey number -> roster lookup -> player name",
+  "identity_assignment_performed": false,
+  "known_limitations": [
+    "Heuristic view direction is retained only as soft metadata and does not filter crops.",
+    "One-digit readings require stronger repeated evidence because they may be partial two-digit numbers.",
+    "Generic Tesseract OCR may fail on curved, occluded, stylized, or low-resolution jersey digits.",
+    "No OCR package, model, or language data is installed or downloaded automatically.",
+    "No team, roster, player-name, or identity assignment is performed."
+  ],
+  "ocr_engine": {
+    "available": false,
+    "name": "none",
+    "reason": "Neither a usable Tesseract CLI nor another approved lightweight OCR engine is available."
+  },
+  "ocr_engine_inspection": {
+    "downloads_performed": false,
+    "optional_modules": {
+      "easyocr": false,
+      "onnxruntime": false,
+      "paddleocr": false,
+      "pytesseract": false,
+      "rapidocr_onnxruntime": false
+    },
+    "packages_installed_by_script": false,
+    "pytesseract_installed": false,
+    "tesseract_binary": null,
+    "tesseract_binary_installed": false,
+    "tesseract_version": null
+  },
+  "stage": "jersey_number_ocr_baseline_summary",
+  "status": "ocr_unavailable"
+}
