@@ -1,0 +1,59 @@
+{
+  "basic_local_ocr_import_overwritten": false,
+  "comparison": {
+    "basic_local_tesseract": {
+      "accepted_track_numbers": 0,
+      "crops_processed": 90,
+      "readable_crops": 1
+    },
+    "enhanced_local_tesseract": {
+      "accepted_track_numbers": 0,
+      "crops_processed": 384,
+      "readable_crops": 2
+    }
+  },
+  "counts": {
+    "accepted_track_numbers": 0,
+    "crops_processed": 384,
+    "debug_tracks_total": 21,
+    "readable_crops": 2,
+    "tracks_evaluated_with_enhanced_ocr": 17,
+    "tracks_not_evaluated_with_enhanced_ocr": 4,
+    "tracks_with_enhanced_candidate_evidence": 13,
+    "uncertain_crops": 59,
+    "unreadable_crops": 323
+  },
+  "identity_assignment_performed": false,
+  "imported_at_utc": "2026-07-01T19:26:50.111800+00:00",
+  "ocr_engine": {
+    "available": true,
+    "digit_whitelist": "0123456789",
+    "name": "tesseract_cli",
+    "reason": "Using the existing system Tesseract binary without downloads.",
+    "version": "5.5.2"
+  },
+  "original_ocr_outputs_overwritten": false,
+  "outputs": {
+    "debug_tracks_with_enhanced_ocr": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/debug_tracks_with_enhanced_ocr.json",
+    "enhanced_ocr_import_summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/enhanced_ocr_import_summary.json"
+  },
+  "recommendation": "Move away from generic Tesseract as the main jersey-number recognizer.",
+  "resolved_player_identity_count": 0,
+  "run_id": "nll_test4",
+  "source": {
+    "crop_ocr_predictions": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_ocr_enhanced_local_results/crop_ocr_predictions.json",
+    "debug_tracks_with_local_ocr": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/debug_tracks_with_local_ocr.json",
+    "jersey_ocr_summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_ocr_enhanced_local_results/jersey_ocr_summary.json",
+    "pipeline_run_manifest": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/pipeline_run_manifest.json",
+    "source_hashes_sha256": {
+      "crop_ocr_predictions": "31f1368958d84fd886709a9b425e614e7bacb070db74582b3737dc869d314e32",
+      "debug_tracks_with_local_ocr": "ac58d31c449dc51f74d56e8a9ec04369d4dd5147bba63c684df2dbad5b02500e",
+      "jersey_ocr_summary": "002a65c84421d45da319e94d8cff60ee3286691604d5a5e542bb4032fdc4f988",
+      "pipeline_run_manifest": "f1050354210a5294fcde7f152dd5a64cdd5a17c0e87b7d1288c49a6120f18cc8",
+      "track_jersey_number_predictions": "3150add7ea670d9a3c3626d5161436d67be4eca64aed45e9b26c222ada9f09f3"
+    },
+    "track_jersey_number_predictions": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_ocr_enhanced_local_results/track_jersey_number_predictions.json"
+  },
+  "stage": "enhanced_local_tesseract_ocr_import",
+  "status": "complete"
+}

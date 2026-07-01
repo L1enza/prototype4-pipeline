@@ -11,18 +11,18 @@ demo. Included video files: `side_by_side_tracking_field.mp4`, `tracking_overlay
 
 ## Debug evidence
 
-`debug_tracks.json` is the consolidated per-track evidence export for this exact
-segment. `debug_tracks_summary.json` reports coverage and source availability.
-The stage-specific source JSON files remain in the main project outputs and are
-not duplicated here.
+`debug_tracks.json` is the original consolidated track export.
+`debug_tracks_with_local_ocr.json` adds the basic local Tesseract evidence, and
+`debug_tracks_with_enhanced_ocr.json` adds the enhanced-region experiment while
+preserving the basic evidence. Import summaries retain source hashes and counts.
 
 ## Current identity status
 
-- Tesseract 5.5.2 was run locally on a Mac, where the OCR engine was available.
-- Local OCR processed 90 number-region crops and produced 1 readable crop.
+- Enhanced number regions were generated and tested locally with Tesseract 5.5.2.
+- Enhanced OCR processed 384 regions and produced 2 readable crops.
 - Accepted track-level jersey numbers: 0.
-- Player names and resolved player identities were not assigned.
-- Roster metadata remains available only for future constrained matching.
+- No player names or resolved player identities were assigned.
+- The current bottleneck is jersey digit recognition, not roster lookup.
 
 ## Geometry and scope
 
