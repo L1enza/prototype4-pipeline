@@ -18,11 +18,11 @@ not duplicated here.
 
 ## Current identity status
 
-- Player names and resolved player identities are not assigned.
-- Jersey OCR structure and crop selection are prepared, but a usable OCR engine
-  was unavailable on the ECE environment for this checkpoint.
-- No jersey number was accepted from the current OCR baseline.
-- Roster metadata is validated for future constrained matching only.
+- Tesseract 5.5.2 was run locally on a Mac, where the OCR engine was available.
+- Local OCR processed 90 number-region crops and produced 1 readable crop.
+- Accepted track-level jersey numbers: 0.
+- Player names and resolved player identities were not assigned.
+- Roster metadata remains available only for future constrained matching.
 
 ## Geometry and scope
 

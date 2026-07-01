@@ -1,0 +1,56 @@
+{
+  "artifacts": {
+    "crop_ocr_predictions": "/Users/zllenza/Downloads/jersey_ocr_local_results/crop_ocr_predictions.json",
+    "jersey_ocr_contact_sheet": "/Users/zllenza/Downloads/jersey_ocr_local_results/jersey_ocr_contact_sheet.png",
+    "number_region_contact_sheet": "/Users/zllenza/Downloads/jersey_ocr_local_results/number_region_contact_sheet.png",
+    "number_regions": "/Users/zllenza/Downloads/jersey_ocr_portable_package/jersey_ocr_portable_package/number_regions",
+    "per_track_evidence_contact_sheet": "/Users/zllenza/Downloads/jersey_ocr_local_results/per_track_evidence_contact_sheet.png",
+    "summary": "/Users/zllenza/Downloads/jersey_ocr_local_results/jersey_ocr_summary.json",
+    "track_jersey_number_predictions": "/Users/zllenza/Downloads/jersey_ocr_local_results/track_jersey_number_predictions.json"
+  },
+  "counts": {
+    "accepted_track_numbers": 0,
+    "crops_processed": 90,
+    "low_confidence_tracks": 21,
+    "number_regions_written": 90,
+    "ocr_unavailable_crops": 0,
+    "readable_crops": 1,
+    "tracks_processed": 21,
+    "tracks_with_any_candidate_number": 16,
+    "uncertain_crops": 28,
+    "unreadable_crops": 61
+  },
+  "future_identity_path": "track -> team assignment -> jersey number -> roster lookup -> player name",
+  "identity_assignment_performed": false,
+  "known_limitations": [
+    "Heuristic view direction is retained only as soft metadata and does not filter crops.",
+    "One-digit readings require stronger repeated evidence because they may be partial two-digit numbers.",
+    "Generic Tesseract OCR may fail on curved, occluded, stylized, or low-resolution jersey digits.",
+    "No OCR package, model, or language data is installed or downloaded automatically.",
+    "No team, roster, player-name, or identity assignment is performed.",
+    "Portable mode consumes pre-extracted number regions and does not require original clean crop image paths."
+  ],
+  "ocr_engine": {
+    "available": true,
+    "digit_whitelist": "0123456789",
+    "name": "tesseract_cli",
+    "reason": "Using the existing system Tesseract binary without downloads."
+  },
+  "ocr_engine_inspection": {
+    "downloads_performed": false,
+    "optional_modules": {
+      "easyocr": false,
+      "onnxruntime": false,
+      "paddleocr": false,
+      "pytesseract": true,
+      "rapidocr_onnxruntime": false
+    },
+    "packages_installed_by_script": false,
+    "pytesseract_installed": true,
+    "tesseract_binary": "/opt/homebrew/bin/tesseract",
+    "tesseract_binary_installed": true,
+    "tesseract_version": "tesseract 5.5.2"
+  },
+  "stage": "jersey_number_ocr_baseline_summary",
+  "status": "complete"
+}
