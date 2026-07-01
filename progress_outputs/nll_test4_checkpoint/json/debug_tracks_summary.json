@@ -1,0 +1,42 @@
+{
+  "artifacts": {
+    "curated_debug_tracks": "progress_outputs/nll_test4_checkpoint/json/debug_tracks.json",
+    "curated_debug_tracks_summary": "progress_outputs/nll_test4_checkpoint/json/debug_tracks_summary.json",
+    "debug_tracks": "outputs/nll_test4/debug_tracks.json",
+    "debug_tracks_summary": "outputs/nll_test4/debug_tracks_summary.json"
+  },
+  "counts": {
+    "total_observations": 625,
+    "tracks": 21,
+    "tracks_with_accepted_jersey_number": 0,
+    "tracks_with_clean_crops": 21,
+    "tracks_with_ocr_ready_crops": 17,
+    "tracks_with_projected_field_points": 21,
+    "tracks_with_resolved_player_identity": 0
+  },
+  "known_limitations": [
+    "Tracks are short-clip heuristic tracklets and may contain identity switches.",
+    "The active-player filter may retain a referee; is_player reflects upstream inclusion, not a trained classifier.",
+    "Projected field points use a manual static homography that can drift during camera pan or zoom.",
+    "Torso selection and OCR readiness are heuristic and do not prove that a jersey number is readable.",
+    "No OCR engine was available; no jersey numbers were recognized or accepted.",
+    "No team assignment or roster resolution was attempted.",
+    "No player names or resolved player identities are included."
+  ],
+  "ocr_engine_available": false,
+  "run_id": "nll_test4",
+  "source_files_found": [
+    "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_metadata.json",
+    "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/projected_player_points.json",
+    "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json",
+    "outputs/nll_test4/jersey_crop_visibility_audit/crop_visibility_predictions.json",
+    "outputs/nll_test4/jersey_crop_visibility_audit/track_visibility_summary.json",
+    "outputs/nll_test4/jersey_number_ocr_baseline/crop_ocr_predictions.json",
+    "outputs/nll_test4/jersey_number_ocr_baseline/track_jersey_number_predictions.json",
+    "outputs/roster_metadata_validation/team_roster_lookup.json",
+    "outputs/roster_metadata_validation/ambiguous_numbers.json"
+  ],
+  "source_files_missing": [],
+  "stage": "debug_tracks_export_summary",
+  "status": "complete"
+}

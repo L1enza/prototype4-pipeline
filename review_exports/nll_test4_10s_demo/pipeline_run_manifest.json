@@ -1,0 +1,266 @@
+{
+  "checkpoint_status": "checkpoint_complete_ocr_unavailable",
+  "completion": {
+    "accepted_jersey_number_count": 0,
+    "calibrated_tracking_projection_demo_complete": true,
+    "clean_rgb_crop_extraction_complete": true,
+    "jersey_crop_visibility_audit_complete": true,
+    "jersey_numbers_accepted": false,
+    "ocr_baseline_stage_inspected": true,
+    "ocr_downloads_performed": false,
+    "ocr_engine_available": false,
+    "ocr_engine_name": "none",
+    "player_identities_assigned": false,
+    "player_identity_count": 0,
+    "roster_metadata_validated": true
+  },
+  "debug_tracks_export": {
+    "available": true,
+    "curated_debug_tracks": "progress_outputs/nll_test4_checkpoint/json/debug_tracks.json",
+    "curated_debug_tracks_summary": "progress_outputs/nll_test4_checkpoint/json/debug_tracks_summary.json",
+    "debug_tracks": "outputs/nll_test4/debug_tracks.json",
+    "debug_tracks_summary": "outputs/nll_test4/debug_tracks_summary.json",
+    "player_names_embedded": false
+  },
+  "expected_input_summaries": {
+    "all_found": true,
+    "expected_count": 5,
+    "found": [
+      "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_summary.json",
+      "outputs/nll_test4/jersey_crop_visibility_audit/jersey_crop_visibility_summary.json",
+      "outputs/nll_test4/jersey_number_ocr_baseline/jersey_ocr_summary.json",
+      "outputs/roster_metadata_validation/roster_validation_summary.json",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/demo_summary.json"
+    ],
+    "found_count": 5,
+    "missing": [],
+    "read_errors": {}
+  },
+  "generated_at_utc": "2026-07-01T15:32:58.583912+00:00",
+  "important_outputs": {
+    "contact_sheets": [
+      "outputs/nll_test4/jersey_ocr_clean_crops/all_tracks_best_clean_crops.png",
+      "outputs/nll_test4/jersey_ocr_clean_crops/all_tracks_best_torso_crops.png",
+      "outputs/nll_test4/jersey_crop_visibility_audit/best_back_candidates_contact_sheet.png",
+      "outputs/nll_test4/jersey_crop_visibility_audit/best_front_candidates_contact_sheet.png",
+      "outputs/nll_test4/jersey_crop_visibility_audit/best_ocr_ready_crops_contact_sheet.png",
+      "outputs/nll_test4/jersey_crop_visibility_audit/top3_ocr_candidates_per_track_contact_sheet.png",
+      "outputs/nll_test4/jersey_crop_visibility_audit/rejected_or_borderline_crops_contact_sheet.png",
+      "outputs/nll_test4/jersey_number_ocr_baseline/jersey_ocr_contact_sheet.png",
+      "outputs/nll_test4/jersey_number_ocr_baseline/number_region_contact_sheet.png",
+      "outputs/nll_test4/jersey_number_ocr_baseline/per_track_evidence_contact_sheet.png"
+    ],
+    "directories": [
+      "outputs/nll_test4/jersey_ocr_clean_crops",
+      "outputs/nll_test4/jersey_crop_visibility_audit",
+      "outputs/nll_test4/jersey_number_ocr_baseline",
+      "outputs/roster_metadata_validation",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated"
+    ],
+    "json_files": [
+      "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_summary.json",
+      "outputs/nll_test4/jersey_crop_visibility_audit/jersey_crop_visibility_summary.json",
+      "outputs/nll_test4/jersey_number_ocr_baseline/jersey_ocr_summary.json",
+      "outputs/roster_metadata_validation/roster_validation_summary.json",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/demo_summary.json",
+      "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json",
+      "outputs/nll_test4/jersey_crop_visibility_audit/crop_visibility_predictions.json",
+      "outputs/nll_test4/jersey_crop_visibility_audit/track_visibility_summary.json",
+      "outputs/nll_test4/jersey_number_ocr_baseline/crop_ocr_predictions.json",
+      "outputs/nll_test4/jersey_number_ocr_baseline/track_jersey_number_predictions.json",
+      "outputs/roster_metadata_validation/ambiguous_numbers.json",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_summary.json",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/calibration_projection_summary.json",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/heatmap_summary.json",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/side_by_side_summary.json",
+      "outputs/nll_test4/debug_tracks.json",
+      "outputs/nll_test4/debug_tracks_summary.json"
+    ],
+    "manifest_files": [
+      "outputs/nll_test4/pipeline_run_manifest.json",
+      "progress_outputs/nll_test4_checkpoint/json/pipeline_run_manifest.json"
+    ],
+    "roster_files_used": [
+      "data/rosters/nll_2026/oshawa_firewolves_roster.json",
+      "data/rosters/nll_2026/toronto_rock_roster.json"
+    ],
+    "videos_and_visualizations": [
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/heatmap_all_players_overlay.png",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/projected_tracks_topdown.png",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_overlay.gif",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_overlay.mp4",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/heatmap_by_frame.gif",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/heatmap_by_frame.mp4",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/side_by_side_tracking_field.gif",
+      "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/side_by_side_tracking_field.mp4"
+    ]
+  },
+  "known_limitations": [
+    "Existing homography is reused for this whole segment; verify manually if the broadcast camera cuts, pans, or zooms.",
+    "This is a short-clip calibrated demo, not full-game inference.",
+    "Segment duration is longer than the original 3-second calibration check; camera-view validity should be visually inspected.",
+    "Torso crops use a fixed bbox-relative region and do not estimate body pose or front/back orientation.",
+    "BBox overlap is only a weak occlusion proxy.",
+    "Tracking identity switches can place different players in one track folder.",
+    "Crop ranking estimates OCR usefulness but does not test number visibility.",
+    "No OCR or player identity inference is run by this stage.",
+    "View direction is heuristic; helmets, low resolution, and occlusion make face detection unreliable.",
+    "A back label is weak evidence from number-like image structure, not pose estimation.",
+    "Number visibility is estimated from contrast, edges, and component geometry without OCR.",
+    "Manual review remains required before OCR evaluation.",
+    "Heuristic view direction is retained only as soft metadata and does not filter crops.",
+    "One-digit readings require stronger repeated evidence because they may be partial two-digit numbers.",
+    "Generic Tesseract OCR may fail on curved, occluded, stylized, or low-resolution jersey digits.",
+    "No OCR package, model, or language data is installed or downloaded automatically.",
+    "No team, roster, player-name, or identity assignment is performed.",
+    "No OCR engine was available, so no jersey-number text was recognized.",
+    "No jersey numbers have passed track-level acceptance thresholds.",
+    "No player identities have been assigned.",
+    "Roster numbers are not globally unique across teams, and at least one within-team duplicate exists."
+  ],
+  "next_recommended_step": "Provision one approved lightweight OCR engine and run it only on visibility-audited clean RGB crops; aggregate complete one- or two-digit predictions across each track, add team evidence, and perform roster matching only after number and team confidence are both strong.",
+  "roster_validation": {
+    "identity_assignment_performed": false,
+    "player_names_embedded_in_manifest": false,
+    "player_record_count": 56,
+    "shared_numbers_across_teams": 13,
+    "status": "valid_with_warnings",
+    "team_count": 2,
+    "within_team_duplicate_numbers": 1
+  },
+  "run_id": "nll_test4",
+  "schema_version": "1.0",
+  "stage_summaries": {
+    "calibrated_segment_demo": {
+      "completion_note": "Short calibrated tracking, projection, heatmap, and side-by-side demo completed.",
+      "counts": {
+        "calibration_projection": {
+          "calibration_points": 21,
+          "projected_points": 625,
+          "projected_points_inside_template": 612,
+          "projected_tracks": 21
+        },
+        "heatmap": {
+          "heatmap_animation_frames": 60,
+          "number_of_tracks": 21,
+          "per_track_heatmaps_skipped": 3,
+          "per_track_heatmaps_written": 18,
+          "points_included_after_track_filter": 612,
+          "points_inside_bounds": 612,
+          "points_outside_bounds": 13,
+          "total_projected_points": 625,
+          "tracks_filtered_out": 0,
+          "tracks_included": 21
+        },
+        "side_by_side": {
+          "frames_rendered": 60,
+          "missing_projected_points": 0,
+          "points_outside_bounds_skipped": 13,
+          "projected_points_rendered": 612,
+          "tracks_rendered": 21
+        },
+        "tracking": {
+          "decoded_frames": 60,
+          "detections": 625,
+          "fragment_merges": 1,
+          "frames_rendered": 60,
+          "match_events": 603,
+          "multi_frame_tracklets": 18,
+          "rendered_tracks": 18,
+          "single_frame_tracklets": 3,
+          "tracklets": 21,
+          "tracks_killed": 13
+        }
+      },
+      "name": "calibrated_segment_demo",
+      "reported_stage": "calibrated_segment_demo",
+      "reported_status": "complete",
+      "state": "complete",
+      "summary_file": "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/demo_summary.json",
+      "summary_found": true,
+      "summary_read_error": null
+    },
+    "clean_crop_extraction": {
+      "completion_note": "Clean full-body and torso crops were extracted directly from original video frames.",
+      "counts": {
+        "full_body_candidates": 625,
+        "full_body_crops_saved": 138,
+        "original_video_frames_decoded": 60,
+        "skipped_records": 0,
+        "torso_candidates": 625,
+        "torso_crops_saved": 138,
+        "tracking_detections": 625,
+        "tracks": 21
+      },
+      "name": "clean_crop_extraction",
+      "reported_stage": "clean_track_crops_for_jersey_ocr_summary",
+      "reported_status": "complete",
+      "state": "complete",
+      "summary_file": "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_summary.json",
+      "summary_found": true,
+      "summary_read_error": null
+    },
+    "jersey_crop_visibility_audit": {
+      "completion_note": "Heuristic OCR-readiness audit completed; it did not perform OCR or identity assignment.",
+      "counts": {
+        "back_candidates": 63,
+        "borderline_crops": 57,
+        "borderline_tracks": 4,
+        "front_candidates": 8,
+        "not_ready_tracks": 2,
+        "ocr_ready_crops": 201,
+        "ready_tracks": 15,
+        "rejected_crops": 18,
+        "side_candidates": 0,
+        "total_crops_audited": 276,
+        "tracks_audited": 21,
+        "unknown_view_candidates": 130
+      },
+      "name": "jersey_crop_visibility_audit",
+      "reported_stage": "jersey_crop_visibility_audit_summary",
+      "reported_status": "complete",
+      "state": "complete",
+      "summary_file": "outputs/nll_test4/jersey_crop_visibility_audit/jersey_crop_visibility_summary.json",
+      "summary_found": true,
+      "summary_read_error": null
+    },
+    "jersey_number_ocr_baseline": {
+      "completion_note": "Baseline inspection completed, but OCR recognition is blocked because no engine is available.",
+      "counts": {
+        "accepted_track_numbers": 0,
+        "crops_processed": 90,
+        "low_confidence_tracks": 21,
+        "number_regions_written": 90,
+        "ocr_unavailable_crops": 90,
+        "readable_crops": 0,
+        "tracks_processed": 21,
+        "tracks_with_any_candidate_number": 0,
+        "uncertain_crops": 0,
+        "unreadable_crops": 0
+      },
+      "name": "jersey_number_ocr_baseline",
+      "reported_stage": "jersey_number_ocr_baseline_summary",
+      "reported_status": "ocr_unavailable",
+      "state": "blocked",
+      "summary_file": "outputs/nll_test4/jersey_number_ocr_baseline/jersey_ocr_summary.json",
+      "summary_found": true,
+      "summary_read_error": null
+    },
+    "roster_metadata_validation": {
+      "completion_note": "Roster files were validated for future constrained lookup; no player identity was assigned.",
+      "counts": {
+        "players": 56,
+        "shared_numbers_across_teams": 13,
+        "teams": 2,
+        "within_team_duplicate_numbers": 1
+      },
+      "name": "roster_metadata_validation",
+      "reported_stage": "roster_metadata_validation",
+      "reported_status": "valid_with_warnings",
+      "state": "complete_with_warnings",
+      "summary_file": "outputs/roster_metadata_validation/roster_validation_summary.json",
+      "summary_found": true,
+      "summary_read_error": null
+    }
+  }
+}
