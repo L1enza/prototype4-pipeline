@@ -29,9 +29,26 @@ DIGIT_WHITELIST = "0123456789"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run top-K jersey-number OCR and temporal voting.")
-    parser.add_argument("--clean-crop-metadata", default=DEFAULT_CLEAN_METADATA)
-    parser.add_argument("--visibility-audit", default=DEFAULT_AUDIT)
+    parser.add_argument(
+        "--clean-crop-metadata",
+        "--crop-metadata",
+        dest="crop_metadata",
+        default=DEFAULT_CLEAN_METADATA,
+        help="Clean crop metadata JSON. --crop-metadata is the portable alias.",
+    )
+    parser.add_argument(
+        "--visibility-audit",
+        "--visibility-predictions",
+        dest="visibility_predictions",
+        default=DEFAULT_AUDIT,
+        help="Crop visibility predictions JSON. --visibility-predictions is the portable alias.",
+    )
     parser.add_argument("--track-visibility-summary", default=DEFAULT_TRACK_AUDIT)
+    parser.add_argument(
+        "--number-regions-dir",
+        default=None,
+        help="Use existing packaged number-region images instead of regenerating them.",
+    )
     parser.add_argument("--output-dir", default=DEFAULT_OUTPUT)
     parser.add_argument("--engine", choices=["auto", "tesseract", "none"], default="auto")
     parser.add_argument("--top-k", type=int, default=5, help="Unique source frames selected per track.")
@@ -120,7 +137,11 @@ def audit_records(payload: dict) -> list[dict]:
     return records
 
 
-def combine_clean_and_audit(clean_payload: dict, audit_payload: dict) -> list[dict]:
+def combine_clean_and_audit(
+    clean_payload: dict,
+    audit_payload: dict,
+    require_clean_crop_files: bool = True,
+) -> list[dict]:
     clean_by_path = {
         str(Path(row["crop_path"]).resolve()): row for row in clean_payload.get("crops", [])
     }
@@ -132,7 +153,7 @@ def combine_clean_and_audit(clean_payload: dict, audit_payload: dict) -> list[di
         if clean is None:
             missing_clean_rows.append(str(crop_path))
             continue
-        if not crop_path.is_file():
+        if require_clean_crop_files and not crop_path.is_file():
             continue
         readiness = audit.get(
             "ocr_readiness_score",
@@ -239,6 +260,37 @@ def extract_number_region(row: dict, output_root: Path) -> dict:
         "box": {"x0": x0, "y0": y0, "x1": x1, "y1": y1},
         "width": int(region.shape[1]),
         "height": int(region.shape[0]),
+    }
+
+
+def load_number_region(row: dict, number_regions_root: Path) -> dict:
+    track_id = int(row["track_id"])
+    frame_index = int(row["frame_index"])
+    crop_type = row.get("crop_type", "crop")
+    path = (
+        number_regions_root
+        / "track_{:03d}".format(track_id)
+        / "track_{:03d}_frame_{:03d}_{}_number_region.png".format(
+            track_id, frame_index, crop_type
+        )
+    )
+    if not path.is_file():
+        raise FileNotFoundError(
+            "Missing packaged number region for track {} frame {} crop type {}: {}".format(
+                track_id, frame_index, crop_type, path
+            )
+        )
+    image = cv2.imread(str(path), cv2.IMREAD_COLOR)
+    if image is None:
+        raise RuntimeError("Could not read packaged number region: {}".format(path))
+    height, width = image.shape[:2]
+    return {
+        "image": image,
+        "path": str(path),
+        "box": row.get("number_region_box"),
+        "width": int(width),
+        "height": int(height),
+        "source": "pre_extracted_number_region",
     }
 
 
@@ -629,31 +681,44 @@ def main() -> int:
     args = parse_args()
     if args.top_k < 1:
         raise ValueError("--top-k must be at least 1")
-    clean_path = project_path(args.clean_crop_metadata)
-    audit_path = project_path(args.visibility_audit)
+    clean_path = project_path(args.crop_metadata)
+    audit_path = project_path(args.visibility_predictions)
     track_audit_path = project_path(args.track_visibility_summary)
+    number_regions_input = (
+        project_path(args.number_regions_dir) if args.number_regions_dir else None
+    )
     output_dir = project_path(args.output_dir)
-    for path, label in (
-        (clean_path, "clean crop metadata"),
-        (audit_path, "crop visibility audit"),
-        (track_audit_path, "track visibility summary"),
-    ):
+    if not track_audit_path.is_file():
+        packaged_track_audit = audit_path.parent / "track_visibility_summary.json"
+        if packaged_track_audit.is_file():
+            track_audit_path = packaged_track_audit
+    for path, label in ((clean_path, "clean crop metadata"), (audit_path, "crop visibility audit")):
         if not path.is_file():
             raise FileNotFoundError(f"Missing {label}: {path}")
+    if number_regions_input is not None and not number_regions_input.is_dir():
+        raise FileNotFoundError(f"Missing number regions directory: {number_regions_input}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     clean_payload = read_json(clean_path)
     audit_payload = read_json(audit_path)
-    track_audit = read_json(track_audit_path)
-    combined = combine_clean_and_audit(clean_payload, audit_payload)
+    track_audit = read_json(track_audit_path) if track_audit_path.is_file() else {"tracks": []}
+    combined = combine_clean_and_audit(
+        clean_payload,
+        audit_payload,
+        require_clean_crop_files=number_regions_input is None,
+    )
     selected = select_top_crops(combined, args.top_k, args.all_crops)
     inspection = inspect_ocr_engines()
     engine = choose_engine(args.engine, inspection)
-    region_root = output_dir / "number_regions"
+    region_root = number_regions_input or (output_dir / "number_regions")
 
     predictions = []
     for row in selected:
-        region = extract_number_region(row, region_root)
+        region = (
+            load_number_region(row, region_root)
+            if number_regions_input is not None
+            else extract_number_region(row, region_root)
+        )
         predictions.append(
             predict_crop(row, region, engine, inspection, args.minimum_ocr_confidence)
         )
@@ -666,9 +731,11 @@ def main() -> int:
         args.minimum_consensus,
     )
 
+    clean_crops_available = all(Path(row["crop_path"]).is_file() for row in predictions)
+    review_image_key = "crop_path" if clean_crops_available else "number_region_path"
     ocr_sheet = make_contact_sheet(
         predictions,
-        "crop_path",
+        review_image_key,
         output_dir / "jersey_ocr_contact_sheet.png",
         args.contact_thumb_width,
         args.contact_thumb_height,
@@ -684,7 +751,7 @@ def main() -> int:
     )
     evidence_sheet = make_contact_sheet(
         per_track_evidence(predictions),
-        "crop_path",
+        review_image_key,
         output_dir / "per_track_evidence_contact_sheet.png",
         args.contact_thumb_width,
         args.contact_thumb_height,
@@ -698,7 +765,8 @@ def main() -> int:
         "inputs": {
             "clean_crop_metadata": str(clean_path),
             "visibility_audit": str(audit_path),
-            "track_visibility_summary": str(track_audit_path),
+            "track_visibility_summary": str(track_audit_path) if track_audit_path.is_file() else None,
+            "number_regions_dir": str(number_regions_input) if number_regions_input else None,
         },
         "selection": {
             "method": "top_ocr_readiness_unique_frames_per_track",
@@ -757,6 +825,7 @@ def main() -> int:
             "Generic Tesseract OCR may fail on curved, occluded, stylized, or low-resolution jersey digits.",
             "No OCR package, model, or language data is installed or downloaded automatically.",
             "No team, roster, player-name, or identity assignment is performed.",
+            "Portable mode consumes pre-extracted number regions and does not require original clean crop image paths.",
         ],
     }
     write_json(output_dir / "crop_ocr_predictions.json", crop_payload)

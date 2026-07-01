@@ -1,0 +1,539 @@
+{
+  "archive_name": "jersey_ocr_portable_package.zip",
+  "created_at_utc": "2026-07-01T18:39:52.457430+00:00",
+  "identity_assignment_performed": false,
+  "includes": {
+    "clean_crop_metadata": true,
+    "crop_visibility_predictions": true,
+    "debug_tracks": true,
+    "debug_tracks_summary": true,
+    "jersey_ocr_summary": true,
+    "number_regions": true,
+    "pipeline_run_manifest": true,
+    "portable_runner": true,
+    "track_visibility_summary": true
+  },
+  "large_models_included": false,
+  "number_region_count": 90,
+  "number_region_track_directory_count": 21,
+  "package_root": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_ocr_portable_package",
+  "payload_file_count": 100,
+  "payload_files": [
+    {
+      "path": "README.md",
+      "sha256": "a1cd2e22e44c0eff038b83d38d6efbabe951cb5564fab5cfee0613f447cc05a7",
+      "size_bytes": 1429
+    },
+    {
+      "path": "clean_crop_metadata.json",
+      "sha256": "bcd24819225862ea458325f77eca56508490995c17ec78518a6a5fa8b4ad6daa",
+      "size_bytes": 448697
+    },
+    {
+      "path": "crop_visibility_predictions.json",
+      "sha256": "6b03ab0615ff13ee94a3af941f5196d23416cc0bd69d8322b894da70c6a6fc4d",
+      "size_bytes": 680102
+    },
+    {
+      "path": "debug_tracks.json",
+      "sha256": "dbca6049e991364688f90243ab8946f6ffc8fdee9acdc8559585310e7e941530",
+      "size_bytes": 445121
+    },
+    {
+      "path": "debug_tracks_summary.json",
+      "sha256": "278b54c26f81ff153d0e2a93fe6224039af83c5bdc8945bb46148de75cb5e1b7",
+      "size_bytes": 2222
+    },
+    {
+      "path": "jersey_ocr_summary.json",
+      "sha256": "201e43f9e2fda2b35d7a26230a09f2f6046d8d5e1b8a18fe50470727342fb662",
+      "size_bytes": 2896
+    },
+    {
+      "path": "number_regions/track_001/track_001_frame_042_torso_number_region.png",
+      "sha256": "dd853732620ae5cbc17c9692c58b260381bb72ecfe50470677375f52424f3f49",
+      "size_bytes": 10075
+    },
+    {
+      "path": "number_regions/track_001/track_001_frame_043_torso_number_region.png",
+      "sha256": "67609cfd678f8e046920173f144b1662337f0af3a081271cb8701ee68d607854",
+      "size_bytes": 11145
+    },
+    {
+      "path": "number_regions/track_001/track_001_frame_044_torso_number_region.png",
+      "sha256": "695f278f1bc639c8ef21e147861f2a7ee4baa0bcce87385e1416530be5c0c6ca",
+      "size_bytes": 12274
+    },
+    {
+      "path": "number_regions/track_001/track_001_frame_045_torso_number_region.png",
+      "sha256": "83faced574239485762429d8abe28be42aa0b68bf6af7661649219c49c6b5b10",
+      "size_bytes": 11900
+    },
+    {
+      "path": "number_regions/track_001/track_001_frame_046_torso_number_region.png",
+      "sha256": "a073c71a4e298239992319d70559b326271bbe3eb752530fddc008767ca88b0a",
+      "size_bytes": 12226
+    },
+    {
+      "path": "number_regions/track_002/track_002_frame_017_torso_number_region.png",
+      "sha256": "01df7e897f2c05f9c49de3f8897625fd16e304cf7293a193716a99e25f41d528",
+      "size_bytes": 21214
+    },
+    {
+      "path": "number_regions/track_002/track_002_frame_020_torso_number_region.png",
+      "sha256": "e900e6120554593e5a37c12127f5d755a487dec1ad9d71017a63cfe7c5dfdd5b",
+      "size_bytes": 19355
+    },
+    {
+      "path": "number_regions/track_002/track_002_frame_021_torso_number_region.png",
+      "sha256": "dd559a0884fd316489b596c219ec074ea30e051ac39b8cd2fa2662d7dbb0bbb8",
+      "size_bytes": 20848
+    },
+    {
+      "path": "number_regions/track_002/track_002_frame_022_torso_number_region.png",
+      "sha256": "bc9d347c755295dfe98b665b05d5ac81ba94d4903a1ac55ed46845687f00936f",
+      "size_bytes": 20663
+    },
+    {
+      "path": "number_regions/track_002/track_002_frame_028_torso_number_region.png",
+      "sha256": "6627f45338471bab3f9791b58cf758c70f1532974489d7158d386b269984754d",
+      "size_bytes": 16546
+    },
+    {
+      "path": "number_regions/track_003/track_003_frame_038_torso_number_region.png",
+      "sha256": "168513a167d5904be92c32a2836ee86b86ddeb51437f1ed18adbd71228424b41",
+      "size_bytes": 10800
+    },
+    {
+      "path": "number_regions/track_003/track_003_frame_039_torso_number_region.png",
+      "sha256": "dc554776a3ccfe1db62a6447f8b8b3a28b826ae62256518c981f00ec08a994e7",
+      "size_bytes": 15509
+    },
+    {
+      "path": "number_regions/track_003/track_003_frame_040_full_body_number_region.png",
+      "sha256": "5167c005529a54f789d1b96aae1d99f97ebac09fc449e545821d8f55aa403869",
+      "size_bytes": 17678
+    },
+    {
+      "path": "number_regions/track_003/track_003_frame_041_torso_number_region.png",
+      "sha256": "1ea3ce91482a18498eb1f0b4b618d2477b4b01c4f9d4a827acdf70f15967da2a",
+      "size_bytes": 13576
+    },
+    {
+      "path": "number_regions/track_003/track_003_frame_042_torso_number_region.png",
+      "sha256": "7bd3f970982ea9e7eeba9d6de6bcaf3c28c0c07a477bae37b304fd12954730b5",
+      "size_bytes": 11508
+    },
+    {
+      "path": "number_regions/track_004/track_004_frame_044_torso_number_region.png",
+      "sha256": "1b07177c88f000dfc27b8005461403c733cbfc21a0742681047b9cbea8831991",
+      "size_bytes": 15859
+    },
+    {
+      "path": "number_regions/track_004/track_004_frame_046_torso_number_region.png",
+      "sha256": "72d75b930b57c0502ff4a6344d43397e826a3dc2c64c4cdae178ab905f63314a",
+      "size_bytes": 12358
+    },
+    {
+      "path": "number_regions/track_004/track_004_frame_053_torso_number_region.png",
+      "sha256": "5e3cf56dc834997b6a18e0392da32d25c5306931cdce778080dce50dcf4e44d0",
+      "size_bytes": 14028
+    },
+    {
+      "path": "number_regions/track_004/track_004_frame_055_torso_number_region.png",
+      "sha256": "f53b3e0764bbab2b43a52acf90645c187a760e62b18f3c4ac5b1c2675af1a736",
+      "size_bytes": 13374
+    },
+    {
+      "path": "number_regions/track_004/track_004_frame_058_torso_number_region.png",
+      "sha256": "eae9b4b65ebda4eb227b37ad9e9409ad0e3d6cded68bf0fc3030c35fbe7e25bf",
+      "size_bytes": 14513
+    },
+    {
+      "path": "number_regions/track_005/track_005_frame_027_torso_number_region.png",
+      "sha256": "0c82225960b2ee8346cc4d05b54a23c2ea65ff5ed4d11f663d190a92762f23bd",
+      "size_bytes": 7370
+    },
+    {
+      "path": "number_regions/track_005/track_005_frame_028_full_body_number_region.png",
+      "sha256": "07e6e42e54a457a56beb154821429e15c0e5fd91016d18cb07fbdb2904f2e253",
+      "size_bytes": 7928
+    },
+    {
+      "path": "number_regions/track_005/track_005_frame_030_full_body_number_region.png",
+      "sha256": "af0a49a667d04076e6a65114550b76752b5996605abe5b8ac3c6c1faacdb036f",
+      "size_bytes": 7398
+    },
+    {
+      "path": "number_regions/track_005/track_005_frame_034_torso_number_region.png",
+      "sha256": "4a6ba3667736945b68600ed96961b0f5be878bf8993345e8c448f6c2f1017237",
+      "size_bytes": 7718
+    },
+    {
+      "path": "number_regions/track_005/track_005_frame_058_full_body_number_region.png",
+      "sha256": "6f6952064d8d09c4840f2c239c9e0cf55c28d8676c453fa0cc56ce0c578da166",
+      "size_bytes": 11893
+    },
+    {
+      "path": "number_regions/track_006/track_006_frame_023_torso_number_region.png",
+      "sha256": "3d24330e5f85d26984546ab3143330be35c22826fba437db541d14e99f52200c",
+      "size_bytes": 10631
+    },
+    {
+      "path": "number_regions/track_006/track_006_frame_024_torso_number_region.png",
+      "sha256": "0929798516f4547c04af4ee6136865e3bd814c53344499f446370bd7895db4b5",
+      "size_bytes": 11373
+    },
+    {
+      "path": "number_regions/track_006/track_006_frame_025_torso_number_region.png",
+      "sha256": "210876e27957162ebcf0be77fa9b6062788bf1123f734b51c9c500529d343318",
+      "size_bytes": 10588
+    },
+    {
+      "path": "number_regions/track_006/track_006_frame_026_torso_number_region.png",
+      "sha256": "9c6cfcf58332c75fd6339db453fea2e83096f16ab3e4b410782cb15002de295b",
+      "size_bytes": 11578
+    },
+    {
+      "path": "number_regions/track_006/track_006_frame_027_full_body_number_region.png",
+      "sha256": "5e6d44c3431987b62c91196453784042de54d1f995abc1fcef38eb16ed53f511",
+      "size_bytes": 13635
+    },
+    {
+      "path": "number_regions/track_007/track_007_frame_007_torso_number_region.png",
+      "sha256": "a61dbd2a862382d7685d7abe0f3d90c7520b437cfb35b83b3200eb9fdf65308b",
+      "size_bytes": 14197
+    },
+    {
+      "path": "number_regions/track_007/track_007_frame_010_torso_number_region.png",
+      "sha256": "0f1dcce0ada28fee687a071476e50c72ed7587f22bcd915ced26feb79b025b96",
+      "size_bytes": 15208
+    },
+    {
+      "path": "number_regions/track_007/track_007_frame_011_full_body_number_region.png",
+      "sha256": "c63162eb01e9df0b15bbc52403379a4f2560205bf19b826fe43851094e70e8a8",
+      "size_bytes": 18665
+    },
+    {
+      "path": "number_regions/track_007/track_007_frame_012_torso_number_region.png",
+      "sha256": "2b3ada719421e475f0db2fd655ba6033b92f350bc538c77fc75691ee6d87990b",
+      "size_bytes": 11367
+    },
+    {
+      "path": "number_regions/track_007/track_007_frame_013_torso_number_region.png",
+      "sha256": "b3b275ae2ce22b2df64965b281bc101f2d02dcf6feeae759648d15c86765d2eb",
+      "size_bytes": 17519
+    },
+    {
+      "path": "number_regions/track_008/track_008_frame_000_torso_number_region.png",
+      "sha256": "e26d83337e90bc21966fb1ae827c0964ba51fcb28797c13a2656060be757423f",
+      "size_bytes": 7547
+    },
+    {
+      "path": "number_regions/track_008/track_008_frame_007_torso_number_region.png",
+      "sha256": "44b86881974c1749ad521144befc44633a9af0ad019e2bba3f353aa7a0a94027",
+      "size_bytes": 6366
+    },
+    {
+      "path": "number_regions/track_008/track_008_frame_008_torso_number_region.png",
+      "sha256": "09068c0015b6f30c7605916586eaa2420b094982b05e5ed649953c491cdb9014",
+      "size_bytes": 7207
+    },
+    {
+      "path": "number_regions/track_008/track_008_frame_021_full_body_number_region.png",
+      "sha256": "da692b90aa6dc3f367127713bccfa9e726e13d4275bd11b408e70d66f2f7c645",
+      "size_bytes": 12338
+    },
+    {
+      "path": "number_regions/track_008/track_008_frame_025_torso_number_region.png",
+      "sha256": "57f84cc735a8a5f4cfd81e0c88ea5770fba52565db3f86bf3ac8c2b1fb17f64d",
+      "size_bytes": 10903
+    },
+    {
+      "path": "number_regions/track_009/track_009_frame_022_torso_number_region.png",
+      "sha256": "ac8c0c0b13ec1e4b56e2142ed3225f68f223b355c251acc41ca8836b8722e70a",
+      "size_bytes": 16580
+    },
+    {
+      "path": "number_regions/track_009/track_009_frame_027_full_body_number_region.png",
+      "sha256": "3f544f927dd561e88affdb64158a2a8f7b5e69069d8f912dfd64d63a3c1d5373",
+      "size_bytes": 14164
+    },
+    {
+      "path": "number_regions/track_009/track_009_frame_028_full_body_number_region.png",
+      "sha256": "d02eafaf5bac0987c89eb0d98f4c594ccf79c36e7ec4fe4b297985af3e019fd9",
+      "size_bytes": 14616
+    },
+    {
+      "path": "number_regions/track_009/track_009_frame_041_full_body_number_region.png",
+      "sha256": "652686ec4a93e2dcd0b7c0e1c2994730f2f3e5cde9be252b47d728ef20655f23",
+      "size_bytes": 15366
+    },
+    {
+      "path": "number_regions/track_009/track_009_frame_042_full_body_number_region.png",
+      "sha256": "ca9e0f67848155c0f53c24b52442ea2c18dbddc2f0094501c238ec337550a0ef",
+      "size_bytes": 17971
+    },
+    {
+      "path": "number_regions/track_010/track_010_frame_020_full_body_number_region.png",
+      "sha256": "b126c3d1ca33646f21bb59de10eb51eb62cabb76427b16d75e8bb7dff169eb60",
+      "size_bytes": 11682
+    },
+    {
+      "path": "number_regions/track_010/track_010_frame_023_full_body_number_region.png",
+      "sha256": "68910025e714eab782e3e5141b36dc85cb796dcf9afbfa5c724ccb6979702b2f",
+      "size_bytes": 15554
+    },
+    {
+      "path": "number_regions/track_010/track_010_frame_024_full_body_number_region.png",
+      "sha256": "f553b843c6d788c772af473c5946493bb2a1d2cc215ad0a352dc524232402f71",
+      "size_bytes": 15951
+    },
+    {
+      "path": "number_regions/track_010/track_010_frame_025_full_body_number_region.png",
+      "sha256": "1f5e0a0f827e869283e5a7ac18246d2619ed8fa9b746fd2a7077211446d559a5",
+      "size_bytes": 13367
+    },
+    {
+      "path": "number_regions/track_010/track_010_frame_026_full_body_number_region.png",
+      "sha256": "02c0725e4e791be5b29945c8fe9d16b7d3c327084160f74e01abb3189a28a3ee",
+      "size_bytes": 12355
+    },
+    {
+      "path": "number_regions/track_011/track_011_frame_017_full_body_number_region.png",
+      "sha256": "b7c2ce84f0bcc7ef8fb76a2970898adf1cd1b4673990651093995ab89e3250b1",
+      "size_bytes": 14106
+    },
+    {
+      "path": "number_regions/track_011/track_011_frame_034_full_body_number_region.png",
+      "sha256": "a4db968fdb088ce9d056e303dfd439c686b14aed5c02957b3bc4469c3b60d200",
+      "size_bytes": 12135
+    },
+    {
+      "path": "number_regions/track_011/track_011_frame_037_torso_number_region.png",
+      "sha256": "60efc73d09f70c788f77c732fcce819566a7b505f5113e8203fe269538760edf",
+      "size_bytes": 12600
+    },
+    {
+      "path": "number_regions/track_011/track_011_frame_043_torso_number_region.png",
+      "sha256": "2ad4a59a9c027e73855a8926d45dcf0b816d9c1ffb0ef1dae00fa40750919824",
+      "size_bytes": 13228
+    },
+    {
+      "path": "number_regions/track_011/track_011_frame_044_full_body_number_region.png",
+      "sha256": "494ce0d1456039b3fbd7178a2d8c4112c500a6d0b0cf9e869b04fc3b9bba94c1",
+      "size_bytes": 15055
+    },
+    {
+      "path": "number_regions/track_012/track_012_frame_008_full_body_number_region.png",
+      "sha256": "535332e6ab7161d54a4837ac43cc20838780443e0c33190943e083a27585af7d",
+      "size_bytes": 2181
+    },
+    {
+      "path": "number_regions/track_013/track_013_frame_008_torso_number_region.png",
+      "sha256": "5314ed44b2c8c0309cba77671dfbc779e465b530487c0199949f4dde4331c94e",
+      "size_bytes": 6195
+    },
+    {
+      "path": "number_regions/track_013/track_013_frame_009_torso_number_region.png",
+      "sha256": "fccf5523f76299121709ed80f78aec573954a9257d83f51667578e440ce5aefc",
+      "size_bytes": 7769
+    },
+    {
+      "path": "number_regions/track_013/track_013_frame_010_torso_number_region.png",
+      "sha256": "6ebcbdcd72f4495d633eb431ac9fe6a5558d7de2cce480687734cdd509a65d24",
+      "size_bytes": 11853
+    },
+    {
+      "path": "number_regions/track_015/track_015_frame_008_torso_number_region.png",
+      "sha256": "cd8153c1c3ae2808d4373929a26f09a0a50634ef038ffe33b77f62be32286640",
+      "size_bytes": 3279
+    },
+    {
+      "path": "number_regions/track_016/track_016_frame_030_torso_number_region.png",
+      "sha256": "4c95d0ebcd221c1194e93140f4b333181953e8f65bf530f053066c3362a19c89",
+      "size_bytes": 14063
+    },
+    {
+      "path": "number_regions/track_016/track_016_frame_032_torso_number_region.png",
+      "sha256": "b8a577fa14556938bd0963314c92e8c1e5f60be9c62435d13e64079a0747c9cf",
+      "size_bytes": 11973
+    },
+    {
+      "path": "number_regions/track_016/track_016_frame_038_full_body_number_region.png",
+      "sha256": "63d117ae912c8a51abc50093db964889681f305fb81b8c7a9870a8984e2a36f1",
+      "size_bytes": 17217
+    },
+    {
+      "path": "number_regions/track_016/track_016_frame_049_full_body_number_region.png",
+      "sha256": "ce97c2a58a8bb09b47aecac5a94ce56961645ab58c1269b2d8ba8fbe0507a015",
+      "size_bytes": 12335
+    },
+    {
+      "path": "number_regions/track_016/track_016_frame_051_torso_number_region.png",
+      "sha256": "c5475129aff19209a3c43fa59c4e6e666cc8ba8db21a431b21a98333a6c0c6ac",
+      "size_bytes": 12607
+    },
+    {
+      "path": "number_regions/track_017/track_017_frame_029_torso_number_region.png",
+      "sha256": "9cb6e5a487efe426e66f74ac2ca6a97dd04a8c7238a178f72f96c75a6ff85f46",
+      "size_bytes": 11381
+    },
+    {
+      "path": "number_regions/track_017/track_017_frame_031_torso_number_region.png",
+      "sha256": "87735dc731548572a14089492462ef09c784843b74cbe3249737f789549c5778",
+      "size_bytes": 10507
+    },
+    {
+      "path": "number_regions/track_017/track_017_frame_034_torso_number_region.png",
+      "sha256": "8b74f2afed557f0fe00d58e109fcb7a1b28ccfc7f7cb8f26cf932188746d726b",
+      "size_bytes": 8220
+    },
+    {
+      "path": "number_regions/track_017/track_017_frame_036_torso_number_region.png",
+      "sha256": "74d5da2430cb231e6203fce02a6b8c12af4ee877578c965319df6b3c93f4551b",
+      "size_bytes": 9436
+    },
+    {
+      "path": "number_regions/track_017/track_017_frame_037_torso_number_region.png",
+      "sha256": "9414f5df804410157512a67b56e4d05d6421945cf07259fa7fa2461935f93909",
+      "size_bytes": 13361
+    },
+    {
+      "path": "number_regions/track_018/track_018_frame_035_torso_number_region.png",
+      "sha256": "f7fdf4fa89a5e8a5058fb0e58ba3f6b02d46dbd59659d3afb76d55f075890087",
+      "size_bytes": 13669
+    },
+    {
+      "path": "number_regions/track_018/track_018_frame_041_torso_number_region.png",
+      "sha256": "ad7c3a900d0a723d12c81068ae1acfe36b8b3898cff4856c54b7aa7288ae278d",
+      "size_bytes": 10999
+    },
+    {
+      "path": "number_regions/track_018/track_018_frame_042_torso_number_region.png",
+      "sha256": "37793628860a9309179fb8d19120babe04acd5d322ef7358e420a87a4f6d428a",
+      "size_bytes": 13989
+    },
+    {
+      "path": "number_regions/track_018/track_018_frame_043_torso_number_region.png",
+      "sha256": "96acb5ef3ad64aaa87dfcdbd51020a989a152be6cbec3b8bb8a1d3a712ee7be9",
+      "size_bytes": 11829
+    },
+    {
+      "path": "number_regions/track_018/track_018_frame_044_torso_number_region.png",
+      "sha256": "299f29cf38b63657be6d8ca30fecc7dd44cb96adfc2b0fdb6316a0017652c80f",
+      "size_bytes": 13210
+    },
+    {
+      "path": "number_regions/track_019/track_019_frame_045_torso_number_region.png",
+      "sha256": "7b8991cb62b4a65c7eedd4176e1d485dc8cdaeccb2774a469d88560f81cda23d",
+      "size_bytes": 13025
+    },
+    {
+      "path": "number_regions/track_019/track_019_frame_046_torso_number_region.png",
+      "sha256": "959a91baca99769959423b5bee743736998555fd470a48d166bb7a2eec770292",
+      "size_bytes": 14678
+    },
+    {
+      "path": "number_regions/track_019/track_019_frame_047_torso_number_region.png",
+      "sha256": "aa3dc3fd627d5745a0a78b9ab0ab3ae89460895290e4e0a864798c5e9df88909",
+      "size_bytes": 14314
+    },
+    {
+      "path": "number_regions/track_019/track_019_frame_048_torso_number_region.png",
+      "sha256": "790ef47d19d123e2ff0d6c9f683eca95ab8e98f12232146972942a5c46865b86",
+      "size_bytes": 17432
+    },
+    {
+      "path": "number_regions/track_019/track_019_frame_049_torso_number_region.png",
+      "sha256": "0998579b3ac835cb9453a8964b623495ab6af3a5defc69af55cebbd6186e4155",
+      "size_bytes": 14486
+    },
+    {
+      "path": "number_regions/track_020/track_020_frame_039_torso_number_region.png",
+      "sha256": "248105a695725acdd80ab3699eed8961ae8cf0372bfcc31bea6af1d34e2f92f3",
+      "size_bytes": 12389
+    },
+    {
+      "path": "number_regions/track_021/track_021_frame_045_torso_number_region.png",
+      "sha256": "f9d4c4f102826e702ce4ba5a912279c41ee91eee8ab8cdfea9e83a8e8f696a9f",
+      "size_bytes": 7776
+    },
+    {
+      "path": "number_regions/track_021/track_021_frame_046_torso_number_region.png",
+      "sha256": "ac21f902accb1b204b98674be22fd4b870ff815409a41de925212de6fb8b0fe0",
+      "size_bytes": 9232
+    },
+    {
+      "path": "number_regions/track_021/track_021_frame_047_torso_number_region.png",
+      "sha256": "a7c32936378fa5354850ae3ec6347d8c4e4e7a62a07652ebb6a3071e00db3684",
+      "size_bytes": 7508
+    },
+    {
+      "path": "number_regions/track_021/track_021_frame_048_torso_number_region.png",
+      "sha256": "f949d072a9250d629f5a00f80ba2ffe3b56888ea207972b953cfdf5bfae062d7",
+      "size_bytes": 6798
+    },
+    {
+      "path": "number_regions/track_022/track_022_frame_053_torso_number_region.png",
+      "sha256": "c821df05ac9e8815ba94a47407e6b203fa29e1fcefff5153bed1f791fae560ec",
+      "size_bytes": 12185
+    },
+    {
+      "path": "number_regions/track_022/track_022_frame_055_torso_number_region.png",
+      "sha256": "c41cdc6367758d1dcd860509dac5a7e0383d763ac6ee4ef2a8a20f2045dfb365",
+      "size_bytes": 13938
+    },
+    {
+      "path": "number_regions/track_022/track_022_frame_056_torso_number_region.png",
+      "sha256": "740efb1ae596910fa65cbbb4dee7eeb022250dd894cf613c2c6e9561c47145b6",
+      "size_bytes": 12225
+    },
+    {
+      "path": "number_regions/track_022/track_022_frame_057_torso_number_region.png",
+      "sha256": "4b724ba6a01acf28a5b2f0a38be8d7818feec98df574730a10aeae3f228b0910",
+      "size_bytes": 11527
+    },
+    {
+      "path": "number_regions/track_022/track_022_frame_059_torso_number_region.png",
+      "sha256": "75d40d093241b79152111895a875dec7bd5a21bc0d9f40a76d18affe6883f46d",
+      "size_bytes": 9701
+    },
+    {
+      "path": "pipeline_run_manifest.json",
+      "sha256": "f1050354210a5294fcde7f152dd5a64cdd5a17c0e87b7d1288c49a6120f18cc8",
+      "size_bytes": 13069
+    },
+    {
+      "path": "requirements-local.txt",
+      "sha256": "639b3c2dbd6ead03a336d82ac8559371695e5cad0383485f0c1316533362f231",
+      "size_bytes": 27
+    },
+    {
+      "path": "scripts/run_jersey_number_ocr_baseline.py",
+      "sha256": "62eafe78d225d334fde03b4ccfd04280ce860ee9e95b32dbabd3d148fb333216",
+      "size_bytes": 33931
+    },
+    {
+      "path": "track_visibility_summary.json",
+      "sha256": "b24f3d80fa175c29c187932a903a86c187aeac38049dfed9c0fbedd5abe71650",
+      "size_bytes": 24671
+    }
+  ],
+  "payload_size_bytes": 2777060,
+  "source_paths": {
+    "clean_crop_metadata.json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json",
+    "crop_visibility_predictions.json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/crop_visibility_predictions.json",
+    "debug_tracks.json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/debug_tracks.json",
+    "debug_tracks_summary.json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/debug_tracks_summary.json",
+    "jersey_ocr_summary.json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/jersey_ocr_summary.json",
+    "number_regions": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_number_ocr_baseline/number_regions",
+    "pipeline_run_manifest.json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/pipeline_run_manifest.json",
+    "portable_runner": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/scripts/run_jersey_number_ocr_baseline.py",
+    "track_visibility_summary.json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/nll_test4/jersey_crop_visibility_audit/track_visibility_summary.json"
+  },
+  "source_project_root": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline",
+  "stage": "jersey_ocr_portable_package",
+  "status": "complete",
+  "training_performed": false
+}
