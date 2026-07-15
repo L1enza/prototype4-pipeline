@@ -7,6 +7,7 @@ import argparse
 import csv
 import json
 import math
+import shutil
 import statistics
 import sys
 from pathlib import Path
@@ -20,7 +21,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
-from prototype4_pipeline.integrations.team_appearance_features import load_appearance_backend
+from prototype4_pipeline.integrations.team_appearance_features import load_appearance_backend, resnet18_preflight_metadata
 import run_team_assignment_and_polygon_demo as v1
 
 
@@ -53,6 +54,9 @@ def parse_args():
     parser.add_argument("--polygon-output-dir", default=None)
     parser.add_argument("--embedding-backend", choices=["auto", "torchvision_resnet18", "none"], default=None)
     parser.add_argument("--allow-download-weights", action="store_true")
+    parser.add_argument("--preflight-weights", action="store_true", help="Print ResNet-18 model/cache/training metadata and exit.")
+    parser.add_argument("--color-only-assignments", default="outputs/nll_test4/team_assignment_demo_v2/track_team_assignments_v2.json")
+    parser.add_argument("--color-only-summary", default="outputs/nll_test4/team_assignment_demo_v2/team_assignment_summary_v2.json")
     return parser.parse_args()
 
 
@@ -762,6 +766,112 @@ def write_v1_v2_comparison(v1_rows, v2_rows, projected_points, output_dir):
     return payload
 
 
+def write_color_only_vs_hybrid(color_rows, hybrid_rows, output_dir):
+    color_by_id = {int(row["track_id"]): row for row in color_rows}
+    hybrid_by_id = {int(row["track_id"]): row for row in hybrid_rows}
+    all_ids = sorted(set(color_by_id) | set(hybrid_by_id))
+    rows = []
+    changed = []
+    audited_tracks = sorted(set([3, 5, 11, 21, 12, 13, 15, 20, 10]))
+    for track_id in all_ids:
+        c = color_by_id.get(track_id, {})
+        h = hybrid_by_id.get(track_id, {})
+        c_cls = c.get("assigned_class")
+        h_cls = h.get("assigned_class")
+        did_change = c_cls != h_cls
+        if did_change:
+            changed.append(track_id)
+        reason = "unchanged"
+        if did_change:
+            reason = h.get("reason") or "hybrid_feature_assignment_changed"
+        rows.append({
+            "track_id": track_id,
+            "color_only_assignment": c_cls,
+            "color_only_confidence": c.get("confidence"),
+            "hybrid_assignment": h_cls,
+            "hybrid_confidence": h.get("confidence"),
+            "assignment_changed": did_change,
+            "appearance_consistency": h.get("appearance_consistency"),
+            "color_consistency": h.get("color_consistency"),
+            "observations_used": h.get("observations_used"),
+            "distance_to_hybrid_team_a_center": h.get("distance_to_team_a_center"),
+            "distance_to_hybrid_team_b_center": h.get("distance_to_team_b_center"),
+            "reason_for_change": reason,
+            "explicit_audit_track": track_id in audited_tracks,
+        })
+    color_counts = class_counts(list(color_by_id.values()))
+    hybrid_counts = class_counts(list(hybrid_by_id.values()))
+    payload = {
+        "tracks": rows,
+        "summary": {
+            "color_only_class_counts": color_counts,
+            "hybrid_class_counts": hybrid_counts,
+            "tracks_changed_from_color_only_v2": changed,
+            "changed_v1_to_v2_tracks_audited": [3, 5, 11, 21],
+            "low_observation_tracks_audited": [12, 13, 15, 20, 21],
+            "official_track_audited": 10,
+            "posterior_note": "GMM posterior is a clustering diagnostic, not calibrated real-world accuracy.",
+        },
+    }
+    write_json(output_dir / "color_only_vs_hybrid.json", payload)
+    write_json(output_dir / "color_only_vs_hybrid_summary.json", payload["summary"])
+    csv_path = output_dir / "color_only_vs_hybrid.csv"
+    with csv_path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()) if rows else [])
+        if rows:
+            writer.writeheader()
+            writer.writerows(rows)
+    return payload
+
+
+def save_contact_sheet_for_track_ids(signatures, assignments_by_id, track_ids, output_path, title):
+    tiles = []
+    for track_id in track_ids:
+        if int(track_id) not in signatures:
+            continue
+        sig = signatures[int(track_id)]
+        assignment = assignments_by_id.get(int(track_id), {"assigned_class": "unknown", "confidence": 0.0, "observations_used": 0})
+        crop = Image.fromarray(sig["best_crop_rgb"].astype(np.uint8)).convert("RGB")
+        crop.thumbnail((120, 140), Image.Resampling.LANCZOS)
+        tile = Image.new("RGB", (190, 225), (245, 245, 245))
+        tile.paste(crop, ((190 - crop.width) // 2, 8))
+        draw = ImageDraw.Draw(tile)
+        color = TEAM_COLORS.get(assignment.get("assigned_class", "unknown"), TEAM_COLORS["unknown"])
+        draw.rectangle((0, 0, 189, 224), outline=color, width=4)
+        lines = [
+            "T{} {}".format(track_id, assignment.get("assigned_class", "unknown")),
+            "conf {:.2f}".format(float(assignment.get("confidence") or 0.0)),
+            "obs {}".format(assignment.get("observations_used", 0)),
+            assignment.get("evidence_mode", "")[:20],
+        ]
+        y = 150
+        for line in lines:
+            draw.text((8, y), line, fill=color if y == 150 else (0, 0, 0))
+            y += 16
+        tiles.append(tile)
+    cols = max(1, min(5, len(tiles) or 1))
+    rows_n = max(1, int(math.ceil(len(tiles) / cols)))
+    sheet = Image.new("RGB", (cols * 190, rows_n * 225 + 28), (235, 235, 235))
+    draw = ImageDraw.Draw(sheet)
+    draw.text((10, 8), title, fill=(0, 0, 0))
+    for idx, tile in enumerate(tiles):
+        sheet.paste(tile, ((idx % cols) * 190, 28 + (idx // cols) * 225))
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    sheet.save(output_path)
+    return str(output_path)
+
+
+def copy_alias(src, dst):
+    if not src:
+        return None
+    src_path = Path(src)
+    if not src_path.exists():
+        return None
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src_path, dst)
+    return str(dst)
+
+
 def detections_by_frame(detections):
     out = {}
     for det in detections:
@@ -961,6 +1071,9 @@ def save_heatmap(points, assignments_by_id, template, output_dir, cfg):
 
 def main():
     args = parse_args()
+    if args.preflight_weights:
+        print(json.dumps(resnet18_preflight_metadata(), indent=2, sort_keys=True))
+        return 0
     cfg = read_config(args)
     inputs = cfg["inputs"]
     outputs = cfg["outputs"]
@@ -1065,6 +1178,38 @@ def main():
     emb_plot = save_embedding_plot(signatures, assignments, team_output / "embedding_cluster_plot.png")
     overlay = render_overlay_v2(frames_by_source, frame_lookup, det_by_frame, assignments_by_id, team_output, float(cfg["rendering"]["fps"]))
     comparison = write_v1_v2_comparison(v1_rows, assignments, projected, team_output)
+    hybrid_mode = "hybrid" in str(team_output)
+    color_hybrid_comparison = None
+    color_only_rows = []
+    if hybrid_mode:
+        color_path = project_path(args.color_only_assignments)
+        if color_path.exists():
+            color_only_rows = load_json(color_path)
+            color_hybrid_comparison = write_color_only_vs_hybrid(color_only_rows, assignments, team_output)
+        color_by_id = {int(row["track_id"]): row for row in color_only_rows}
+        changed_track_ids = []
+        if color_hybrid_comparison:
+            changed_track_ids = color_hybrid_comparison["summary"]["tracks_changed_from_color_only_v2"]
+        save_contact_sheet_for_track_ids(
+            signatures,
+            assignments_by_id,
+            changed_track_ids,
+            team_output / "color_only_vs_hybrid_changed_tracks.png",
+            "Color-only V2 vs hybrid changed tracks",
+        )
+        save_contact_sheet_for_track_ids(
+            signatures,
+            assignments_by_id,
+            [12, 13, 15, 20, 21],
+            team_output / "low_observation_tracks.png",
+            "Low-observation audit tracks",
+        )
+        for cls in ("team_a", "team_b", "official", "unknown"):
+            src = team_output / "{}_contact_sheet.png".format(cls)
+            dst = team_output / "hybrid_{}_contact_sheet.png".format(cls)
+            copy_alias(str(src), dst)
+        copy_alias(overlay["mp4"], team_output / "team_assignment_overlay_v2_hybrid.mp4")
+        copy_alias(overlay["gif"], team_output / "team_assignment_overlay_v2_hybrid.gif")
 
     scorebug_cfg = cfg.get("scorebug_priors", {})
     scorebug_used = bool(scorebug_cfg.get("enabled", False) and project_path(scorebug_cfg.get("path", "")).exists())
@@ -1092,6 +1237,7 @@ def main():
         "scorebug_priors_used": scorebug_used,
         "scorebug_note": "disabled or unavailable; cluster names remain team_a/team_b" if not scorebug_used else "scorebug priors were available but do not override torso evidence",
         "v1_v2_comparison_summary": comparison["summary"],
+        "color_only_vs_hybrid_summary": color_hybrid_comparison["summary"] if color_hybrid_comparison else None,
         "artifacts": {
             "track_team_assignments_v2": str(team_output / "track_team_assignments_v2.json"),
             "team_assignment_summary_v2": str(team_output / "team_assignment_summary_v2.json"),
@@ -1102,8 +1248,19 @@ def main():
             "embedding_cluster_plot": emb_plot,
             "team_assignment_overlay_v2_mp4": overlay["mp4"],
             "team_assignment_overlay_v2_gif": overlay["gif"],
+            "team_assignment_overlay_v2_hybrid_mp4": str(team_output / "team_assignment_overlay_v2_hybrid.mp4") if hybrid_mode else None,
+            "team_assignment_overlay_v2_hybrid_gif": str(team_output / "team_assignment_overlay_v2_hybrid.gif") if hybrid_mode else None,
             "v1_v2_comparison_json": str(team_output / "v1_v2_comparison.json"),
             "v1_v2_comparison_csv": str(team_output / "v1_v2_comparison.csv"),
+            "color_only_vs_hybrid_json": str(team_output / "color_only_vs_hybrid.json") if hybrid_mode else None,
+            "color_only_vs_hybrid_csv": str(team_output / "color_only_vs_hybrid.csv") if hybrid_mode else None,
+            "color_only_vs_hybrid_summary": str(team_output / "color_only_vs_hybrid_summary.json") if hybrid_mode else None,
+            "color_only_vs_hybrid_changed_tracks": str(team_output / "color_only_vs_hybrid_changed_tracks.png") if hybrid_mode else None,
+            "low_observation_tracks": str(team_output / "low_observation_tracks.png") if hybrid_mode else None,
+            "hybrid_team_a_contact_sheet": str(team_output / "hybrid_team_a_contact_sheet.png") if hybrid_mode else None,
+            "hybrid_team_b_contact_sheet": str(team_output / "hybrid_team_b_contact_sheet.png") if hybrid_mode else None,
+            "hybrid_official_contact_sheet": str(team_output / "hybrid_official_contact_sheet.png") if hybrid_mode else None,
+            "hybrid_unknown_contact_sheet": str(team_output / "hybrid_unknown_contact_sheet.png") if hybrid_mode else None,
             **contact_artifacts,
         },
         "known_limitations": KNOWN_LIMITATIONS,
@@ -1114,6 +1271,27 @@ def main():
     metrics, polygon_artifacts = render_polygon_v2(frames_by_source, frame_lookup, det_by_frame, projected, assignments_by_id, template, polygon_output, cfg)
     heatmap_artifacts = save_heatmap(projected, assignments_by_id, template, polygon_output, cfg)
     polygon_artifacts.update(heatmap_artifacts)
+    if hybrid_mode:
+        polygon_artifacts["team_polygon_field_v2_hybrid_mp4"] = copy_alias(
+            polygon_artifacts.get("team_polygon_field_v2_mp4"),
+            polygon_output / "team_polygon_field_v2_hybrid.mp4",
+        )
+        polygon_artifacts["team_polygon_field_v2_hybrid_gif"] = copy_alias(
+            polygon_artifacts.get("team_polygon_field_v2_gif"),
+            polygon_output / "team_polygon_field_v2_hybrid.gif",
+        )
+        polygon_artifacts["team_polygon_side_by_side_v2_hybrid_mp4"] = copy_alias(
+            polygon_artifacts.get("team_polygon_side_by_side_v2_mp4"),
+            polygon_output / "team_polygon_side_by_side_v2_hybrid.mp4",
+        )
+        polygon_artifacts["team_polygon_side_by_side_v2_hybrid_gif"] = copy_alias(
+            polygon_artifacts.get("team_polygon_side_by_side_v2_gif"),
+            polygon_output / "team_polygon_side_by_side_v2_hybrid.gif",
+        )
+        polygon_artifacts["team_specific_heatmap_v2_hybrid"] = copy_alias(
+            heatmap_artifacts.get("team_specific_heatmap_v2"),
+            polygon_output / "team_specific_heatmap_v2_hybrid.png",
+        )
     excluded_total = len([p for p in projected if not p.get("inside_field_template_bounds")])
     for row in metrics:
         row["projected_points_excluded"] = len([p for p in projected if int(p["frame_index"]) == row["frame_index"] and (not p.get("inside_field_template_bounds") or assignments_by_id.get(int(p["track_id"]), {}).get("assigned_class") not in ("team_a", "team_b"))])

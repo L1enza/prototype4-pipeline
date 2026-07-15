@@ -17,6 +17,7 @@ from PIL import Image
 
 
 RESNET18_FILENAME = "resnet18-f37072fd.pth"
+RESNET18_WEIGHTS_ENUM = "ResNet18_Weights.IMAGENET1K_V1"
 
 
 @dataclass
@@ -45,12 +46,12 @@ class AppearanceBackend:
 
 def _candidate_cache_paths() -> list[Path]:
     paths = []
-    home = Path.home()
-    paths.append(home / ".cache" / "torch" / "hub" / "checkpoints" / RESNET18_FILENAME)
     torch_home = os.environ.get("TORCH_HOME")
     if torch_home:
         paths.append(Path(torch_home) / "hub" / "checkpoints" / RESNET18_FILENAME)
         paths.append(Path(torch_home) / "checkpoints" / RESNET18_FILENAME)
+    home = Path.home()
+    paths.append(home / ".cache" / "torch" / "hub" / "checkpoints" / RESNET18_FILENAME)
     return paths
 
 
@@ -59,6 +60,22 @@ def cached_resnet18_weights_path() -> Optional[Path]:
         if path.exists():
             return path
     return None
+
+
+def resnet18_preflight_metadata() -> Dict[str, Any]:
+    cached = cached_resnet18_weights_path()
+    return {
+        "torchvision_model": "torchvision.models.resnet18",
+        "weights_enum": RESNET18_WEIGHTS_ENUM,
+        "weights_filename": RESNET18_FILENAME,
+        "expected_cache_location": str(_candidate_cache_paths()[0]),
+        "cache_candidates": [str(path) for path in _candidate_cache_paths()],
+        "cached_weights_path": str(cached) if cached else None,
+        "weights_cached": cached is not None,
+        "training_or_finetuning": False,
+        "classifier_head_removed_for_embedding": True,
+        "embedding_dim": 512,
+    }
 
 
 def load_appearance_backend(backend: str = "auto", allow_download_weights: bool = False) -> AppearanceBackend:
@@ -70,10 +87,14 @@ def load_appearance_backend(backend: str = "auto", allow_download_weights: bool 
     requested = backend
     metadata: Dict[str, Any] = {
         "requested_backend": requested,
+        "torchvision_model": "torchvision.models.resnet18",
+        "expected_weights_enum": RESNET18_WEIGHTS_ENUM,
         "allow_download_weights": bool(allow_download_weights),
         "weights_downloaded": False,
         "weights_cached_before_load": False,
         "cache_candidates": [str(path) for path in _candidate_cache_paths()],
+        "expected_cache_location": str(_candidate_cache_paths()[0]),
+        "training_or_finetuning": False,
     }
     if backend == "none":
         metadata.update({"active_backend": "none", "status": "disabled_by_config"})
@@ -108,7 +129,7 @@ def load_appearance_backend(backend: str = "auto", allow_download_weights: bool 
         return AppearanceBackend(requested, "none", metadata=metadata)
 
     try:
-        weights = ResNet18_Weights.DEFAULT
+        weights = ResNet18_Weights.IMAGENET1K_V1
         model = resnet18(weights=weights)
         feature_model = nn.Sequential(*(list(model.children())[:-1]))
         feature_model.eval()
@@ -119,9 +140,12 @@ def load_appearance_backend(backend: str = "auto", allow_download_weights: bool 
             "active_backend": "torchvision_resnet18",
             "status": "loaded",
             "weights_enum": str(weights),
+            "weights_filename": RESNET18_FILENAME,
             "weights_downloaded": cached is None and allow_download_weights,
+            "cached_weights_path_after_load": str(cached_resnet18_weights_path()) if cached_resnet18_weights_path() else None,
             "embedding_dim": 512,
             "evidence_mode": "appearance_plus_color",
+            "training_or_finetuning": False,
         })
         return AppearanceBackend(
             requested_backend=requested,
