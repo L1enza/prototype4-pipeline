@@ -1,0 +1,71 @@
+{
+  "counts": {
+    "examples_by_track": {
+      "track_001": 8,
+      "track_002": 8,
+      "track_003": 8,
+      "track_004": 8,
+      "track_006": 8,
+      "track_007": 8,
+      "track_008": 8,
+      "track_009": 8,
+      "track_010": 8,
+      "track_011": 8,
+      "track_013": 5,
+      "track_016": 8,
+      "track_017": 8,
+      "track_018": 8,
+      "track_019": 8,
+      "track_021": 5,
+      "track_022": 8
+    },
+    "images_selected": 130,
+    "input_ocr_prediction_count": 384,
+    "input_region_count": 1608,
+    "input_track_prediction_count": 17,
+    "selected_with_ocr_text": 37,
+    "tracks_covered": 17
+  },
+  "generated_at_utc": "2026-07-14T16:09:34.108331+00:00",
+  "identity_assignment_performed": false,
+  "inputs": {
+    "crop_ocr_predictions": "outputs/nll_test4/jersey_ocr_enhanced_local_results/crop_ocr_predictions.json",
+    "debug_tracks": "outputs/nll_test4/debug_tracks_with_enhanced_ocr.json",
+    "region_manifest": "outputs/nll_test4/enhanced_number_regions/enhanced_number_region_manifest.json",
+    "region_summary": "outputs/nll_test4/enhanced_number_regions/enhanced_number_region_summary.json",
+    "track_ocr_predictions": "outputs/nll_test4/jersey_ocr_enhanced_local_results/track_jersey_number_predictions.json"
+  },
+  "known_limitations": [
+    "Manual labels are intentionally blank until reviewed by a human.",
+    "Examples may include unreadable, partial, obstructed, or referee crops because the goal is recognizer evaluation.",
+    "This set must not be used to assign player identity directly.",
+    "OCR text fields are weak local Tesseract evidence only and should not be treated as ground truth."
+  ],
+  "outputs": {
+    "contact_sheet": "outputs/nll_test4/manual_jersey_digit_eval_set/contact_sheet.png",
+    "images_dir": "outputs/nll_test4/manual_jersey_digit_eval_set/images",
+    "label_sheet_csv": "outputs/nll_test4/manual_jersey_digit_eval_set/label_sheet.csv",
+    "label_sheet_json": "outputs/nll_test4/manual_jersey_digit_eval_set/label_sheet.json",
+    "output_dir": "outputs/nll_test4/manual_jersey_digit_eval_set",
+    "readme": "outputs/nll_test4/manual_jersey_digit_eval_set/README.md",
+    "review_export_dir": "review_exports/nll_test4_manual_jersey_eval"
+  },
+  "selection": {
+    "examples_per_track": 8,
+    "max_same_frame_per_track": 2,
+    "max_total_images": 200,
+    "min_examples_per_track": 5,
+    "strategy": "score enhanced regions by OCR evidence, OCR-readiness, region size, and variant usefulness; limit near-duplicate same-frame variants per track"
+  },
+  "size_checks": {
+    "files_over_90mb": [],
+    "output_dir_total_bytes": 10639802,
+    "output_dir_total_mb": 10.147,
+    "review_dir_total_bytes": 10639802,
+    "review_dir_total_mb": 10.147,
+    "warning": null
+  },
+  "stage": "manual_jersey_digit_eval_set",
+  "status": "complete",
+  "training_run": false
+}
