@@ -1,0 +1,65 @@
+{
+  "run_id": "nll_test4",
+  "inputs": {
+    "tracking_metadata": "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_metadata.json",
+    "projected_points": "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/projected_player_points.json",
+    "clean_crop_metadata": "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json",
+    "video": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4",
+    "field_template": "assets/field_templates/nll_field_topdown.png",
+    "v1_assignments": "outputs/nll_test4/team_assignment_demo/track_team_assignments.json"
+  },
+  "outputs": {
+    "team_assignment_dir": "outputs/nll_test4/team_assignment_demo_v2",
+    "team_polygon_dir": "outputs/nll_test4/team_polygon_demo_v2"
+  },
+  "torso_crop_fractions": {
+    "x_start": 0.15,
+    "x_end": 0.85,
+    "y_start": 0.12,
+    "y_end": 0.62
+  },
+  "observation_selection": {
+    "max_observations_per_track": 30,
+    "min_observations_per_track": 4,
+    "min_frame_spacing": 2
+  },
+  "feature_weights": {
+    "appearance": 0.65,
+    "color": 0.35
+  },
+  "appearance": {
+    "embedding_backend": "auto",
+    "allow_download_weights": false
+  },
+  "clustering": {
+    "gmm_random_seed": 17,
+    "unknown_posterior_threshold": 0.65,
+    "assignment_margin_threshold": 0.12,
+    "min_evidence_quality": 0.32
+  },
+  "official": {
+    "score_threshold": 0.93,
+    "v1_official_bonus": 0.3,
+    "neutral_fraction_weight": 0.34,
+    "dark_white_mix_weight": 0.34,
+    "stripe_edge_weight": 0.20,
+    "cluster_distance_weight": 0.12
+  },
+  "outlier_rejection": {
+    "color_cosine_distance_threshold": 0.35,
+    "appearance_cosine_distance_threshold": 0.35,
+    "max_reject_fraction": 0.30
+  },
+  "rendering": {
+    "fps": 6.0,
+    "trail_length": 10,
+    "polygon_opacity": 0.24,
+    "field_panel_width": 720,
+    "heatmap_sigma": 20.0,
+    "heatmap_alpha": 0.55
+  },
+  "scorebug_priors": {
+    "path": "configs/nll_test4_team_color_priors.json",
+    "enabled": false
+  }
+}

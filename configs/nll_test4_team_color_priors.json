@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "source_frame_index": null,
+  "manually_confirmed": false,
+  "team_a": {
+    "name": null,
+    "reference_rgb": [],
+    "reference_lab": []
+  },
+  "team_b": {
+    "name": null,
+    "reference_rgb": [],
+    "reference_lab": []
+  },
+  "notes": ""
+}
