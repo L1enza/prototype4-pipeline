@@ -1,0 +1,55 @@
+{
+  "run_id": "nll_test4",
+  "team_label_to_real_team": {
+    "team_a": {
+      "team_abbreviation": "TOR",
+      "team_name": "Toronto Rock",
+      "uniform_description": "white uniforms with blue/red trim"
+    },
+    "team_b": {
+      "team_abbreviation": "OSH",
+      "team_name": "Oshawa FireWolves",
+      "uniform_description": "dark maroon uniforms with tan/orange details"
+    }
+  },
+  "inputs": {
+    "color_only_assignments": "outputs/nll_test4/team_assignment_demo_v2/track_team_assignments_v2.json",
+    "color_only_signatures": "outputs/nll_test4/team_assignment_demo_v2/track_feature_signatures.json",
+    "color_only_summary": "outputs/nll_test4/team_assignment_demo_v2/team_assignment_summary_v2.json",
+    "cluster_centers": "outputs/nll_test4/team_assignment_demo_v2/cluster_centers.json"
+  },
+  "outputs": {
+    "output_dir": "outputs/nll_test4/game_team_color_profile"
+  },
+  "validation": {
+    "preferred_segments": [
+      {
+        "name": "segment_0s_3s",
+        "nominal_time_window": "0-3 seconds",
+        "tracking_metadata": "outputs/nll_test4/segment_tests/segment_0s_3s/tracking_metadata.json"
+      },
+      {
+        "name": "segment_10s_3s",
+        "nominal_time_window": "10-13 seconds",
+        "tracking_metadata": "outputs/nll_test4/segment_tests/segment_10s_3s/tracking_metadata.json"
+      },
+      {
+        "name": "segment_20s_3s",
+        "nominal_time_window": "20-23 seconds",
+        "tracking_metadata": "outputs/nll_test4/segment_tests/segment_20s_3s/tracking_metadata.json"
+      },
+      {
+        "name": "segment_30s_3s",
+        "nominal_time_window": "30-33 seconds",
+        "tracking_metadata": "outputs/nll_test4/segment_tests/segment_30s_3s/tracking_metadata.json"
+      }
+    ]
+  },
+  "constraints": {
+    "evidence_mode": "color_only",
+    "embedding_backend": "none",
+    "scorebug_priors": false,
+    "preserve_official_unknown": true
+  }
+}
+

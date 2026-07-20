@@ -1,0 +1,76 @@
+{
+  "run_id": "nll_test4",
+  "inputs": {
+    "enhanced_number_region_manifest": "outputs/nll_test4/enhanced_number_regions/enhanced_number_region_manifest.json",
+    "clean_crop_metadata": "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json",
+    "crop_ocr_predictions": "outputs/nll_test4/jersey_ocr_enhanced_local_results/crop_ocr_predictions.json",
+    "tracking_metadata": "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_metadata.json",
+    "team_assignments": "outputs/nll_test4/team_assignment_demo_v2_hybrid/track_team_assignments_v2.json",
+    "jersey_number_lookup": "outputs/roster_metadata_validation/jersey_number_lookup.json"
+  },
+  "outputs": {
+    "output_dir": "outputs/nll_test4/track_level_jersey_inference"
+  },
+  "selection": {
+    "min_source_frames_per_track": 3,
+    "max_source_frames_per_track": 5,
+    "avoid_multiple_variants_as_independent_evidence": true,
+    "prefer_crop_type": "torso",
+    "preserve_views": [
+      "original_crop",
+      "grayscale_crop",
+      "best_enhanced_region"
+    ]
+  },
+  "vision_backend": {
+    "name": "auto",
+    "provider": "openai_compatible",
+    "model": "gpt-4o-mini",
+    "endpoint": "https://api.openai.com/v1/chat/completions",
+    "api_key_env": "OPENAI_API_KEY",
+    "allow_network": false,
+    "timeout_seconds": 60
+  },
+  "team_label_to_abbreviation": {
+    "team_a": "TOR",
+    "team_b": "OSH",
+    "official": null,
+    "unknown": null
+  },
+  "team_label_metadata": {
+    "team_a": {
+      "team_name": "Toronto Rock",
+      "team_abbreviation": "TOR",
+      "uniform_description": "white Toronto uniforms with blue/red trim",
+      "mapping_source": "manual footage review"
+    },
+    "team_b": {
+      "team_name": "Oshawa FireWolves",
+      "team_abbreviation": "OSH",
+      "uniform_description": "dark maroon Oshawa uniforms with tan/orange details",
+      "mapping_source": "manual footage review"
+    },
+    "official": {
+      "team_name": null,
+      "team_abbreviation": null,
+      "uniform_description": "official/referee track, not roster matched",
+      "mapping_source": "team assignment classifier"
+    },
+    "unknown": {
+      "team_name": null,
+      "team_abbreviation": null,
+      "uniform_description": "unknown team label, not roster matched",
+      "mapping_source": "team assignment classifier"
+    }
+  },
+  "aggregation": {
+    "medium_min_mean_confidence": 0.55,
+    "treat_existing_ocr_as_weak_evidence": true,
+    "never_force_assignment": true
+  },
+  "confidence_policy": {
+    "high": "Same valid roster number supported by at least two distinct source frames with no strong conflict.",
+    "medium": "One strong read plus compatible partial evidence and roster validation.",
+    "low_or_unknown": "Conflicting reads, threshold artifacts, advertisement text, insufficient visibility, invalid roster number, or missing team validation."
+  }
+}
