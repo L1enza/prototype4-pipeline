@@ -1,0 +1,69 @@
+{
+  "schema": "prototype4_canonical_hockey_rink_landmarks_v2",
+  "field_template": "assets/hockey/icerink.jpg",
+  "template_size_px": {
+    "width": 1568,
+    "height": 980
+  },
+  "canonical_units": "natural_image_pixels",
+  "notes": [
+    "All coordinates were rebuilt for assets/hockey/icerink.jpg; no coordinates were retained from the previous canonical image.",
+    "Line centers and circle extrema were measured in the natural 1568x980 image.",
+    "Use only exact painted markings visible in both views. Do not use players, sticks, shadows, unknown logos, or approximate featureless ice."
+  ],
+  "landmarks": [
+    {"id": "center_spot", "category": "center", "description": "Center-ice faceoff dot center", "template_xy": [783.5, 489.5]},
+    {"id": "center_line_top_boards", "category": "center_line", "description": "Center line at inner top-board edge", "template_xy": [783.5, 155.0]},
+    {"id": "center_line_bottom_boards", "category": "center_line", "description": "Center line at inner bottom-board edge", "template_xy": [783.5, 824.0]},
+    {"id": "center_circle_top", "category": "center_circle", "description": "Top painted point of center faceoff circle", "template_xy": [783.5, 385.5]},
+    {"id": "center_circle_bottom", "category": "center_circle", "description": "Bottom painted point of center faceoff circle", "template_xy": [783.5, 593.5]},
+    {"id": "center_circle_left", "category": "center_circle", "description": "Left painted point of center faceoff circle", "template_xy": [679.5, 489.5]},
+    {"id": "center_circle_right", "category": "center_circle", "description": "Right painted point of center faceoff circle", "template_xy": [887.5, 489.5]},
+
+    {"id": "left_blue_line_top_boards", "category": "blue_line", "description": "Left blue line at inner top-board edge", "template_xy": [589.5, 155.0]},
+    {"id": "left_blue_line_bottom_boards", "category": "blue_line", "description": "Left blue line at inner bottom-board edge", "template_xy": [589.5, 824.0]},
+    {"id": "right_blue_line_top_boards", "category": "blue_line", "description": "Right blue line at inner top-board edge", "template_xy": [977.5, 155.0]},
+    {"id": "right_blue_line_bottom_boards", "category": "blue_line", "description": "Right blue line at inner bottom-board edge", "template_xy": [977.5, 824.0]},
+
+    {"id": "left_goal_line_top_boards", "category": "goal_line", "description": "Left goal line intersection with upper curved boards", "template_xy": [185.5, 155.0]},
+    {"id": "left_goal_line_bottom_boards", "category": "goal_line", "description": "Left goal line intersection with lower curved boards", "template_xy": [185.5, 824.0]},
+    {"id": "right_goal_line_top_boards", "category": "goal_line", "description": "Right goal line intersection with upper curved boards", "template_xy": [1381.5, 155.0]},
+    {"id": "right_goal_line_bottom_boards", "category": "goal_line", "description": "Right goal line intersection with lower curved boards", "template_xy": [1381.5, 824.0]},
+
+    {"id": "neutral_dot_top_left", "category": "neutral_zone_dot", "description": "Upper-left neutral-zone faceoff dot center", "template_xy": [628.5, 333.5]},
+    {"id": "neutral_dot_top_right", "category": "neutral_zone_dot", "description": "Upper-right neutral-zone faceoff dot center", "template_xy": [938.5, 333.5]},
+    {"id": "neutral_dot_bottom_left", "category": "neutral_zone_dot", "description": "Lower-left neutral-zone faceoff dot center", "template_xy": [628.5, 645.5]},
+    {"id": "neutral_dot_bottom_right", "category": "neutral_zone_dot", "description": "Lower-right neutral-zone faceoff dot center", "template_xy": [938.5, 645.5]},
+
+    {"id": "left_top_faceoff_center", "category": "left_zone_faceoff", "description": "Upper-left faceoff dot center", "template_xy": [321.5, 318.5]},
+    {"id": "left_top_faceoff_circle_top", "category": "left_zone_faceoff", "description": "Top point of upper-left faceoff circle", "template_xy": [321.5, 214.5]},
+    {"id": "left_top_faceoff_circle_bottom", "category": "left_zone_faceoff", "description": "Bottom point of upper-left faceoff circle", "template_xy": [321.5, 422.5]},
+    {"id": "left_top_faceoff_circle_left", "category": "left_zone_faceoff", "description": "Left point of upper-left faceoff circle", "template_xy": [217.5, 318.5]},
+    {"id": "left_top_faceoff_circle_right", "category": "left_zone_faceoff", "description": "Right point of upper-left faceoff circle", "template_xy": [425.5, 318.5]},
+    {"id": "left_bottom_faceoff_center", "category": "left_zone_faceoff", "description": "Lower-left faceoff dot center", "template_xy": [321.5, 660.5]},
+    {"id": "left_bottom_faceoff_circle_top", "category": "left_zone_faceoff", "description": "Top point of lower-left faceoff circle", "template_xy": [321.5, 556.5]},
+    {"id": "left_bottom_faceoff_circle_bottom", "category": "left_zone_faceoff", "description": "Bottom point of lower-left faceoff circle", "template_xy": [321.5, 764.5]},
+    {"id": "left_bottom_faceoff_circle_left", "category": "left_zone_faceoff", "description": "Left point of lower-left faceoff circle", "template_xy": [217.5, 660.5]},
+    {"id": "left_bottom_faceoff_circle_right", "category": "left_zone_faceoff", "description": "Right point of lower-left faceoff circle", "template_xy": [425.5, 660.5]},
+
+    {"id": "right_top_faceoff_center", "category": "right_zone_faceoff", "description": "Upper-right faceoff dot center", "template_xy": [1244.5, 318.5]},
+    {"id": "right_top_faceoff_circle_top", "category": "right_zone_faceoff", "description": "Top point of upper-right faceoff circle", "template_xy": [1245.5, 214.5]},
+    {"id": "right_top_faceoff_circle_bottom", "category": "right_zone_faceoff", "description": "Bottom point of upper-right faceoff circle", "template_xy": [1245.5, 422.5]},
+    {"id": "right_top_faceoff_circle_left", "category": "right_zone_faceoff", "description": "Left point of upper-right faceoff circle", "template_xy": [1141.5, 318.5]},
+    {"id": "right_top_faceoff_circle_right", "category": "right_zone_faceoff", "description": "Right point of upper-right faceoff circle", "template_xy": [1349.5, 318.5]},
+    {"id": "right_bottom_faceoff_center", "category": "right_zone_faceoff", "description": "Lower-right faceoff dot center", "template_xy": [1244.5, 660.5]},
+    {"id": "right_bottom_faceoff_circle_top", "category": "right_zone_faceoff", "description": "Top point of lower-right faceoff circle", "template_xy": [1245.5, 556.5]},
+    {"id": "right_bottom_faceoff_circle_bottom", "category": "right_zone_faceoff", "description": "Bottom point of lower-right faceoff circle", "template_xy": [1245.5, 764.5]},
+    {"id": "right_bottom_faceoff_circle_left", "category": "right_zone_faceoff", "description": "Left point of lower-right faceoff circle", "template_xy": [1141.5, 660.5]},
+    {"id": "right_bottom_faceoff_circle_right", "category": "right_zone_faceoff", "description": "Right point of lower-right faceoff circle", "template_xy": [1349.5, 660.5]},
+
+    {"id": "left_crease_center", "category": "crease", "description": "Center of left goal crease on goal line", "template_xy": [185.5, 489.5]},
+    {"id": "left_crease_top", "category": "crease", "description": "Upper crease/goal-line intersection", "template_xy": [185.5, 432.5]},
+    {"id": "left_crease_bottom", "category": "crease", "description": "Lower crease/goal-line intersection", "template_xy": [185.5, 546.5]},
+    {"id": "left_crease_edge", "category": "crease", "description": "Rightmost painted point of left semicircular crease", "template_xy": [228.5, 489.5]},
+    {"id": "right_crease_center", "category": "crease", "description": "Center of right goal crease on goal line", "template_xy": [1381.5, 489.5]},
+    {"id": "right_crease_top", "category": "crease", "description": "Upper crease/goal-line intersection", "template_xy": [1381.5, 432.5]},
+    {"id": "right_crease_bottom", "category": "crease", "description": "Lower crease/goal-line intersection", "template_xy": [1381.5, 546.5]},
+    {"id": "right_crease_edge", "category": "crease", "description": "Leftmost painted point of right semicircular crease", "template_xy": [1338.5, 489.5]}
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "classification": {
+    "devils_fresh_observations": 570,
+    "devils_tracks": 16,
+    "flyers_fresh_observations": 714,
+    "flyers_tracks": 15,
+    "low_quality_crops_ignored": 949,
+    "official_fresh_observations": 208,
+    "official_tracks": 2,
+    "prototype_diagnostics": {
+      "seed_counts": {
+        "devils": 460,
+        "flyers": 1080
+      },
+      "seed_sources": {
+        "legacy_supported_devils": 361,
+        "legacy_supported_flyers": 60,
+        "strict_devils_red": 99,
+        "strict_flyers_white": 1020
+      }
+    },
+    "raw_per_crop_label_transitions": 418,
+    "stabilized_label_transitions": 0,
+    "team_definitions": {
+      "devils": "red torso primary; black pants are not primary evidence",
+      "flyers": "white torso primary; orange/black accents secondary",
+      "official": "black-white torso striping plus preserved reliable legacy evidence"
+    },
+    "tracks_with_raw_crop_label_flicker": 85,
+    "unknown_fresh_observations": 639,
+    "unknown_tracks": 27,
+    "video_specific_prototypes": {
+      "devils": [
+        0.5276989836023974,
+        0.27795759452106206,
+        0.0,
+        0.11283087870593786,
+        0.2699470899470902
+      ],
+      "flyers": [
+        0.6353405853405854,
+        0.0,
+        0.0,
+        0.07022124727939538,
+        0.040606073012115634
+      ]
+    }
+  },
+  "inputs": {
+    "canonical_rink": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/assets/hockey/icerink.jpg",
+    "legacy_team_assignments": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo/team_assignments.json",
+    "legacy_tracking": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo/tracking_results.json",
+    "manual_annotations": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/rink_keypoints.json",
+    "registration": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo/per_frame_rink_homographies.json",
+    "video": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/njdevils.mp4"
+  },
+  "outputs": {
+    "boxes": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/broadcast_player_boxes_stabilized.mp4",
+    "broadcast_polygons": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/broadcast_team_polygons_stabilized.mp4",
+    "comparison": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/tracking_before_after_comparison.mp4",
+    "devils_rink_heatmap": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/devils_rink_heatmap_v2.png",
+    "flyers_rink_heatmap": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/flyers_rink_heatmap_v2.png",
+    "full_resolution_diagnostics": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/full_resolution_diagnostics",
+    "masks": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/broadcast_player_masks_stabilized.mp4",
+    "projected_observations_csv": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/projected_rink_observations_v2.csv",
+    "projected_observations_json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/projected_rink_observations_v2.json",
+    "representative_segmentation_frames": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/representative_segmentation_frames.png",
+    "representative_stabilized_tracking_frames": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/representative_stabilized_tracking_frames.png",
+    "representative_team_polygon_frames": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/representative_team_polygon_frames_v2.png",
+    "rink_polygons": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/rink_team_polygons_stabilized.mp4",
+    "segmentation_status": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/segmentation_status.json",
+    "showcase": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/final_hockey_showcase_v2.mp4",
+    "side_by_side": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/side_by_side_team_polygons_stabilized.mp4",
+    "stabilized_tracking_csv": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/stabilized_tracking_results.csv",
+    "stabilized_tracking_json": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/stabilized_tracking_results.json",
+    "summary": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/hockey_demo_v2_summary.json",
+    "team_assignment_contact_sheet": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/team_assignment_contact_sheet_v2.png",
+    "team_assignments": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/team_assignments_v2.json",
+    "tracking_stability_comparison": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/tracking_stability_comparison.png"
+  },
+  "registration": {
+    "blue_visible_rink_polygon_preserved": true,
+    "ok_frames": 277,
+    "player_projection": "fresh smoothed box footpoints only; stored broadcast-to-canonical H used directly",
+    "predicted_boxes_projected": false,
+    "rejected_frames": 0,
+    "source_reused_unchanged": true,
+    "stale_coordinates_reused": false
+  },
+  "rendering": {
+    "devils_projected_observations": 565,
+    "flyers_projected_observations": 658,
+    "frames_with_devils_polygon": 104,
+    "frames_with_flyers_polygon": 129,
+    "frames_with_insufficient_devils_points": 173,
+    "frames_with_insufficient_flyers_points": 148,
+    "official_observations_excluded": 208,
+    "out_of_rink_projections": 61,
+    "predicted_boxes_drawn": 720,
+    "registration_ok_frames": 277,
+    "special_visual_case_frames": [
+      9,
+      26,
+      203,
+      224,
+      39,
+      66
+    ],
+    "unknown_observations_excluded": 639
+  },
+  "segmentation": {
+    "blockers": [
+      "torch_cuda_unavailable",
+      "no_installed_sam2_or_segment_anything_fallback"
+    ],
+    "checkpoint_details": [
+      {
+        "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/.hf_cache/hub/models--facebook--sam3/snapshots/3c879f39826c281e95690f02c7821c4de09afae7/sam3.pt",
+        "resolved_path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/.hf_cache/hub/models--facebook--sam3/blobs/9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e",
+        "size_bytes": 3450062241
+      }
+    ],
+    "checkpoint_files": [
+      "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/.hf_cache/hub/models--facebook--sam3/snapshots/3c879f39826c281e95690f02c7821c4de09afae7/sam3.pt"
+    ],
+    "cuda_available": false,
+    "cuda_device_count": 0,
+    "fallback_behavior": "tracking and labels rendered without fabricated silhouette masks",
+    "installed_packages": {
+      "sam2": false,
+      "sam3": false,
+      "segment_anything": false,
+      "supervision": false,
+      "ultralytics": false
+    },
+    "nvidia_smi": {
+      "returncode": 9,
+      "stderr": "",
+      "stdout": "NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running."
+    },
+    "sam3_checkpoint_cache": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/.hf_cache/hub/models--facebook--sam3",
+    "sam3_ran": false,
+    "sam3_source_package_present": true,
+    "sam3_source_repository": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/sam3",
+    "sam3_source_repository_exists": true,
+    "segmentation_available": false,
+    "torch_import_error": null,
+    "torch_version": "2.3.1+cu121"
+  },
+  "stage": "hockey_polygon_demo_v2",
+  "status": "complete",
+  "tracking": {
+    "accepted_tracks_after": 60,
+    "average_accepted_track_duration_frames": 47.516666666666666,
+    "detector": "existing OpenCV HOG plus hockey-color component detector on every source frame",
+    "enhanced_raw_track_fragments_before_stitching": 148,
+    "jitter_reduction_percent": 71.2127881664014,
+    "legacy_accepted_tracks_before": 60,
+    "legacy_detection_matches": 3060,
+    "legacy_raw_track_fragments_before": 165,
+    "mean_normalized_center_jitter_after": 0.0814181857643586,
+    "mean_normalized_center_jitter_before": 0.28282761885724705,
+    "outside_ice_candidates_excluded": 841,
+    "predicted_boxes_rendered": 720,
+    "remaining_id_switch_candidates_heuristic": 0,
+    "remaining_id_switch_note": "No identity ground truth is available; this is the count of unstitched high-affinity non-overlapping fragment pairs, not a measured MOT ID-switch count.",
+    "short_detection_gap_events_bridged": 222,
+    "short_detection_gaps_bridged": 222,
+    "stitched_track_fragments": 2,
+    "track_fragments_after_stitching": 146,
+    "tracker": "constant-velocity state prediction, torso appearance matching, 12-frame memory, smoothing, internal-gap interpolation, post-pass stitching"
+  },
+  "video": {
+    "decoded_frame_count": 277,
+    "duration_seconds": 9.242566666666667,
+    "fps": 29.97002997002997,
+    "frame_count": 277,
+    "height": 720,
+    "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/njdevils.mp4",
+    "width": 1280
+  },
+  "video_verification": [
+    {
+      "decoded_frames": 277,
+      "expected_frames": 277,
+      "frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "fully_decodable": true,
+      "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/broadcast_player_boxes_stabilized.mp4"
+    },
+    {
+      "decoded_frames": 277,
+      "expected_frames": 277,
+      "frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "fully_decodable": true,
+      "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/broadcast_player_masks_stabilized.mp4"
+    },
+    {
+      "decoded_frames": 277,
+      "expected_frames": 277,
+      "frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "fully_decodable": true,
+      "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/broadcast_team_polygons_stabilized.mp4"
+    },
+    {
+      "decoded_frames": 277,
+      "expected_frames": 277,
+      "frame_shape": [
+        980,
+        1568,
+        3
+      ],
+      "fully_decodable": true,
+      "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/rink_team_polygons_stabilized.mp4"
+    },
+    {
+      "decoded_frames": 277,
+      "expected_frames": 277,
+      "frame_shape": [
+        720,
+        2432,
+        3
+      ],
+      "fully_decodable": true,
+      "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/side_by_side_team_polygons_stabilized.mp4"
+    },
+    {
+      "decoded_frames": 277,
+      "expected_frames": 277,
+      "frame_shape": [
+        720,
+        2560,
+        3
+      ],
+      "fully_decodable": true,
+      "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/tracking_before_after_comparison.mp4"
+    },
+    {
+      "decoded_frames": 277,
+      "expected_frames": 277,
+      "frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "fully_decodable": true,
+      "path": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/final_hockey_showcase_v2.mp4"
+    }
+  ]
+}

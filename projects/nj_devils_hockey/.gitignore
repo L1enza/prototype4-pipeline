@@ -1,0 +1,21 @@
+# Source video
+*.mp4
+*.mov
+*.mkv
+
+# Large generated data
+generated/
+outputs/
+crops/
+frames/
+diagnostics/
+
+# Local reviewer exports
+team_label_overrides.json
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store

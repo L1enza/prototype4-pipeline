@@ -1,0 +1,5457 @@
+{
+  "accepted_track_count": 60,
+  "note": "Suggestions require visual review and are not final overrides.",
+  "schema_version": 1,
+  "tracks": [
+    {
+      "context_frame_index": 0,
+      "context_path": "assets/track_000001_context_frame_000000.jpg",
+      "crops": [
+        {
+          "frame_index": 0,
+          "path": "assets/track_000001_torso_01_frame_000000.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000001_torso_02_frame_000005.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 10,
+          "path": "assets/track_000001_torso_03_frame_000010.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 15,
+          "path": "assets/track_000001_torso_04_frame_000015.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 20,
+          "path": "assets/track_000001_torso_05_frame_000020.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 25,
+          "path": "assets/track_000001_torso_06_frame_000025.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 30,
+          "path": "assets/track_000001_torso_07_frame_000030.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 36,
+          "path": "assets/track_000001_torso_08_frame_000036.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 46,
+          "path": "assets/track_000001_torso_09_frame_000046.jpg",
+          "quality": 0.9487845545212097
+        },
+        {
+          "frame_index": 51,
+          "path": "assets/track_000001_torso_10_frame_000051.jpg",
+          "quality": 0.9996014334394845
+        }
+      ],
+      "current_v2_confidence": 0.6359999999999999,
+      "current_v2_label": "devils",
+      "frame_end": 58,
+      "frame_start": 0,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "devils": 59
+      },
+      "observation_count": 59,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6359999999999999,
+        "crop_votes": {
+          "devils": 10,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.18765989092338647,
+          "blur_variance": 171.35318564669058,
+          "median_bbox_aspect": 1.982463524130191,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.4804358875894115,
+          "red_hue_consistency": 0.996902734041214,
+          "red_saturation": 0.7192868888378143,
+          "stripe": 0.2872103212497981,
+          "white": 0.3570450617259484,
+          "white_brightness": 0.8558150351047515
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 1
+    },
+    {
+      "context_frame_index": 0,
+      "context_path": "assets/track_000002_context_frame_000000.jpg",
+      "crops": [
+        {
+          "frame_index": 0,
+          "path": "assets/track_000002_torso_01_frame_000000.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000002_torso_02_frame_000005.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 10,
+          "path": "assets/track_000002_torso_03_frame_000010.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 15,
+          "path": "assets/track_000002_torso_04_frame_000015.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 20,
+          "path": "assets/track_000002_torso_05_frame_000020.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 25,
+          "path": "assets/track_000002_torso_06_frame_000025.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 30,
+          "path": "assets/track_000002_torso_07_frame_000030.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 35,
+          "path": "assets/track_000002_torso_08_frame_000035.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 40,
+          "path": "assets/track_000002_torso_09_frame_000040.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 45,
+          "path": "assets/track_000002_torso_10_frame_000045.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.8612127350434473,
+      "current_v2_label": "flyers",
+      "frame_end": 74,
+      "frame_start": 0,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 74
+      },
+      "observation_count": 74,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.8612127350434473,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.036374952020415505,
+          "blur_variance": 137.29675237498654,
+          "median_bbox_aspect": 1.9903379387602689,
+          "orange": 0.00029370972115044715,
+          "quality": 1.0,
+          "red": 0.04807903356696909,
+          "red_hue_consistency": 0.9960902631282806,
+          "red_saturation": 0.423430347442627,
+          "stripe": 0.04510494050531523,
+          "white": 0.798205843441854,
+          "white_brightness": 0.8354411840438842
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 2
+    },
+    {
+      "context_frame_index": 0,
+      "context_path": "assets/track_000003_context_frame_000000.jpg",
+      "crops": [
+        {
+          "frame_index": 0,
+          "path": "assets/track_000003_torso_01_frame_000000.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000003_torso_02_frame_000005.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 12,
+          "path": "assets/track_000003_torso_03_frame_000012.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 17,
+          "path": "assets/track_000003_torso_04_frame_000017.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 22,
+          "path": "assets/track_000003_torso_05_frame_000022.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 27,
+          "path": "assets/track_000003_torso_06_frame_000027.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 32,
+          "path": "assets/track_000003_torso_07_frame_000032.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 37,
+          "path": "assets/track_000003_torso_08_frame_000037.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 42,
+          "path": "assets/track_000003_torso_09_frame_000042.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 47,
+          "path": "assets/track_000003_torso_10_frame_000047.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.745609397708267,
+      "current_v2_label": "flyers",
+      "frame_end": 95,
+      "frame_start": 0,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 92
+      },
+      "observation_count": 92,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.745609397708267,
+        "crop_votes": {
+          "devils": 9,
+          "flyers": 1,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.12196948227295742,
+          "blur_variance": 228.88253616512324,
+          "median_bbox_aspect": 1.9111062335381914,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.30876331331415724,
+          "red_hue_consistency": 0.9982549488544464,
+          "red_saturation": 0.6767521262168884,
+          "stripe": 0.17482371830215518,
+          "white": 0.5562609664062863,
+          "white_brightness": 0.8875467479228973
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 3
+    },
+    {
+      "context_frame_index": 0,
+      "context_path": "assets/track_000005_context_frame_000000.jpg",
+      "crops": [
+        {
+          "frame_index": 0,
+          "path": "assets/track_000005_torso_01_frame_000000.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 1,
+          "path": "assets/track_000005_torso_02_frame_000001.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 2,
+          "path": "assets/track_000005_torso_03_frame_000002.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 3,
+          "path": "assets/track_000005_torso_04_frame_000003.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 4,
+          "path": "assets/track_000005_torso_05_frame_000004.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000005_torso_06_frame_000005.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 6,
+          "path": "assets/track_000005_torso_07_frame_000006.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 7,
+          "path": "assets/track_000005_torso_08_frame_000007.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 8,
+          "path": "assets/track_000005_torso_09_frame_000008.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6588948789780269,
+      "current_v2_label": "devils",
+      "frame_end": 8,
+      "frame_start": 0,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.6666666666666666,
+      "legacy_votes": {
+        "devils": 6,
+        "unknown": 3
+      },
+      "observation_count": 9,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6588948789780269,
+        "crop_votes": {
+          "devils": 6,
+          "flyers": 3,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.10865354436614046,
+          "blur_variance": 221.02503287797478,
+          "median_bbox_aspect": 1.190909090909091,
+          "orange": 2.22000222000222e-05,
+          "quality": 1.0,
+          "red": 0.16284267341879538,
+          "red_hue_consistency": 0.9970952603552077,
+          "red_saturation": 0.5998311440149943,
+          "stripe": 0.20014843669260438,
+          "white": 0.5784593577811266,
+          "white_brightness": 0.7822007073296441
+        },
+        "high_quality_crops_used": 9,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.6666666666666666,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 9,
+      "track_id": 5
+    },
+    {
+      "context_frame_index": 0,
+      "context_path": "assets/track_000006_context_frame_000000.jpg",
+      "crops": [
+        {
+          "frame_index": 0,
+          "path": "assets/track_000006_torso_01_frame_000000.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000006_torso_02_frame_000005.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 10,
+          "path": "assets/track_000006_torso_03_frame_000010.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 16,
+          "path": "assets/track_000006_torso_04_frame_000016.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 22,
+          "path": "assets/track_000006_torso_05_frame_000022.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 33,
+          "path": "assets/track_000006_torso_06_frame_000033.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 38,
+          "path": "assets/track_000006_torso_07_frame_000038.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 43,
+          "path": "assets/track_000006_torso_08_frame_000043.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 48,
+          "path": "assets/track_000006_torso_09_frame_000048.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 53,
+          "path": "assets/track_000006_torso_10_frame_000053.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.8404286436261563,
+      "current_v2_label": "flyers",
+      "frame_end": 89,
+      "frame_start": 0,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.9866666666666667,
+      "legacy_votes": {
+        "flyers": 74,
+        "unknown": 1
+      },
+      "observation_count": 75,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.8404286436261563,
+        "crop_votes": {
+          "devils": 10,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.08658819772397162,
+          "blur_variance": 311.63602555584055,
+          "median_bbox_aspect": 1.9880235226620768,
+          "orange": 9.445745511319281e-05,
+          "quality": 1.0,
+          "red": 0.14616034683400725,
+          "red_hue_consistency": 0.9980388581752777,
+          "red_saturation": 0.5742267847061158,
+          "stripe": 0.18757548245806768,
+          "white": 0.6409488444181084,
+          "white_brightness": 0.8360165476799011
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.9866666666666667,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 6
+    },
+    {
+      "context_frame_index": 0,
+      "context_path": "assets/track_000008_context_frame_000000.jpg",
+      "crops": [
+        {
+          "frame_index": 0,
+          "path": "assets/track_000008_torso_01_frame_000000.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000008_torso_02_frame_000005.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 10,
+          "path": "assets/track_000008_torso_03_frame_000010.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 15,
+          "path": "assets/track_000008_torso_04_frame_000015.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 20,
+          "path": "assets/track_000008_torso_05_frame_000020.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 25,
+          "path": "assets/track_000008_torso_06_frame_000025.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 30,
+          "path": "assets/track_000008_torso_07_frame_000030.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 35,
+          "path": "assets/track_000008_torso_08_frame_000035.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 40,
+          "path": "assets/track_000008_torso_09_frame_000040.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 45,
+          "path": "assets/track_000008_torso_10_frame_000045.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6341890032005886,
+      "current_v2_label": "devils",
+      "frame_end": 73,
+      "frame_start": 0,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 0.9344262295081968,
+      "legacy_votes": {
+        "devils": 57,
+        "unknown": 4
+      },
+      "observation_count": 61,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6341890032005886,
+        "crop_votes": {
+          "devils": 10,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.1064381551795184,
+          "blur_variance": 239.80631108355396,
+          "median_bbox_aspect": 1.9885057471264367,
+          "orange": 7.02576112412178e-05,
+          "quality": 1.0,
+          "red": 0.2611277893841954,
+          "red_hue_consistency": 0.9988099157810211,
+          "red_saturation": 0.7049254775047302,
+          "stripe": 0.16886009719256578,
+          "white": 0.5810828274384147,
+          "white_brightness": 0.8722297549247742
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.9344262295081968,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 8
+    },
+    {
+      "context_frame_index": 21,
+      "context_path": "assets/track_000009_context_frame_000021.jpg",
+      "crops": [
+        {
+          "frame_index": 16,
+          "path": "assets/track_000009_torso_01_frame_000016.jpg",
+          "quality": 0.4266666666666667
+        },
+        {
+          "frame_index": 21,
+          "path": "assets/track_000009_torso_02_frame_000021.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 26,
+          "path": "assets/track_000009_torso_03_frame_000026.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 31,
+          "path": "assets/track_000009_torso_04_frame_000031.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 36,
+          "path": "assets/track_000009_torso_05_frame_000036.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 41,
+          "path": "assets/track_000009_torso_06_frame_000041.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 46,
+          "path": "assets/track_000009_torso_07_frame_000046.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 51,
+          "path": "assets/track_000009_torso_08_frame_000051.jpg",
+          "quality": 0.8
+        },
+        {
+          "frame_index": 56,
+          "path": "assets/track_000009_torso_09_frame_000056.jpg",
+          "quality": 0.5826666666666667
+        },
+        {
+          "frame_index": 67,
+          "path": "assets/track_000009_torso_10_frame_000067.jpg",
+          "quality": 0.442
+        }
+      ],
+      "current_v2_confidence": 0.6683256144262317,
+      "current_v2_label": "devils",
+      "frame_end": 69,
+      "frame_start": 0,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 0.9375,
+      "legacy_votes": {
+        "devils": 45,
+        "unknown": 3
+      },
+      "observation_count": 48,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6683256144262317,
+        "crop_votes": {
+          "devils": 10,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.14490994900883267,
+          "blur_variance": 266.02358072830316,
+          "median_bbox_aspect": 1.2836829366680114,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.5778424322539968,
+          "red_hue_consistency": 0.9989475071430206,
+          "red_saturation": 0.713062447309494,
+          "stripe": 0.3843464786321297,
+          "white": 0.28045260518144044,
+          "white_brightness": 0.8848918497562408
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.9375,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 9
+    },
+    {
+      "context_frame_index": 0,
+      "context_path": "assets/track_000011_context_frame_000000.jpg",
+      "crops": [
+        {
+          "frame_index": 0,
+          "path": "assets/track_000011_torso_01_frame_000000.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 1,
+          "path": "assets/track_000011_torso_02_frame_000001.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 2,
+          "path": "assets/track_000011_torso_03_frame_000002.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 3,
+          "path": "assets/track_000011_torso_04_frame_000003.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000011_torso_05_frame_000005.jpg",
+          "quality": 0.9999231542739044
+        },
+        {
+          "frame_index": 6,
+          "path": "assets/track_000011_torso_06_frame_000006.jpg",
+          "quality": 0.23979948786156682
+        },
+        {
+          "frame_index": 12,
+          "path": "assets/track_000011_torso_07_frame_000012.jpg",
+          "quality": 0.47522051023968404
+        }
+      ],
+      "current_v2_confidence": 0.6407145139341182,
+      "current_v2_label": "devils",
+      "frame_end": 12,
+      "frame_start": 0,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.5714285714285714,
+      "legacy_votes": {
+        "devils": 4,
+        "unknown": 3
+      },
+      "observation_count": 7,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6407145139341182,
+        "crop_votes": {
+          "devils": 4,
+          "flyers": 2,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.1437904812293246,
+          "blur_variance": 239.1056813014305,
+          "median_bbox_aspect": 1.9857142857142858,
+          "orange": 0.0001810136568358959,
+          "quality": 0.9244509527603082,
+          "red": 0.23253392947794016,
+          "red_hue_consistency": 0.6983753376213934,
+          "red_saturation": 0.4814246211492907,
+          "stripe": 0.20809676857913983,
+          "white": 0.5739041486779165,
+          "white_brightness": 0.8216679110883659
+        },
+        "high_quality_crops_used": 6,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.5714285714285714,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 7,
+      "track_id": 11
+    },
+    {
+      "context_frame_index": 6,
+      "context_path": "assets/track_000012_context_frame_000006.jpg",
+      "crops": [
+        {
+          "frame_index": 0,
+          "path": "assets/track_000012_torso_01_frame_000000.jpg",
+          "quality": 0.42533333333333334
+        },
+        {
+          "frame_index": 3,
+          "path": "assets/track_000012_torso_02_frame_000003.jpg",
+          "quality": 0.42533333333333334
+        },
+        {
+          "frame_index": 6,
+          "path": "assets/track_000012_torso_03_frame_000006.jpg",
+          "quality": 0.434
+        },
+        {
+          "frame_index": 9,
+          "path": "assets/track_000012_torso_04_frame_000009.jpg",
+          "quality": 0.38666666666666666
+        },
+        {
+          "frame_index": 11,
+          "path": "assets/track_000012_torso_05_frame_000011.jpg",
+          "quality": 0.3546666666666667
+        },
+        {
+          "frame_index": 13,
+          "path": "assets/track_000012_torso_06_frame_000013.jpg",
+          "quality": 0.348
+        },
+        {
+          "frame_index": 16,
+          "path": "assets/track_000012_torso_07_frame_000016.jpg",
+          "quality": 0.28
+        },
+        {
+          "frame_index": 18,
+          "path": "assets/track_000012_torso_08_frame_000018.jpg",
+          "quality": 0.28
+        },
+        {
+          "frame_index": 20,
+          "path": "assets/track_000012_torso_09_frame_000020.jpg",
+          "quality": 0.26
+        },
+        {
+          "frame_index": 22,
+          "path": "assets/track_000012_torso_10_frame_000022.jpg",
+          "quality": 0.22733333333333333
+        }
+      ],
+      "current_v2_confidence": 0.5542239397815834,
+      "current_v2_label": "unknown",
+      "frame_end": 26,
+      "frame_start": 0,
+      "legacy_label": null,
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "unknown": 26
+      },
+      "observation_count": 26,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "ambiguous evidence; visual review required",
+        "confidence": 0.5542239397815834,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 10
+        },
+        "evidence": {
+          "black": 0.06333659810643161,
+          "blur_variance": 264.76699168190976,
+          "median_bbox_aspect": 1.262351469668543,
+          "orange": 0.0,
+          "quality": 0.4091243878550441,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.1770931427673184,
+          "white": 0.07378387202089455,
+          "white_brightness": 0.6825007679822047
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 12
+    },
+    {
+      "context_frame_index": 2,
+      "context_path": "assets/track_000016_context_frame_000002.jpg",
+      "crops": [
+        {
+          "frame_index": 2,
+          "path": "assets/track_000016_torso_01_frame_000002.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 7,
+          "path": "assets/track_000016_torso_02_frame_000007.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 12,
+          "path": "assets/track_000016_torso_03_frame_000012.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 17,
+          "path": "assets/track_000016_torso_04_frame_000017.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 22,
+          "path": "assets/track_000016_torso_05_frame_000022.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 27,
+          "path": "assets/track_000016_torso_06_frame_000027.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 32,
+          "path": "assets/track_000016_torso_07_frame_000032.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 37,
+          "path": "assets/track_000016_torso_08_frame_000037.jpg",
+          "quality": 0.884
+        },
+        {
+          "frame_index": 43,
+          "path": "assets/track_000016_torso_09_frame_000043.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 48,
+          "path": "assets/track_000016_torso_10_frame_000048.jpg",
+          "quality": 0.9373333333333334
+        }
+      ],
+      "current_v2_confidence": 0.8808744945868794,
+      "current_v2_label": "flyers",
+      "frame_end": 51,
+      "frame_start": 2,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.9696969696969697,
+      "legacy_votes": {
+        "flyers": 32,
+        "unknown": 1
+      },
+      "observation_count": 33,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.8808744945868794,
+        "crop_votes": {
+          "devils": 4,
+          "flyers": 6,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.07648664069444071,
+          "blur_variance": 257.220144974934,
+          "median_bbox_aspect": 1.9858148893360161,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.12038644478096058,
+          "red_hue_consistency": 0.997509753704071,
+          "red_saturation": 0.5715492576360702,
+          "stripe": 0.13832476619715517,
+          "white": 0.7189958590525621,
+          "white_brightness": 0.8539885401725769
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.9696969696969697,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 16
+    },
+    {
+      "context_frame_index": 4,
+      "context_path": "assets/track_000018_context_frame_000004.jpg",
+      "crops": [
+        {
+          "frame_index": 4,
+          "path": "assets/track_000018_torso_01_frame_000004.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000018_torso_02_frame_000005.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 6,
+          "path": "assets/track_000018_torso_03_frame_000006.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 7,
+          "path": "assets/track_000018_torso_04_frame_000007.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 8,
+          "path": "assets/track_000018_torso_05_frame_000008.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 9,
+          "path": "assets/track_000018_torso_06_frame_000009.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 10,
+          "path": "assets/track_000018_torso_07_frame_000010.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 11,
+          "path": "assets/track_000018_torso_08_frame_000011.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 14,
+          "path": "assets/track_000018_torso_09_frame_000014.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 16,
+          "path": "assets/track_000018_torso_10_frame_000016.jpg",
+          "quality": 0.814
+        }
+      ],
+      "current_v2_confidence": 0.8777183844242463,
+      "current_v2_label": "flyers",
+      "frame_end": 17,
+      "frame_start": 4,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 14
+      },
+      "observation_count": 14,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.8777183844242463,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 8,
+          "official": 2,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.10014580643893375,
+          "blur_variance": 277.4254062062786,
+          "median_bbox_aspect": 1.243768115942029,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.054079152144081766,
+          "red_hue_consistency": 0.9979659497737885,
+          "red_saturation": 0.4462296664714813,
+          "stripe": 0.2406080087049029,
+          "white": 0.6841027132064643,
+          "white_brightness": 0.8289520561695098
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 18
+    },
+    {
+      "context_frame_index": 4,
+      "context_path": "assets/track_000019_context_frame_000004.jpg",
+      "crops": [
+        {
+          "frame_index": 4,
+          "path": "assets/track_000019_torso_01_frame_000004.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 5,
+          "path": "assets/track_000019_torso_02_frame_000005.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 6,
+          "path": "assets/track_000019_torso_03_frame_000006.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 7,
+          "path": "assets/track_000019_torso_04_frame_000007.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6351987245161334,
+      "current_v2_label": "devils",
+      "frame_end": 7,
+      "frame_start": 4,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "devils": 4
+      },
+      "observation_count": 4,
+      "short_track_crop_notice": "Only 4 distinct fresh observations exist; no crops were duplicated.",
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6351987245161334,
+        "crop_votes": {
+          "devils": 4,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.09924345221647654,
+          "blur_variance": 214.9971047880319,
+          "median_bbox_aspect": 2.0,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.3227026835879419,
+          "red_hue_consistency": 0.9968914538621902,
+          "red_saturation": 0.6488798707723618,
+          "stripe": 0.2124505640663464,
+          "white": 0.5314073211489625,
+          "white_brightness": 0.8531592786312103
+        },
+        "high_quality_crops_used": 4,
+        "label": "devils",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 4,
+      "track_id": 19
+    },
+    {
+      "context_frame_index": 6,
+      "context_path": "assets/track_000021_context_frame_000006.jpg",
+      "crops": [
+        {
+          "frame_index": 6,
+          "path": "assets/track_000021_torso_01_frame_000006.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 8,
+          "path": "assets/track_000021_torso_02_frame_000008.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 11,
+          "path": "assets/track_000021_torso_03_frame_000011.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 14,
+          "path": "assets/track_000021_torso_04_frame_000014.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 18,
+          "path": "assets/track_000021_torso_05_frame_000018.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 23,
+          "path": "assets/track_000021_torso_06_frame_000023.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 30,
+          "path": "assets/track_000021_torso_07_frame_000030.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 35,
+          "path": "assets/track_000021_torso_08_frame_000035.jpg",
+          "quality": 0.7368486573831541
+        },
+        {
+          "frame_index": 42,
+          "path": "assets/track_000021_torso_09_frame_000042.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 47,
+          "path": "assets/track_000021_torso_10_frame_000047.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6325476861556592,
+      "current_v2_label": "devils",
+      "frame_end": 47,
+      "frame_start": 6,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "devils": 22
+      },
+      "observation_count": 22,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6325476861556592,
+        "crop_votes": {
+          "devils": 10,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.15192104869092288,
+          "blur_variance": 279.03055746972234,
+          "median_bbox_aspect": 1.99438202247191,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.31808936600445803,
+          "red_hue_consistency": 0.9980084061622619,
+          "red_saturation": 0.6954213857650757,
+          "stripe": 0.23865565617828616,
+          "white": 0.4518911592684504,
+          "white_brightness": 0.8214236676692963
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 21
+    },
+    {
+      "context_frame_index": 22,
+      "context_path": "assets/track_000027_context_frame_000022.jpg",
+      "crops": [
+        {
+          "frame_index": 7,
+          "path": "assets/track_000027_torso_01_frame_000007.jpg",
+          "quality": 0.17
+        },
+        {
+          "frame_index": 17,
+          "path": "assets/track_000027_torso_02_frame_000017.jpg",
+          "quality": 0.38133333333333336
+        },
+        {
+          "frame_index": 22,
+          "path": "assets/track_000027_torso_03_frame_000022.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 29,
+          "path": "assets/track_000027_torso_04_frame_000029.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 34,
+          "path": "assets/track_000027_torso_05_frame_000034.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 39,
+          "path": "assets/track_000027_torso_06_frame_000039.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 44,
+          "path": "assets/track_000027_torso_07_frame_000044.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 49,
+          "path": "assets/track_000027_torso_08_frame_000049.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 54,
+          "path": "assets/track_000027_torso_09_frame_000054.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 59,
+          "path": "assets/track_000027_torso_10_frame_000059.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.7491143558902671,
+      "current_v2_label": "official",
+      "frame_end": 60,
+      "frame_start": 7,
+      "legacy_label": "official",
+      "legacy_match_fraction": 0.9534883720930233,
+      "legacy_votes": {
+        "official": 41,
+        "unknown": 2
+      },
+      "observation_count": 43,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.7491143558902671,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 7,
+          "official": 3,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.09755509691676997,
+          "blur_variance": 232.18222226250677,
+          "median_bbox_aspect": 1.7678070175438596,
+          "orange": 0.012040599052392546,
+          "quality": 1.0,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.32454994212182936,
+          "white": 0.5205094113959434,
+          "white_brightness": 0.832187008857727
+        },
+        "high_quality_crops_used": 10,
+        "label": "official",
+        "legacy_reliable_fraction": 0.9534883720930233,
+        "legacy_reliable_label": "official"
+      },
+      "torso_crop_count": 10,
+      "track_id": 27
+    },
+    {
+      "context_frame_index": 90,
+      "context_path": "assets/track_000030_context_frame_000090.jpg",
+      "crops": [
+        {
+          "frame_index": 7,
+          "path": "assets/track_000030_torso_01_frame_000007.jpg",
+          "quality": 0.126
+        },
+        {
+          "frame_index": 18,
+          "path": "assets/track_000030_torso_02_frame_000018.jpg",
+          "quality": 0.13333333333333333
+        },
+        {
+          "frame_index": 25,
+          "path": "assets/track_000030_torso_03_frame_000025.jpg",
+          "quality": 0.13333333333333333
+        },
+        {
+          "frame_index": 40,
+          "path": "assets/track_000030_torso_04_frame_000040.jpg",
+          "quality": 0.14
+        },
+        {
+          "frame_index": 45,
+          "path": "assets/track_000030_torso_05_frame_000045.jpg",
+          "quality": 0.14
+        },
+        {
+          "frame_index": 64,
+          "path": "assets/track_000030_torso_06_frame_000064.jpg",
+          "quality": 0.12666666666666668
+        },
+        {
+          "frame_index": 77,
+          "path": "assets/track_000030_torso_07_frame_000077.jpg",
+          "quality": 0.21666666666666667
+        },
+        {
+          "frame_index": 84,
+          "path": "assets/track_000030_torso_08_frame_000084.jpg",
+          "quality": 0.48133333333333334
+        },
+        {
+          "frame_index": 90,
+          "path": "assets/track_000030_torso_09_frame_000090.jpg",
+          "quality": 0.69
+        },
+        {
+          "frame_index": 97,
+          "path": "assets/track_000030_torso_10_frame_000097.jpg",
+          "quality": 0.24130281172910362
+        }
+      ],
+      "current_v2_confidence": 0.9228749616052804,
+      "current_v2_label": "unknown",
+      "frame_end": 98,
+      "frame_start": 7,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.7105263157894737,
+      "legacy_votes": {
+        "flyers": 11,
+        "unknown": 27
+      },
+      "observation_count": 38,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9228749616052804,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.009520339838721194,
+          "blur_variance": 119.69103626565989,
+          "median_bbox_aspect": 0.8248081841432224,
+          "orange": 0.0,
+          "quality": 0.4845306017521486,
+          "red": 0.01113147427296632,
+          "red_hue_consistency": 0.13515564902660132,
+          "red_saturation": 0.05555171596294733,
+          "stripe": 0.11763039296786867,
+          "white": 0.8997062896439908,
+          "white_brightness": 0.7826823805968115
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.7105263157894737,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 30
+    },
+    {
+      "context_frame_index": 18,
+      "context_path": "assets/track_000032_context_frame_000018.jpg",
+      "crops": [
+        {
+          "frame_index": 16,
+          "path": "assets/track_000032_torso_01_frame_000016.jpg",
+          "quality": 0.5382593796491228
+        },
+        {
+          "frame_index": 17,
+          "path": "assets/track_000032_torso_02_frame_000017.jpg",
+          "quality": 0.5533834431913116
+        },
+        {
+          "frame_index": 18,
+          "path": "assets/track_000032_torso_03_frame_000018.jpg",
+          "quality": 0.592
+        },
+        {
+          "frame_index": 19,
+          "path": "assets/track_000032_torso_04_frame_000019.jpg",
+          "quality": 0.528
+        },
+        {
+          "frame_index": 20,
+          "path": "assets/track_000032_torso_05_frame_000020.jpg",
+          "quality": 0.434
+        },
+        {
+          "frame_index": 21,
+          "path": "assets/track_000032_torso_06_frame_000021.jpg",
+          "quality": 0.342
+        },
+        {
+          "frame_index": 24,
+          "path": "assets/track_000032_torso_07_frame_000024.jpg",
+          "quality": 0.272
+        }
+      ],
+      "current_v2_confidence": 0.5297528108855388,
+      "current_v2_label": "unknown",
+      "frame_end": 24,
+      "frame_start": 16,
+      "legacy_label": null,
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "unknown": 7
+      },
+      "observation_count": 7,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.5297528108855388,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 1,
+          "official": 0,
+          "unknown": 6
+        },
+        "evidence": {
+          "black": 0.0012781392511954112,
+          "blur_variance": 119.26927820697261,
+          "median_bbox_aspect": 1.1162790697674418,
+          "orange": 0.0,
+          "quality": 0.4922344202056993,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.1437202524330976,
+          "white": 0.1938162772502078,
+          "white_brightness": 0.7297826240523896
+        },
+        "high_quality_crops_used": 7,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 7,
+      "track_id": 32
+    },
+    {
+      "context_frame_index": 23,
+      "context_path": "assets/track_000034_context_frame_000023.jpg",
+      "crops": [
+        {
+          "frame_index": 23,
+          "path": "assets/track_000034_torso_01_frame_000023.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 35,
+          "path": "assets/track_000034_torso_02_frame_000035.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 40,
+          "path": "assets/track_000034_torso_03_frame_000040.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 45,
+          "path": "assets/track_000034_torso_04_frame_000045.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 50,
+          "path": "assets/track_000034_torso_05_frame_000050.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 55,
+          "path": "assets/track_000034_torso_06_frame_000055.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 60,
+          "path": "assets/track_000034_torso_07_frame_000060.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 65,
+          "path": "assets/track_000034_torso_08_frame_000065.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 70,
+          "path": "assets/track_000034_torso_09_frame_000070.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 75,
+          "path": "assets/track_000034_torso_10_frame_000075.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6347517586881968,
+      "current_v2_label": "devils",
+      "frame_end": 89,
+      "frame_start": 23,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 0.9615384615384616,
+      "legacy_votes": {
+        "devils": 50,
+        "flyers": 1,
+        "unknown": 1
+      },
+      "observation_count": 52,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6347517586881968,
+        "crop_votes": {
+          "devils": 9,
+          "flyers": 1,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.07298995664383931,
+          "blur_variance": 182.15978092036806,
+          "median_bbox_aspect": 1.153293056501021,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.24138463536963414,
+          "red_hue_consistency": 0.9979772090911865,
+          "red_saturation": 0.6922808229923249,
+          "stripe": 0.13029475145884206,
+          "white": 0.6631459816502023,
+          "white_brightness": 0.8456468462944031
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.9615384615384616,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 34
+    },
+    {
+      "context_frame_index": 24,
+      "context_path": "assets/track_000035_context_frame_000024.jpg",
+      "crops": [
+        {
+          "frame_index": 24,
+          "path": "assets/track_000035_torso_01_frame_000024.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 29,
+          "path": "assets/track_000035_torso_02_frame_000029.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 35,
+          "path": "assets/track_000035_torso_03_frame_000035.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 44,
+          "path": "assets/track_000035_torso_04_frame_000044.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 50,
+          "path": "assets/track_000035_torso_05_frame_000050.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 55,
+          "path": "assets/track_000035_torso_06_frame_000055.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 60,
+          "path": "assets/track_000035_torso_07_frame_000060.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 65,
+          "path": "assets/track_000035_torso_08_frame_000065.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 70,
+          "path": "assets/track_000035_torso_09_frame_000070.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 75,
+          "path": "assets/track_000035_torso_10_frame_000075.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.7702691020407255,
+      "current_v2_label": "flyers",
+      "frame_end": 80,
+      "frame_start": 24,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.7073170731707317,
+      "legacy_votes": {
+        "devils": 9,
+        "flyers": 29,
+        "unknown": 3
+      },
+      "observation_count": 41,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.7702691020407255,
+        "crop_votes": {
+          "devils": 9,
+          "flyers": 1,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.12306071811026834,
+          "blur_variance": 219.53434095375314,
+          "median_bbox_aspect": 1.640143369175627,
+          "orange": 4.348771472059143e-05,
+          "quality": 1.0,
+          "red": 0.33024283514111236,
+          "red_hue_consistency": 0.9979661405086517,
+          "red_saturation": 0.7183815091848373,
+          "stripe": 0.19186896620224442,
+          "white": 0.5074376458261319,
+          "white_brightness": 0.8565751135349273
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.7073170731707317,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 35
+    },
+    {
+      "context_frame_index": 53,
+      "context_path": "assets/track_000038_context_frame_000053.jpg",
+      "crops": [
+        {
+          "frame_index": 43,
+          "path": "assets/track_000038_torso_01_frame_000043.jpg",
+          "quality": 0.34
+        },
+        {
+          "frame_index": 48,
+          "path": "assets/track_000038_torso_02_frame_000048.jpg",
+          "quality": 0.648
+        },
+        {
+          "frame_index": 53,
+          "path": "assets/track_000038_torso_03_frame_000053.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 58,
+          "path": "assets/track_000038_torso_04_frame_000058.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 63,
+          "path": "assets/track_000038_torso_05_frame_000063.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 68,
+          "path": "assets/track_000038_torso_06_frame_000068.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 73,
+          "path": "assets/track_000038_torso_07_frame_000073.jpg",
+          "quality": 0.29310576719576714
+        },
+        {
+          "frame_index": 78,
+          "path": "assets/track_000038_torso_08_frame_000078.jpg",
+          "quality": 0.14876200224466893
+        },
+        {
+          "frame_index": 87,
+          "path": "assets/track_000038_torso_09_frame_000087.jpg",
+          "quality": 0.21266543299425034
+        },
+        {
+          "frame_index": 93,
+          "path": "assets/track_000038_torso_10_frame_000093.jpg",
+          "quality": 0.18249258231292517
+        }
+      ],
+      "current_v2_confidence": 0.7988287123610426,
+      "current_v2_label": "unknown",
+      "frame_end": 104,
+      "frame_start": 36,
+      "legacy_label": null,
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "unknown": 61
+      },
+      "observation_count": 61,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "3 sharp striped-torso crops match successful officials",
+        "confidence": 0.7498132755464436,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 7,
+          "official": 3,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.12032178048832617,
+          "blur_variance": 132.41402772651367,
+          "median_bbox_aspect": 1.2263427109974425,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.3240663777322185,
+          "white": 0.7261681946021445,
+          "white_brightness": 0.8077006280422211
+        },
+        "high_quality_crops_used": 10,
+        "label": "official",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 38
+    },
+    {
+      "context_frame_index": 96,
+      "context_path": "assets/track_000042_context_frame_000096.jpg",
+      "crops": [
+        {
+          "frame_index": 44,
+          "path": "assets/track_000042_torso_01_frame_000044.jpg",
+          "quality": 0.13933333333333334
+        },
+        {
+          "frame_index": 57,
+          "path": "assets/track_000042_torso_02_frame_000057.jpg",
+          "quality": 0.16
+        },
+        {
+          "frame_index": 74,
+          "path": "assets/track_000042_torso_03_frame_000074.jpg",
+          "quality": 0.182
+        },
+        {
+          "frame_index": 84,
+          "path": "assets/track_000042_torso_04_frame_000084.jpg",
+          "quality": 0.10080323691581897
+        },
+        {
+          "frame_index": 89,
+          "path": "assets/track_000042_torso_05_frame_000089.jpg",
+          "quality": 0.9391595301587302
+        },
+        {
+          "frame_index": 96,
+          "path": "assets/track_000042_torso_06_frame_000096.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 98,
+          "path": "assets/track_000042_torso_07_frame_000098.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 101,
+          "path": "assets/track_000042_torso_08_frame_000101.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 103,
+          "path": "assets/track_000042_torso_09_frame_000103.jpg",
+          "quality": 0.9146666666666666
+        },
+        {
+          "frame_index": 106,
+          "path": "assets/track_000042_torso_10_frame_000106.jpg",
+          "quality": 0.752
+        }
+      ],
+      "current_v2_confidence": 0.804698621066348,
+      "current_v2_label": "flyers",
+      "frame_end": 109,
+      "frame_start": 44,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.7435897435897436,
+      "legacy_votes": {
+        "flyers": 29,
+        "unknown": 10
+      },
+      "observation_count": 39,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.804698621066348,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.06769097509207264,
+          "blur_variance": 178.67495616968043,
+          "median_bbox_aspect": 1.2411458333333334,
+          "orange": 0.0,
+          "quality": 0.9724494340814311,
+          "red": 0.008498637779866692,
+          "red_hue_consistency": 0.49848468375210003,
+          "red_saturation": 0.20472271252167784,
+          "stripe": 0.11489953983443589,
+          "white": 0.7504662835987904,
+          "white_brightness": 0.7571676737560071
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.7435897435897436,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 42
+    },
+    {
+      "context_frame_index": 57,
+      "context_path": "assets/track_000043_context_frame_000057.jpg",
+      "crops": [
+        {
+          "frame_index": 46,
+          "path": "assets/track_000043_torso_01_frame_000046.jpg",
+          "quality": 0.176
+        },
+        {
+          "frame_index": 51,
+          "path": "assets/track_000043_torso_02_frame_000051.jpg",
+          "quality": 0.324
+        },
+        {
+          "frame_index": 53,
+          "path": "assets/track_000043_torso_03_frame_000053.jpg",
+          "quality": 0.336
+        },
+        {
+          "frame_index": 55,
+          "path": "assets/track_000043_torso_04_frame_000055.jpg",
+          "quality": 0.368
+        },
+        {
+          "frame_index": 57,
+          "path": "assets/track_000043_torso_05_frame_000057.jpg",
+          "quality": 0.4
+        },
+        {
+          "frame_index": 59,
+          "path": "assets/track_000043_torso_06_frame_000059.jpg",
+          "quality": 0.384
+        },
+        {
+          "frame_index": 62,
+          "path": "assets/track_000043_torso_07_frame_000062.jpg",
+          "quality": 0.368
+        },
+        {
+          "frame_index": 64,
+          "path": "assets/track_000043_torso_08_frame_000064.jpg",
+          "quality": 0.32
+        },
+        {
+          "frame_index": 71,
+          "path": "assets/track_000043_torso_09_frame_000071.jpg",
+          "quality": 0.304
+        },
+        {
+          "frame_index": 76,
+          "path": "assets/track_000043_torso_10_frame_000076.jpg",
+          "quality": 0.03593078991596639
+        }
+      ],
+      "current_v2_confidence": 0.8209020726331523,
+      "current_v2_label": "unknown",
+      "frame_end": 76,
+      "frame_start": 44,
+      "legacy_label": null,
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "unknown": 32
+      },
+      "observation_count": 32,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "ambiguous evidence; visual review required",
+        "confidence": 0.8209020726331523,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 1,
+          "official": 9,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.1546336206896552,
+          "blur_variance": 691.3639989443124,
+          "median_bbox_aspect": 1.7386363636363638,
+          "orange": 0.0,
+          "quality": 0.371988745210728,
+          "red": 0.014008620689655173,
+          "red_hue_consistency": 0.9989619001788997,
+          "red_saturation": 0.44839924360336414,
+          "stripe": 0.542031910181273,
+          "white": 0.5639367816091955,
+          "white_brightness": 0.7958901547131011
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 43
+    },
+    {
+      "context_frame_index": 55,
+      "context_path": "assets/track_000045_context_frame_000055.jpg",
+      "crops": [
+        {
+          "frame_index": 47,
+          "path": "assets/track_000045_torso_01_frame_000047.jpg",
+          "quality": 0.3105476869872951
+        },
+        {
+          "frame_index": 55,
+          "path": "assets/track_000045_torso_02_frame_000055.jpg",
+          "quality": 0.550259663382249
+        },
+        {
+          "frame_index": 57,
+          "path": "assets/track_000045_torso_03_frame_000057.jpg",
+          "quality": 0.5365142733516677
+        },
+        {
+          "frame_index": 58,
+          "path": "assets/track_000045_torso_04_frame_000058.jpg",
+          "quality": 0.5312074722001393
+        },
+        {
+          "frame_index": 59,
+          "path": "assets/track_000045_torso_05_frame_000059.jpg",
+          "quality": 0.5471027775946895
+        },
+        {
+          "frame_index": 69,
+          "path": "assets/track_000045_torso_06_frame_000069.jpg",
+          "quality": 0.46523165361721885
+        }
+      ],
+      "current_v2_confidence": 0.6114709875847353,
+      "current_v2_label": "devils",
+      "frame_end": 69,
+      "frame_start": 47,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.6666666666666666,
+      "legacy_votes": {
+        "devils": 4,
+        "unknown": 2
+      },
+      "observation_count": 6,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6114709875847353,
+        "crop_votes": {
+          "devils": 1,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 5
+        },
+        "evidence": {
+          "black": 0.4689674099871093,
+          "blur_variance": 38.359908506180055,
+          "median_bbox_aspect": 1.9906974731741087,
+          "orange": 0.05216698308296908,
+          "quality": 0.5049593203316233,
+          "red": 0.11484262180158808,
+          "red_hue_consistency": 0.9935365378847782,
+          "red_saturation": 0.5403220931171239,
+          "stripe": 0.09215477023967705,
+          "white": 0.05335170419038931,
+          "white_brightness": 0.6496322673887748
+        },
+        "high_quality_crops_used": 6,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.6666666666666666,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 6,
+      "track_id": 45
+    },
+    {
+      "context_frame_index": 51,
+      "context_path": "assets/track_000046_context_frame_000051.jpg",
+      "crops": [
+        {
+          "frame_index": 51,
+          "path": "assets/track_000046_torso_01_frame_000051.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 53,
+          "path": "assets/track_000046_torso_02_frame_000053.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 56,
+          "path": "assets/track_000046_torso_03_frame_000056.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 58,
+          "path": "assets/track_000046_torso_04_frame_000058.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 61,
+          "path": "assets/track_000046_torso_05_frame_000061.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 63,
+          "path": "assets/track_000046_torso_06_frame_000063.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 66,
+          "path": "assets/track_000046_torso_07_frame_000066.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 68,
+          "path": "assets/track_000046_torso_08_frame_000068.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 72,
+          "path": "assets/track_000046_torso_09_frame_000072.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 77,
+          "path": "assets/track_000046_torso_10_frame_000077.jpg",
+          "quality": 0.6529876443940684
+        }
+      ],
+      "current_v2_confidence": 0.6701822840988283,
+      "current_v2_label": "devils",
+      "frame_end": 81,
+      "frame_start": 51,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "devils": 30
+      },
+      "observation_count": 30,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6701822840988283,
+        "crop_votes": {
+          "devils": 10,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.08011960387654302,
+          "blur_variance": 208.8419368398771,
+          "median_bbox_aspect": 1.1622564935064934,
+          "orange": 2.2311468094600625e-05,
+          "quality": 1.0,
+          "red": 0.2601165724141933,
+          "red_hue_consistency": 0.9979500710964203,
+          "red_saturation": 0.7076111793518066,
+          "stripe": 0.12018633257176639,
+          "white": 0.6306310491096406,
+          "white_brightness": 0.862098103761673
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 46
+    },
+    {
+      "context_frame_index": 57,
+      "context_path": "assets/track_000048_context_frame_000057.jpg",
+      "crops": [
+        {
+          "frame_index": 54,
+          "path": "assets/track_000048_torso_01_frame_000054.jpg",
+          "quality": 0.2884333024803217
+        },
+        {
+          "frame_index": 56,
+          "path": "assets/track_000048_torso_02_frame_000056.jpg",
+          "quality": 0.30384478078349614
+        },
+        {
+          "frame_index": 57,
+          "path": "assets/track_000048_torso_03_frame_000057.jpg",
+          "quality": 0.30436058547828104
+        },
+        {
+          "frame_index": 58,
+          "path": "assets/track_000048_torso_04_frame_000058.jpg",
+          "quality": 0.29543144550715983
+        },
+        {
+          "frame_index": 60,
+          "path": "assets/track_000048_torso_05_frame_000060.jpg",
+          "quality": 0.2903914744455242
+        },
+        {
+          "frame_index": 61,
+          "path": "assets/track_000048_torso_06_frame_000061.jpg",
+          "quality": 0.28787614461028516
+        },
+        {
+          "frame_index": 62,
+          "path": "assets/track_000048_torso_07_frame_000062.jpg",
+          "quality": 0.2917346666727757
+        },
+        {
+          "frame_index": 67,
+          "path": "assets/track_000048_torso_08_frame_000067.jpg",
+          "quality": 0.23116491533514696
+        }
+      ],
+      "current_v2_confidence": 0.9896364858460854,
+      "current_v2_label": "unknown",
+      "frame_end": 67,
+      "frame_start": 54,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 8
+      },
+      "observation_count": 8,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9896364858460854,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 7,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0,
+          "blur_variance": 9.19636893407079,
+          "median_bbox_aspect": 1.9866666666666666,
+          "orange": 0.0,
+          "quality": 0.2883158835102401,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.0,
+          "white": 1.0,
+          "white_brightness": 0.8492682076919961
+        },
+        "high_quality_crops_used": 7,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 8,
+      "track_id": 48
+    },
+    {
+      "context_frame_index": 123,
+      "context_path": "assets/track_000055_context_frame_000123.jpg",
+      "crops": [
+        {
+          "frame_index": 79,
+          "path": "assets/track_000055_torso_01_frame_000079.jpg",
+          "quality": 0.5066666666666667
+        },
+        {
+          "frame_index": 86,
+          "path": "assets/track_000055_torso_02_frame_000086.jpg",
+          "quality": 0.5373333333333333
+        },
+        {
+          "frame_index": 91,
+          "path": "assets/track_000055_torso_03_frame_000091.jpg",
+          "quality": 0.38
+        },
+        {
+          "frame_index": 96,
+          "path": "assets/track_000055_torso_04_frame_000096.jpg",
+          "quality": 0.532
+        },
+        {
+          "frame_index": 104,
+          "path": "assets/track_000055_torso_05_frame_000104.jpg",
+          "quality": 0.5193333333333333
+        },
+        {
+          "frame_index": 113,
+          "path": "assets/track_000055_torso_06_frame_000113.jpg",
+          "quality": 0.5573333333333333
+        },
+        {
+          "frame_index": 118,
+          "path": "assets/track_000055_torso_07_frame_000118.jpg",
+          "quality": 0.624
+        },
+        {
+          "frame_index": 121,
+          "path": "assets/track_000055_torso_08_frame_000121.jpg",
+          "quality": 0.87
+        },
+        {
+          "frame_index": 123,
+          "path": "assets/track_000055_torso_09_frame_000123.jpg",
+          "quality": 0.936
+        },
+        {
+          "frame_index": 133,
+          "path": "assets/track_000055_torso_10_frame_000133.jpg",
+          "quality": 0.5866666666666667
+        }
+      ],
+      "current_v2_confidence": 0.6399554628917921,
+      "current_v2_label": "unknown",
+      "frame_end": 134,
+      "frame_start": 76,
+      "legacy_label": "official",
+      "legacy_match_fraction": 0.9591836734693877,
+      "legacy_votes": {
+        "official": 47,
+        "unknown": 2
+      },
+      "observation_count": 49,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "legacy official match rejected because sharp striped-person evidence is insufficient",
+        "confidence": 0.6399554628917921,
+        "crop_votes": {
+          "devils": 1,
+          "flyers": 7,
+          "official": 2,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.134194474345174,
+          "blur_variance": 276.09671379405654,
+          "median_bbox_aspect": 0.9658613445378151,
+          "orange": 0.0,
+          "quality": 0.7656830522664752,
+          "red": 0.04861858629350556,
+          "red_hue_consistency": 0.9183222033620779,
+          "red_saturation": 0.40432194368008173,
+          "stripe": 0.343758102790246,
+          "white": 0.6103336921420883,
+          "white_brightness": 0.7649120102336767
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.9591836734693877,
+        "legacy_reliable_label": "official"
+      },
+      "torso_crop_count": 10,
+      "track_id": 55
+    },
+    {
+      "context_frame_index": 83,
+      "context_path": "assets/track_000056_context_frame_000083.jpg",
+      "crops": [
+        {
+          "frame_index": 83,
+          "path": "assets/track_000056_torso_01_frame_000083.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 118,
+          "path": "assets/track_000056_torso_02_frame_000118.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 123,
+          "path": "assets/track_000056_torso_03_frame_000123.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 135,
+          "path": "assets/track_000056_torso_04_frame_000135.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 143,
+          "path": "assets/track_000056_torso_05_frame_000143.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 154,
+          "path": "assets/track_000056_torso_06_frame_000154.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 159,
+          "path": "assets/track_000056_torso_07_frame_000159.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 164,
+          "path": "assets/track_000056_torso_08_frame_000164.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 170,
+          "path": "assets/track_000056_torso_09_frame_000170.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 175,
+          "path": "assets/track_000056_torso_10_frame_000175.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6893391094314345,
+      "current_v2_label": "devils",
+      "frame_end": 197,
+      "frame_start": 77,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 0.978021978021978,
+      "legacy_votes": {
+        "devils": 89,
+        "unknown": 2
+      },
+      "observation_count": 91,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6893391094314345,
+        "crop_votes": {
+          "devils": 8,
+          "flyers": 1,
+          "official": 1,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.10913534986462994,
+          "blur_variance": 221.5851206663661,
+          "median_bbox_aspect": 1.268939393939394,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.2299229697723018,
+          "red_hue_consistency": 0.9978047788143158,
+          "red_saturation": 0.6388206392526626,
+          "stripe": 0.22651765098721569,
+          "white": 0.5898082514433949,
+          "white_brightness": 0.8755409121513367
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.978021978021978,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 56
+    },
+    {
+      "context_frame_index": 111,
+      "context_path": "assets/track_000059_context_frame_000111.jpg",
+      "crops": [
+        {
+          "frame_index": 83,
+          "path": "assets/track_000059_torso_01_frame_000083.jpg",
+          "quality": 0.809234424815071
+        },
+        {
+          "frame_index": 88,
+          "path": "assets/track_000059_torso_02_frame_000088.jpg",
+          "quality": 0.8869421137363429
+        },
+        {
+          "frame_index": 90,
+          "path": "assets/track_000059_torso_03_frame_000090.jpg",
+          "quality": 0.9269032776344349
+        },
+        {
+          "frame_index": 92,
+          "path": "assets/track_000059_torso_04_frame_000092.jpg",
+          "quality": 0.7943256942673956
+        },
+        {
+          "frame_index": 94,
+          "path": "assets/track_000059_torso_05_frame_000094.jpg",
+          "quality": 0.8882248486014578
+        },
+        {
+          "frame_index": 97,
+          "path": "assets/track_000059_torso_06_frame_000097.jpg",
+          "quality": 0.8982579145100069
+        },
+        {
+          "frame_index": 99,
+          "path": "assets/track_000059_torso_07_frame_000099.jpg",
+          "quality": 0.9090787691577759
+        },
+        {
+          "frame_index": 105,
+          "path": "assets/track_000059_torso_08_frame_000105.jpg",
+          "quality": 0.8342169494897959
+        },
+        {
+          "frame_index": 108,
+          "path": "assets/track_000059_torso_09_frame_000108.jpg",
+          "quality": 0.8897785048806972
+        },
+        {
+          "frame_index": 111,
+          "path": "assets/track_000059_torso_10_frame_000111.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.9764435675432502,
+      "current_v2_label": "unknown",
+      "frame_end": 111,
+      "frame_start": 83,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.9642857142857143,
+      "legacy_votes": {
+        "flyers": 27,
+        "unknown": 1
+      },
+      "observation_count": 28,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9764435675432502,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0006299525880737306,
+          "blur_variance": 93.0478308658017,
+          "median_bbox_aspect": 1.9898989898989898,
+          "orange": 0.11875484925711509,
+          "quality": 0.9104442406824895,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.0007811412092114258,
+          "white": 0.7519214173109152,
+          "white_brightness": 0.8403725371077382
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.9642857142857143,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 59
+    },
+    {
+      "context_frame_index": 90,
+      "context_path": "assets/track_000061_context_frame_000090.jpg",
+      "crops": [
+        {
+          "frame_index": 90,
+          "path": "assets/track_000061_torso_01_frame_000090.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 107,
+          "path": "assets/track_000061_torso_02_frame_000107.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 115,
+          "path": "assets/track_000061_torso_03_frame_000115.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 120,
+          "path": "assets/track_000061_torso_04_frame_000120.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 125,
+          "path": "assets/track_000061_torso_05_frame_000125.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 130,
+          "path": "assets/track_000061_torso_06_frame_000130.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 135,
+          "path": "assets/track_000061_torso_07_frame_000135.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 140,
+          "path": "assets/track_000061_torso_08_frame_000140.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 145,
+          "path": "assets/track_000061_torso_09_frame_000145.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 150,
+          "path": "assets/track_000061_torso_10_frame_000150.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.7063710390966897,
+      "current_v2_label": "official",
+      "frame_end": 271,
+      "frame_start": 84,
+      "legacy_label": "official",
+      "legacy_match_fraction": 0.9939393939393939,
+      "legacy_votes": {
+        "official": 164,
+        "unknown": 1
+      },
+      "observation_count": 165,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.7063710390966897,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0491891850387227,
+          "blur_variance": 133.30993739087776,
+          "median_bbox_aspect": 1.9551474262868567,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.003319357092941999,
+          "red_hue_consistency": 0.19993985295295716,
+          "red_saturation": 0.08060718178749085,
+          "stripe": 0.1280717867762773,
+          "white": 0.7226780266908335,
+          "white_brightness": 0.8122247874736785
+        },
+        "high_quality_crops_used": 10,
+        "label": "official",
+        "legacy_reliable_fraction": 0.9939393939393939,
+        "legacy_reliable_label": "official"
+      },
+      "torso_crop_count": 10,
+      "track_id": 61
+    },
+    {
+      "context_frame_index": 110,
+      "context_path": "assets/track_000063_context_frame_000110.jpg",
+      "crops": [
+        {
+          "frame_index": 88,
+          "path": "assets/track_000063_torso_01_frame_000088.jpg",
+          "quality": 0.09298657823129253
+        },
+        {
+          "frame_index": 95,
+          "path": "assets/track_000063_torso_02_frame_000095.jpg",
+          "quality": 0.352
+        },
+        {
+          "frame_index": 102,
+          "path": "assets/track_000063_torso_03_frame_000102.jpg",
+          "quality": 0.14327171100164204
+        },
+        {
+          "frame_index": 105,
+          "path": "assets/track_000063_torso_04_frame_000105.jpg",
+          "quality": 0.29498716243516243
+        },
+        {
+          "frame_index": 108,
+          "path": "assets/track_000063_torso_05_frame_000108.jpg",
+          "quality": 0.36614056645127036
+        },
+        {
+          "frame_index": 110,
+          "path": "assets/track_000063_torso_06_frame_000110.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 112,
+          "path": "assets/track_000063_torso_07_frame_000112.jpg",
+          "quality": 0.7445928849231779
+        },
+        {
+          "frame_index": 115,
+          "path": "assets/track_000063_torso_08_frame_000115.jpg",
+          "quality": 0.24196249609561443
+        },
+        {
+          "frame_index": 122,
+          "path": "assets/track_000063_torso_09_frame_000122.jpg",
+          "quality": 0.23173126526328752
+        },
+        {
+          "frame_index": 125,
+          "path": "assets/track_000063_torso_10_frame_000125.jpg",
+          "quality": 0.23581512181882647
+        }
+      ],
+      "current_v2_confidence": 0.9335834910549956,
+      "current_v2_label": "flyers",
+      "frame_end": 126,
+      "frame_start": 88,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.8,
+      "legacy_votes": {
+        "flyers": 16,
+        "unknown": 4
+      },
+      "observation_count": 20,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.9335834910549956,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 8,
+          "official": 2,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.06905050577846016,
+          "blur_variance": 81.11150320204833,
+          "median_bbox_aspect": 1.891812865497076,
+          "orange": 0.0,
+          "quality": 0.6400570251126431,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.16580361892373413,
+          "white": 0.7701881427217648,
+          "white_brightness": 0.7857715470917775
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.8,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 63
+    },
+    {
+      "context_frame_index": 94,
+      "context_path": "assets/track_000064_context_frame_000094.jpg",
+      "crops": [
+        {
+          "frame_index": 90,
+          "path": "assets/track_000064_torso_01_frame_000090.jpg",
+          "quality": 0.3164867526598308
+        },
+        {
+          "frame_index": 91,
+          "path": "assets/track_000064_torso_02_frame_000091.jpg",
+          "quality": 0.3323078183472107
+        },
+        {
+          "frame_index": 93,
+          "path": "assets/track_000064_torso_03_frame_000093.jpg",
+          "quality": 0.43424369291618053
+        },
+        {
+          "frame_index": 94,
+          "path": "assets/track_000064_torso_04_frame_000094.jpg",
+          "quality": 0.4460534974845315
+        }
+      ],
+      "current_v2_confidence": 0.646261964435932,
+      "current_v2_label": "devils",
+      "frame_end": 94,
+      "frame_start": 90,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "devils": 4
+      },
+      "observation_count": 4,
+      "short_track_crop_notice": "Only 4 distinct fresh observations exist; no crops were duplicated.",
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.646261964435932,
+        "crop_votes": {
+          "devils": 2,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 2
+        },
+        "evidence": {
+          "black": 0.11334338884260865,
+          "blur_variance": 23.041132363008398,
+          "median_bbox_aspect": 1.9941176470588236,
+          "orange": 0.10545570898561928,
+          "quality": 0.39116269755377664,
+          "red": 0.2394317678499114,
+          "red_hue_consistency": 0.9965118035687279,
+          "red_saturation": 0.5132163281311983,
+          "stripe": 0.061352623300825825,
+          "white": 0.04947792201679502,
+          "white_brightness": 0.6699476581568055
+        },
+        "high_quality_crops_used": 4,
+        "label": "devils",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 4,
+      "track_id": 64
+    },
+    {
+      "context_frame_index": 98,
+      "context_path": "assets/track_000066_context_frame_000098.jpg",
+      "crops": [
+        {
+          "frame_index": 93,
+          "path": "assets/track_000066_torso_01_frame_000093.jpg",
+          "quality": 0.041281034443817054
+        },
+        {
+          "frame_index": 97,
+          "path": "assets/track_000066_torso_02_frame_000097.jpg",
+          "quality": 0.216
+        },
+        {
+          "frame_index": 98,
+          "path": "assets/track_000066_torso_03_frame_000098.jpg",
+          "quality": 0.2613333333333333
+        },
+        {
+          "frame_index": 110,
+          "path": "assets/track_000066_torso_04_frame_000110.jpg",
+          "quality": 0.07236425015873016
+        }
+      ],
+      "current_v2_confidence": 0.9896087686200558,
+      "current_v2_label": "flyers",
+      "frame_end": 110,
+      "frame_start": 93,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.5,
+      "legacy_votes": {
+        "flyers": 2,
+        "unknown": 2
+      },
+      "observation_count": 4,
+      "short_track_crop_notice": "Only 4 distinct fresh observations exist; no crops were duplicated.",
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.9896087686200558,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 1,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.04002017126740284,
+          "blur_variance": 188.65356461471495,
+          "median_bbox_aspect": 0.7464285714285714,
+          "orange": 0.0,
+          "quality": 0.20385566141931122,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.5019124902082545,
+          "white": 0.7254171582486526,
+          "white_brightness": 0.7747027875733332
+        },
+        "high_quality_crops_used": 1,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.5,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 4,
+      "track_id": 66
+    },
+    {
+      "context_frame_index": 98,
+      "context_path": "assets/track_000067_context_frame_000098.jpg",
+      "crops": [
+        {
+          "frame_index": 95,
+          "path": "assets/track_000067_torso_01_frame_000095.jpg",
+          "quality": 0.29358553133585363
+        },
+        {
+          "frame_index": 96,
+          "path": "assets/track_000067_torso_02_frame_000096.jpg",
+          "quality": 0.32240931537628487
+        },
+        {
+          "frame_index": 98,
+          "path": "assets/track_000067_torso_03_frame_000098.jpg",
+          "quality": 0.37179259537376413
+        }
+      ],
+      "current_v2_confidence": 0.9817614261575113,
+      "current_v2_label": "unknown",
+      "frame_end": 98,
+      "frame_start": 95,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 3
+      },
+      "observation_count": 3,
+      "short_track_crop_notice": "Only 3 distinct fresh observations exist; no crops were duplicated.",
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9817614261575113,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 3,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0,
+          "blur_variance": 15.13477845394639,
+          "median_bbox_aspect": 1.9859154929577465,
+          "orange": 0.1327099907456297,
+          "quality": 0.33242978280074464,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.0,
+          "white": 0.8099445533553307,
+          "white_brightness": 0.8534527764083394
+        },
+        "high_quality_crops_used": 3,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 3,
+      "track_id": 67
+    },
+    {
+      "context_frame_index": 144,
+      "context_path": "assets/track_000069_context_frame_000144.jpg",
+      "crops": [
+        {
+          "frame_index": 136,
+          "path": "assets/track_000069_torso_01_frame_000136.jpg",
+          "quality": 0.612
+        },
+        {
+          "frame_index": 144,
+          "path": "assets/track_000069_torso_02_frame_000144.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 150,
+          "path": "assets/track_000069_torso_03_frame_000150.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 155,
+          "path": "assets/track_000069_torso_04_frame_000155.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 160,
+          "path": "assets/track_000069_torso_05_frame_000160.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 165,
+          "path": "assets/track_000069_torso_06_frame_000165.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 170,
+          "path": "assets/track_000069_torso_07_frame_000170.jpg",
+          "quality": 0.8539611965367965
+        },
+        {
+          "frame_index": 176,
+          "path": "assets/track_000069_torso_08_frame_000176.jpg",
+          "quality": 0.5334044854681559
+        },
+        {
+          "frame_index": 201,
+          "path": "assets/track_000069_torso_09_frame_000201.jpg",
+          "quality": 0.396
+        },
+        {
+          "frame_index": 206,
+          "path": "assets/track_000069_torso_10_frame_000206.jpg",
+          "quality": 0.5546666666666666
+        }
+      ],
+      "current_v2_confidence": 0.6631491859350557,
+      "current_v2_label": "devils",
+      "frame_end": 228,
+      "frame_start": 98,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 0.8028169014084507,
+      "legacy_votes": {
+        "devils": 57,
+        "flyers": 2,
+        "unknown": 12
+      },
+      "observation_count": 71,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6631491859350557,
+        "crop_votes": {
+          "devils": 10,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.12109486237767278,
+          "blur_variance": 245.37480616653198,
+          "median_bbox_aspect": 1.4777227722772277,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.4021293859002582,
+          "red_hue_consistency": 0.9988408029079437,
+          "red_saturation": 0.7292889356613159,
+          "stripe": 0.22834713875770918,
+          "white": 0.44530325539271515,
+          "white_brightness": 0.88734050989151
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.8028169014084507,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 69
+    },
+    {
+      "context_frame_index": 101,
+      "context_path": "assets/track_000071_context_frame_000101.jpg",
+      "crops": [
+        {
+          "frame_index": 101,
+          "path": "assets/track_000071_torso_01_frame_000101.jpg",
+          "quality": 0.9107309066801715
+        },
+        {
+          "frame_index": 103,
+          "path": "assets/track_000071_torso_02_frame_000103.jpg",
+          "quality": 0.7934603969824687
+        },
+        {
+          "frame_index": 107,
+          "path": "assets/track_000071_torso_03_frame_000107.jpg",
+          "quality": 0.5854860398468775
+        }
+      ],
+      "current_v2_confidence": 0.9687615572132686,
+      "current_v2_label": "unknown",
+      "frame_end": 107,
+      "frame_start": 101,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 3
+      },
+      "observation_count": 3,
+      "short_track_crop_notice": "Only 3 distinct fresh observations exist; no crops were duplicated.",
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9687615572132686,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 3,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0015822799291678566,
+          "blur_variance": 76.316811947293,
+          "median_bbox_aspect": 1.9859154929577465,
+          "orange": 0.1720894599594326,
+          "quality": 0.7869248887513193,
+          "red": 0.00042490327075672273,
+          "red_hue_consistency": 0.2557067883413957,
+          "red_saturation": 0.09345832473545737,
+          "stripe": 0.024236314325019537,
+          "white": 0.6483406496127658,
+          "white_brightness": 0.7964084831083837
+        },
+        "high_quality_crops_used": 3,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 3,
+      "track_id": 71
+    },
+    {
+      "context_frame_index": 142,
+      "context_path": "assets/track_000073_context_frame_000142.jpg",
+      "crops": [
+        {
+          "frame_index": 137,
+          "path": "assets/track_000073_torso_01_frame_000137.jpg",
+          "quality": 0.528
+        },
+        {
+          "frame_index": 142,
+          "path": "assets/track_000073_torso_02_frame_000142.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 147,
+          "path": "assets/track_000073_torso_03_frame_000147.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 152,
+          "path": "assets/track_000073_torso_04_frame_000152.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 157,
+          "path": "assets/track_000073_torso_05_frame_000157.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 162,
+          "path": "assets/track_000073_torso_06_frame_000162.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 167,
+          "path": "assets/track_000073_torso_07_frame_000167.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 172,
+          "path": "assets/track_000073_torso_08_frame_000172.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 177,
+          "path": "assets/track_000073_torso_09_frame_000177.jpg",
+          "quality": 0.9204615395555555
+        },
+        {
+          "frame_index": 182,
+          "path": "assets/track_000073_torso_10_frame_000182.jpg",
+          "quality": 0.858
+        }
+      ],
+      "current_v2_confidence": 0.8354582488231319,
+      "current_v2_label": "devils",
+      "frame_end": 182,
+      "frame_start": 121,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 0.9180327868852459,
+      "legacy_votes": {
+        "devils": 56,
+        "unknown": 5
+      },
+      "observation_count": 61,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.8354582488231319,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.1788672037737035,
+          "blur_variance": 248.7819735514441,
+          "median_bbox_aspect": 1.532795698924731,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.08099518049877427,
+          "red_hue_consistency": 0.9972857117652894,
+          "red_saturation": 0.5102460384368896,
+          "stripe": 0.2722648830765507,
+          "white": 0.6437464519847504,
+          "white_brightness": 0.8549489438533783
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.9180327868852459,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 73
+    },
+    {
+      "context_frame_index": 124,
+      "context_path": "assets/track_000074_context_frame_000124.jpg",
+      "crops": [
+        {
+          "frame_index": 124,
+          "path": "assets/track_000074_torso_01_frame_000124.jpg",
+          "quality": 0.6327724961822777
+        },
+        {
+          "frame_index": 125,
+          "path": "assets/track_000074_torso_02_frame_000125.jpg",
+          "quality": 0.49940302405380066
+        },
+        {
+          "frame_index": 127,
+          "path": "assets/track_000074_torso_03_frame_000127.jpg",
+          "quality": 0.42142712773367963
+        }
+      ],
+      "current_v2_confidence": 0.5451113667546201,
+      "current_v2_label": "unknown",
+      "frame_end": 127,
+      "frame_start": 124,
+      "legacy_label": null,
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "unknown": 3
+      },
+      "observation_count": 3,
+      "short_track_crop_notice": "Only 3 distinct fresh observations exist; no crops were duplicated.",
+      "suggestion": {
+        "basis": "ambiguous evidence; visual review required",
+        "confidence": 0.5451113667546201,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 3
+        },
+        "evidence": {
+          "black": 0.43010532260847395,
+          "blur_variance": 42.07699713320155,
+          "median_bbox_aspect": 1.9866666666666666,
+          "orange": 0.008358654521217593,
+          "quality": 0.5325719787037829,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.08857502633062614,
+          "white": 0.07143147284727916,
+          "white_brightness": 0.6325011646457601
+        },
+        "high_quality_crops_used": 3,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 3,
+      "track_id": 74
+    },
+    {
+      "context_frame_index": 130,
+      "context_path": "assets/track_000077_context_frame_000130.jpg",
+      "crops": [
+        {
+          "frame_index": 128,
+          "path": "assets/track_000077_torso_01_frame_000128.jpg",
+          "quality": 0.3033911613970207
+        },
+        {
+          "frame_index": 130,
+          "path": "assets/track_000077_torso_02_frame_000130.jpg",
+          "quality": 0.33547508852258856
+        },
+        {
+          "frame_index": 131,
+          "path": "assets/track_000077_torso_03_frame_000131.jpg",
+          "quality": 0.3086253044871795
+        },
+        {
+          "frame_index": 132,
+          "path": "assets/track_000077_torso_04_frame_000132.jpg",
+          "quality": 0.2912810737179487
+        },
+        {
+          "frame_index": 133,
+          "path": "assets/track_000077_torso_05_frame_000133.jpg",
+          "quality": 0.2917879967948718
+        },
+        {
+          "frame_index": 134,
+          "path": "assets/track_000077_torso_06_frame_000134.jpg",
+          "quality": 0.2883779849915521
+        },
+        {
+          "frame_index": 135,
+          "path": "assets/track_000077_torso_07_frame_000135.jpg",
+          "quality": 0.2873813064713065
+        },
+        {
+          "frame_index": 137,
+          "path": "assets/track_000077_torso_08_frame_000137.jpg",
+          "quality": 0.29273744734432233
+        },
+        {
+          "frame_index": 138,
+          "path": "assets/track_000077_torso_09_frame_000138.jpg",
+          "quality": 0.2931249076617827
+        },
+        {
+          "frame_index": 139,
+          "path": "assets/track_000077_torso_10_frame_000139.jpg",
+          "quality": 0.29350048012287816
+        }
+      ],
+      "current_v2_confidence": 0.9895538376663165,
+      "current_v2_label": "unknown",
+      "frame_end": 140,
+      "frame_start": 128,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 12
+      },
+      "observation_count": 12,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9895538376663165,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0,
+          "blur_variance": 10.662339389569405,
+          "median_bbox_aspect": 1.9861111111111112,
+          "orange": 0.0,
+          "quality": 0.29920594975108705,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.0,
+          "white": 1.0,
+          "white_brightness": 0.8873431824816698
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 77
+    },
+    {
+      "context_frame_index": 165,
+      "context_path": "assets/track_000079_context_frame_000165.jpg",
+      "crops": [
+        {
+          "frame_index": 160,
+          "path": "assets/track_000079_torso_01_frame_000160.jpg",
+          "quality": 0.882
+        },
+        {
+          "frame_index": 165,
+          "path": "assets/track_000079_torso_02_frame_000165.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 170,
+          "path": "assets/track_000079_torso_03_frame_000170.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 175,
+          "path": "assets/track_000079_torso_04_frame_000175.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 180,
+          "path": "assets/track_000079_torso_05_frame_000180.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 185,
+          "path": "assets/track_000079_torso_06_frame_000185.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 190,
+          "path": "assets/track_000079_torso_07_frame_000190.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 195,
+          "path": "assets/track_000079_torso_08_frame_000195.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 200,
+          "path": "assets/track_000079_torso_09_frame_000200.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 205,
+          "path": "assets/track_000079_torso_10_frame_000205.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.8940694873148962,
+      "current_v2_label": "unknown",
+      "frame_end": 207,
+      "frame_start": 132,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 74
+      },
+      "observation_count": 74,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.8940694873148962,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0030740870248854397,
+          "blur_variance": 205.35101955388194,
+          "median_bbox_aspect": 0.9867543859649123,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.36067205008793946,
+          "white": 0.7006799222679196,
+          "white_brightness": 0.8243261039257049
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 79
+    },
+    {
+      "context_frame_index": 156,
+      "context_path": "assets/track_000080_context_frame_000156.jpg",
+      "crops": [
+        {
+          "frame_index": 156,
+          "path": "assets/track_000080_torso_01_frame_000156.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 161,
+          "path": "assets/track_000080_torso_02_frame_000161.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 166,
+          "path": "assets/track_000080_torso_03_frame_000166.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 171,
+          "path": "assets/track_000080_torso_04_frame_000171.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 176,
+          "path": "assets/track_000080_torso_05_frame_000176.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 181,
+          "path": "assets/track_000080_torso_06_frame_000181.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 186,
+          "path": "assets/track_000080_torso_07_frame_000186.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 191,
+          "path": "assets/track_000080_torso_08_frame_000191.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 196,
+          "path": "assets/track_000080_torso_09_frame_000196.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 201,
+          "path": "assets/track_000080_torso_10_frame_000201.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.8663747262892303,
+      "current_v2_label": "flyers",
+      "frame_end": 263,
+      "frame_start": 135,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.7592592592592593,
+      "legacy_votes": {
+        "flyers": 82,
+        "unknown": 26
+      },
+      "observation_count": 108,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.8663747262892303,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.004531020965874331,
+          "blur_variance": 188.18998409482316,
+          "median_bbox_aspect": 0.9665718349928876,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.2374277751166492,
+          "white": 0.6895056423868311,
+          "white_brightness": 0.8215802311897278
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.7592592592592593,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 80
+    },
+    {
+      "context_frame_index": 206,
+      "context_path": "assets/track_000088_context_frame_000206.jpg",
+      "crops": [
+        {
+          "frame_index": 151,
+          "path": "assets/track_000088_torso_01_frame_000151.jpg",
+          "quality": 0.4166666666666667
+        },
+        {
+          "frame_index": 160,
+          "path": "assets/track_000088_torso_02_frame_000160.jpg",
+          "quality": 0.31666666666666665
+        },
+        {
+          "frame_index": 165,
+          "path": "assets/track_000088_torso_03_frame_000165.jpg",
+          "quality": 0.44
+        },
+        {
+          "frame_index": 174,
+          "path": "assets/track_000088_torso_04_frame_000174.jpg",
+          "quality": 0.572
+        },
+        {
+          "frame_index": 181,
+          "path": "assets/track_000088_torso_05_frame_000181.jpg",
+          "quality": 0.858
+        },
+        {
+          "frame_index": 186,
+          "path": "assets/track_000088_torso_06_frame_000186.jpg",
+          "quality": 0.594
+        },
+        {
+          "frame_index": 191,
+          "path": "assets/track_000088_torso_07_frame_000191.jpg",
+          "quality": 0.512
+        },
+        {
+          "frame_index": 199,
+          "path": "assets/track_000088_torso_08_frame_000199.jpg",
+          "quality": 0.56
+        },
+        {
+          "frame_index": 206,
+          "path": "assets/track_000088_torso_09_frame_000206.jpg",
+          "quality": 0.91
+        },
+        {
+          "frame_index": 212,
+          "path": "assets/track_000088_torso_10_frame_000212.jpg",
+          "quality": 0.84
+        }
+      ],
+      "current_v2_confidence": 0.7184283809722258,
+      "current_v2_label": "unknown",
+      "frame_end": 216,
+      "frame_start": 143,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.6153846153846154,
+      "legacy_votes": {
+        "flyers": 1,
+        "official": 32,
+        "unknown": 19
+      },
+      "observation_count": 52,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.7184283809722258,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 9,
+          "official": 0,
+          "unknown": 1
+        },
+        "evidence": {
+          "black": 0.007456175140794798,
+          "blur_variance": 166.33769375805898,
+          "median_bbox_aspect": 1.471698113207547,
+          "orange": 0.0,
+          "quality": 0.8422540387615346,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.26155496872710926,
+          "white": 0.6217974141350044,
+          "white_brightness": 0.7763479074705998
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.6153846153846154,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 88
+    },
+    {
+      "context_frame_index": 145,
+      "context_path": "assets/track_000089_context_frame_000145.jpg",
+      "crops": [
+        {
+          "frame_index": 145,
+          "path": "assets/track_000089_torso_01_frame_000145.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 146,
+          "path": "assets/track_000089_torso_02_frame_000146.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 147,
+          "path": "assets/track_000089_torso_03_frame_000147.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 148,
+          "path": "assets/track_000089_torso_04_frame_000148.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 149,
+          "path": "assets/track_000089_torso_05_frame_000149.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 150,
+          "path": "assets/track_000089_torso_06_frame_000150.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 152,
+          "path": "assets/track_000089_torso_07_frame_000152.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 155,
+          "path": "assets/track_000089_torso_08_frame_000155.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 157,
+          "path": "assets/track_000089_torso_09_frame_000157.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 161,
+          "path": "assets/track_000089_torso_10_frame_000161.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.9043378447953676,
+      "current_v2_label": "unknown",
+      "frame_end": 162,
+      "frame_start": 145,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.9375,
+      "legacy_votes": {
+        "flyers": 1,
+        "unknown": 15
+      },
+      "observation_count": 16,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9043378447953676,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0006508901815617839,
+          "blur_variance": 156.7533127412194,
+          "median_bbox_aspect": 0.77062569213732,
+          "orange": 0.11831243232353757,
+          "quality": 1.0,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.29433641752338613,
+          "white": 0.5402814711289065,
+          "white_brightness": 0.8305601596832275
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.9375,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 89
+    },
+    {
+      "context_frame_index": 180,
+      "context_path": "assets/track_000091_context_frame_000180.jpg",
+      "crops": [
+        {
+          "frame_index": 150,
+          "path": "assets/track_000091_torso_01_frame_000150.jpg",
+          "quality": 0.31666666666666665
+        },
+        {
+          "frame_index": 151,
+          "path": "assets/track_000091_torso_02_frame_000151.jpg",
+          "quality": 0.31666666666666665
+        },
+        {
+          "frame_index": 152,
+          "path": "assets/track_000091_torso_03_frame_000152.jpg",
+          "quality": 0.3293333333333333
+        },
+        {
+          "frame_index": 154,
+          "path": "assets/track_000091_torso_04_frame_000154.jpg",
+          "quality": 0.3293333333333333
+        },
+        {
+          "frame_index": 155,
+          "path": "assets/track_000091_torso_05_frame_000155.jpg",
+          "quality": 0.3293333333333333
+        },
+        {
+          "frame_index": 161,
+          "path": "assets/track_000091_torso_06_frame_000161.jpg",
+          "quality": 0.33696395581430066
+        },
+        {
+          "frame_index": 165,
+          "path": "assets/track_000091_torso_07_frame_000165.jpg",
+          "quality": 0.34388966267886467
+        },
+        {
+          "frame_index": 167,
+          "path": "assets/track_000091_torso_08_frame_000167.jpg",
+          "quality": 0.42256609217296115
+        },
+        {
+          "frame_index": 168,
+          "path": "assets/track_000091_torso_09_frame_000168.jpg",
+          "quality": 0.39178561576354676
+        },
+        {
+          "frame_index": 180,
+          "path": "assets/track_000091_torso_10_frame_000180.jpg",
+          "quality": 0.48333333333333334
+        }
+      ],
+      "current_v2_confidence": 0.642919292196714,
+      "current_v2_label": "unknown",
+      "frame_end": 180,
+      "frame_start": 150,
+      "legacy_label": null,
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "unknown": 13
+      },
+      "observation_count": 13,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.642919292196714,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 5,
+          "official": 0,
+          "unknown": 5
+        },
+        "evidence": {
+          "black": 0.006508894118404386,
+          "blur_variance": 162.44788772587466,
+          "median_bbox_aspect": 1.295238095238095,
+          "orange": 0.0,
+          "quality": 0.36762720483587397,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.2481309102871609,
+          "white": 0.3967541306425093,
+          "white_brightness": 0.7265531944707297
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 91
+    },
+    {
+      "context_frame_index": 168,
+      "context_path": "assets/track_000095_context_frame_000168.jpg",
+      "crops": [
+        {
+          "frame_index": 168,
+          "path": "assets/track_000095_torso_01_frame_000168.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 173,
+          "path": "assets/track_000095_torso_02_frame_000173.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 204,
+          "path": "assets/track_000095_torso_03_frame_000204.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 209,
+          "path": "assets/track_000095_torso_04_frame_000209.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 214,
+          "path": "assets/track_000095_torso_05_frame_000214.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 219,
+          "path": "assets/track_000095_torso_06_frame_000219.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 227,
+          "path": "assets/track_000095_torso_07_frame_000227.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 233,
+          "path": "assets/track_000095_torso_08_frame_000233.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 241,
+          "path": "assets/track_000095_torso_09_frame_000241.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 246,
+          "path": "assets/track_000095_torso_10_frame_000246.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.8214303111841699,
+      "current_v2_label": "flyers",
+      "frame_end": 275,
+      "frame_start": 168,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.9636363636363636,
+      "legacy_votes": {
+        "flyers": 53,
+        "unknown": 2
+      },
+      "observation_count": 55,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.8214303111841699,
+        "crop_votes": {
+          "devils": 6,
+          "flyers": 3,
+          "official": 1,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.1318170964635839,
+          "blur_variance": 380.1051073999628,
+          "median_bbox_aspect": 1.9810714285714286,
+          "orange": 0.0050493385766964384,
+          "quality": 1.0,
+          "red": 0.17915316101350756,
+          "red_hue_consistency": 0.7967504382133483,
+          "red_saturation": 0.417435896396637,
+          "stripe": 0.2575140982420484,
+          "white": 0.5402253987753812,
+          "white_brightness": 0.7948265731334686
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.9636363636363636,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 95
+    },
+    {
+      "context_frame_index": 183,
+      "context_path": "assets/track_000104_context_frame_000183.jpg",
+      "crops": [
+        {
+          "frame_index": 183,
+          "path": "assets/track_000104_torso_01_frame_000183.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 188,
+          "path": "assets/track_000104_torso_02_frame_000188.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 193,
+          "path": "assets/track_000104_torso_03_frame_000193.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 198,
+          "path": "assets/track_000104_torso_04_frame_000198.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 203,
+          "path": "assets/track_000104_torso_05_frame_000203.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 208,
+          "path": "assets/track_000104_torso_06_frame_000208.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 213,
+          "path": "assets/track_000104_torso_07_frame_000213.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 218,
+          "path": "assets/track_000104_torso_08_frame_000218.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 223,
+          "path": "assets/track_000104_torso_09_frame_000223.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 228,
+          "path": "assets/track_000104_torso_10_frame_000228.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.7950610165237904,
+      "current_v2_label": "flyers",
+      "frame_end": 233,
+      "frame_start": 182,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.9565217391304348,
+      "legacy_votes": {
+        "flyers": 44,
+        "unknown": 2
+      },
+      "observation_count": 46,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.7950610165237904,
+        "crop_votes": {
+          "devils": 7,
+          "flyers": 3,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.12777018938273796,
+          "blur_variance": 213.75632589832807,
+          "median_bbox_aspect": 1.9367504283266705,
+          "orange": 0.0004507574430897862,
+          "quality": 1.0,
+          "red": 0.20349057286302355,
+          "red_hue_consistency": 0.9965296387672424,
+          "red_saturation": 0.5760128915309906,
+          "stripe": 0.3071540124618324,
+          "white": 0.5468836401829342,
+          "white_brightness": 0.8187479317188263
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.9565217391304348,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 104
+    },
+    {
+      "context_frame_index": 183,
+      "context_path": "assets/track_000105_context_frame_000183.jpg",
+      "crops": [
+        {
+          "frame_index": 183,
+          "path": "assets/track_000105_torso_01_frame_000183.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 188,
+          "path": "assets/track_000105_torso_02_frame_000188.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 190,
+          "path": "assets/track_000105_torso_03_frame_000190.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 193,
+          "path": "assets/track_000105_torso_04_frame_000193.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 195,
+          "path": "assets/track_000105_torso_05_frame_000195.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 198,
+          "path": "assets/track_000105_torso_06_frame_000198.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 204,
+          "path": "assets/track_000105_torso_07_frame_000204.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 210,
+          "path": "assets/track_000105_torso_08_frame_000210.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 215,
+          "path": "assets/track_000105_torso_09_frame_000215.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 222,
+          "path": "assets/track_000105_torso_10_frame_000222.jpg",
+          "quality": 0.6396856722822633
+        }
+      ],
+      "current_v2_confidence": 0.6427173925197975,
+      "current_v2_label": "flyers",
+      "frame_end": 226,
+      "frame_start": 183,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.5925925925925926,
+      "legacy_votes": {
+        "flyers": 11,
+        "unknown": 16
+      },
+      "observation_count": 27,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6427173925197975,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 10
+        },
+        "evidence": {
+          "black": 0.003523573200992556,
+          "blur_variance": 160.21286316427467,
+          "median_bbox_aspect": 3.8480066445182723,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.3369042521474305,
+          "white": 0.2658209921574986,
+          "white_brightness": 0.6437242031097412
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.5925925925925926,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 105
+    },
+    {
+      "context_frame_index": 211,
+      "context_path": "assets/track_000108_context_frame_000211.jpg",
+      "crops": [
+        {
+          "frame_index": 192,
+          "path": "assets/track_000108_torso_01_frame_000192.jpg",
+          "quality": 0.6727845922852566
+        },
+        {
+          "frame_index": 197,
+          "path": "assets/track_000108_torso_02_frame_000197.jpg",
+          "quality": 0.8200913550142374
+        },
+        {
+          "frame_index": 205,
+          "path": "assets/track_000108_torso_03_frame_000205.jpg",
+          "quality": 0.7955465346412539
+        },
+        {
+          "frame_index": 211,
+          "path": "assets/track_000108_torso_04_frame_000211.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 216,
+          "path": "assets/track_000108_torso_05_frame_000216.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 221,
+          "path": "assets/track_000108_torso_06_frame_000221.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 228,
+          "path": "assets/track_000108_torso_07_frame_000228.jpg",
+          "quality": 0.992
+        },
+        {
+          "frame_index": 236,
+          "path": "assets/track_000108_torso_08_frame_000236.jpg",
+          "quality": 0.608
+        },
+        {
+          "frame_index": 243,
+          "path": "assets/track_000108_torso_09_frame_000243.jpg",
+          "quality": 0.418
+        },
+        {
+          "frame_index": 248,
+          "path": "assets/track_000108_torso_10_frame_000248.jpg",
+          "quality": 0.374
+        }
+      ],
+      "current_v2_confidence": 0.7925468577349215,
+      "current_v2_label": "flyers",
+      "frame_end": 273,
+      "frame_start": 189,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.8596491228070176,
+      "legacy_votes": {
+        "flyers": 49,
+        "unknown": 8
+      },
+      "observation_count": 57,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.7925468577349215,
+        "crop_votes": {
+          "devils": 4,
+          "flyers": 5,
+          "official": 1,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.1825119762351248,
+          "blur_variance": 157.33546962144857,
+          "median_bbox_aspect": 1.6993280200031256,
+          "orange": 2.824858757062147e-05,
+          "quality": 1.0,
+          "red": 0.10317235289500493,
+          "red_hue_consistency": 0.9973291158676147,
+          "red_saturation": 0.48849200904369355,
+          "stripe": 0.22631485053155473,
+          "white": 0.6276792635043021,
+          "white_brightness": 0.8359213709831238
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 0.8596491228070176,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 108
+    },
+    {
+      "context_frame_index": 263,
+      "context_path": "assets/track_000109_context_frame_000263.jpg",
+      "crops": [
+        {
+          "frame_index": 190,
+          "path": "assets/track_000109_torso_01_frame_000190.jpg",
+          "quality": 0.48533333333333334
+        },
+        {
+          "frame_index": 198,
+          "path": "assets/track_000109_torso_02_frame_000198.jpg",
+          "quality": 0.5226666666666666
+        },
+        {
+          "frame_index": 205,
+          "path": "assets/track_000109_torso_03_frame_000205.jpg",
+          "quality": 0.532
+        },
+        {
+          "frame_index": 211,
+          "path": "assets/track_000109_torso_04_frame_000211.jpg",
+          "quality": 0.5413333333333333
+        },
+        {
+          "frame_index": 221,
+          "path": "assets/track_000109_torso_05_frame_000221.jpg",
+          "quality": 0.4666666666666667
+        },
+        {
+          "frame_index": 229,
+          "path": "assets/track_000109_torso_06_frame_000229.jpg",
+          "quality": 0.3289359109977324
+        },
+        {
+          "frame_index": 246,
+          "path": "assets/track_000109_torso_07_frame_000246.jpg",
+          "quality": 0.2847908571428571
+        },
+        {
+          "frame_index": 256,
+          "path": "assets/track_000109_torso_08_frame_000256.jpg",
+          "quality": 0.56
+        },
+        {
+          "frame_index": 263,
+          "path": "assets/track_000109_torso_09_frame_000263.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 272,
+          "path": "assets/track_000109_torso_10_frame_000272.jpg",
+          "quality": 0.625129161250557
+        }
+      ],
+      "current_v2_confidence": 0.6054625330874626,
+      "current_v2_label": "unknown",
+      "frame_end": 276,
+      "frame_start": 190,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.6363636363636364,
+      "legacy_votes": {
+        "flyers": 12,
+        "unknown": 21
+      },
+      "observation_count": 33,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "ambiguous evidence; visual review required",
+        "confidence": 0.6054625330874626,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 1,
+          "official": 0,
+          "unknown": 9
+        },
+        "evidence": {
+          "black": 0.18119252303988836,
+          "blur_variance": 120.38125475239185,
+          "median_bbox_aspect": 1.5909244264507423,
+          "orange": 0.0,
+          "quality": 0.7680188677010572,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.5199477870984317,
+          "white": 0.1501482842152495,
+          "white_brightness": 0.6461224231328089
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.6363636363636364,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 109
+    },
+    {
+      "context_frame_index": 191,
+      "context_path": "assets/track_000110_context_frame_000191.jpg",
+      "crops": [
+        {
+          "frame_index": 191,
+          "path": "assets/track_000110_torso_01_frame_000191.jpg",
+          "quality": 0.4342538319886094
+        },
+        {
+          "frame_index": 192,
+          "path": "assets/track_000110_torso_02_frame_000192.jpg",
+          "quality": 0.33222066350261037
+        },
+        {
+          "frame_index": 194,
+          "path": "assets/track_000110_torso_03_frame_000194.jpg",
+          "quality": 0.31201008321468116
+        }
+      ],
+      "current_v2_confidence": 0.537550810531068,
+      "current_v2_label": "unknown",
+      "frame_end": 194,
+      "frame_start": 191,
+      "legacy_label": null,
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "unknown": 3
+      },
+      "observation_count": 3,
+      "short_track_crop_notice": "Only 3 distinct fresh observations exist; no crops were duplicated.",
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.537550810531068,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 3
+        },
+        "evidence": {
+          "black": 0.0,
+          "blur_variance": 32.010985764737256,
+          "median_bbox_aspect": 1.0655737704918034,
+          "orange": 0.0,
+          "quality": 0.36745750445320663,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.05368691595135348,
+          "white": 0.01538370930499747,
+          "white_brightness": 0.24474918507231608
+        },
+        "high_quality_crops_used": 3,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 3,
+      "track_id": 110
+    },
+    {
+      "context_frame_index": 220,
+      "context_path": "assets/track_000112_context_frame_000220.jpg",
+      "crops": [
+        {
+          "frame_index": 197,
+          "path": "assets/track_000112_torso_01_frame_000197.jpg",
+          "quality": 0.053056734693877554
+        },
+        {
+          "frame_index": 206,
+          "path": "assets/track_000112_torso_02_frame_000206.jpg",
+          "quality": 0.24533333333333332
+        },
+        {
+          "frame_index": 210,
+          "path": "assets/track_000112_torso_03_frame_000210.jpg",
+          "quality": 0.288
+        },
+        {
+          "frame_index": 213,
+          "path": "assets/track_000112_torso_04_frame_000213.jpg",
+          "quality": 0.416
+        },
+        {
+          "frame_index": 215,
+          "path": "assets/track_000112_torso_05_frame_000215.jpg",
+          "quality": 0.468
+        },
+        {
+          "frame_index": 217,
+          "path": "assets/track_000112_torso_06_frame_000217.jpg",
+          "quality": 0.4666666666666667
+        },
+        {
+          "frame_index": 218,
+          "path": "assets/track_000112_torso_07_frame_000218.jpg",
+          "quality": 0.4666666666666667
+        },
+        {
+          "frame_index": 219,
+          "path": "assets/track_000112_torso_08_frame_000219.jpg",
+          "quality": 0.4666666666666667
+        },
+        {
+          "frame_index": 220,
+          "path": "assets/track_000112_torso_09_frame_000220.jpg",
+          "quality": 0.48333333333333334
+        },
+        {
+          "frame_index": 221,
+          "path": "assets/track_000112_torso_10_frame_000221.jpg",
+          "quality": 0.4666666666666667
+        }
+      ],
+      "current_v2_confidence": 0.6421530051172168,
+      "current_v2_label": "unknown",
+      "frame_end": 221,
+      "frame_start": 196,
+      "legacy_label": "official",
+      "legacy_match_fraction": 0.8666666666666667,
+      "legacy_votes": {
+        "official": 13,
+        "unknown": 2
+      },
+      "observation_count": 15,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "legacy official match rejected because sharp striped-person evidence is insufficient",
+        "confidence": 0.6421530051172168,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 6,
+          "official": 4,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.08700194000895389,
+          "blur_variance": 161.66040532697707,
+          "median_bbox_aspect": 1.842857142857143,
+          "orange": 0.0004476943739740337,
+          "quality": 0.4493413918320649,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.415539073770084,
+          "white": 0.7968959856737801,
+          "white_brightness": 0.8183321582792481
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.8666666666666667,
+        "legacy_reliable_label": "official"
+      },
+      "torso_crop_count": 10,
+      "track_id": 112
+    },
+    {
+      "context_frame_index": 210,
+      "context_path": "assets/track_000114_context_frame_000210.jpg",
+      "crops": [
+        {
+          "frame_index": 210,
+          "path": "assets/track_000114_torso_01_frame_000210.jpg",
+          "quality": 0.6533333333333333
+        },
+        {
+          "frame_index": 211,
+          "path": "assets/track_000114_torso_02_frame_000211.jpg",
+          "quality": 0.6533333333333333
+        },
+        {
+          "frame_index": 214,
+          "path": "assets/track_000114_torso_03_frame_000214.jpg",
+          "quality": 0.6533333333333333
+        }
+      ],
+      "current_v2_confidence": 0.9040647854674487,
+      "current_v2_label": "unknown",
+      "frame_end": 214,
+      "frame_start": 210,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 3
+      },
+      "observation_count": 3,
+      "short_track_crop_notice": "Only 3 distinct fresh observations exist; no crops were duplicated.",
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9040647854674487,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 2,
+          "official": 0,
+          "unknown": 1
+        },
+        "evidence": {
+          "black": 0.003401360544217687,
+          "blur_variance": 139.21490177703734,
+          "median_bbox_aspect": 2.210526315789474,
+          "orange": 0.0,
+          "quality": 0.6533333333333333,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.2116250944822373,
+          "white": 0.45714285714285713,
+          "white_brightness": 0.7798001567522684
+        },
+        "high_quality_crops_used": 3,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 3,
+      "track_id": 114
+    },
+    {
+      "context_frame_index": 252,
+      "context_path": "assets/track_000115_context_frame_000252.jpg",
+      "crops": [
+        {
+          "frame_index": 211,
+          "path": "assets/track_000115_torso_01_frame_000211.jpg",
+          "quality": 0.13333333333333333
+        },
+        {
+          "frame_index": 220,
+          "path": "assets/track_000115_torso_02_frame_000220.jpg",
+          "quality": 0.15333333333333332
+        },
+        {
+          "frame_index": 231,
+          "path": "assets/track_000115_torso_03_frame_000231.jpg",
+          "quality": 0.14666666666666667
+        },
+        {
+          "frame_index": 242,
+          "path": "assets/track_000115_torso_04_frame_000242.jpg",
+          "quality": 0.208
+        },
+        {
+          "frame_index": 247,
+          "path": "assets/track_000115_torso_05_frame_000247.jpg",
+          "quality": 0.456
+        },
+        {
+          "frame_index": 252,
+          "path": "assets/track_000115_torso_06_frame_000252.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 254,
+          "path": "assets/track_000115_torso_07_frame_000254.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 257,
+          "path": "assets/track_000115_torso_08_frame_000257.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 262,
+          "path": "assets/track_000115_torso_09_frame_000262.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 267,
+          "path": "assets/track_000115_torso_10_frame_000267.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.7232364300449801,
+      "current_v2_label": "unknown",
+      "frame_end": 271,
+      "frame_start": 210,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.6744186046511628,
+      "legacy_votes": {
+        "devils": 29,
+        "flyers": 3,
+        "unknown": 11
+      },
+      "observation_count": 43,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "ambiguous evidence; visual review required",
+        "confidence": 0.7232364300449801,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 0,
+          "official": 10,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.3575142026743231,
+          "blur_variance": 275.63424364326204,
+          "median_bbox_aspect": 0.9302744039586145,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.03317587150059024,
+          "red_hue_consistency": 0.8988382518291473,
+          "red_saturation": 0.40499845445156096,
+          "stripe": 0.7122184036595904,
+          "white": 0.5197644458715324,
+          "white_brightness": 0.8279589295387269
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.6744186046511628,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 115
+    },
+    {
+      "context_frame_index": 260,
+      "context_path": "assets/track_000119_context_frame_000260.jpg",
+      "crops": [
+        {
+          "frame_index": 222,
+          "path": "assets/track_000119_torso_01_frame_000222.jpg",
+          "quality": 0.9268729798649172
+        },
+        {
+          "frame_index": 224,
+          "path": "assets/track_000119_torso_02_frame_000224.jpg",
+          "quality": 0.9156496020254097
+        },
+        {
+          "frame_index": 226,
+          "path": "assets/track_000119_torso_03_frame_000226.jpg",
+          "quality": 0.6114316471183759
+        },
+        {
+          "frame_index": 228,
+          "path": "assets/track_000119_torso_04_frame_000228.jpg",
+          "quality": 0.7636207130142908
+        },
+        {
+          "frame_index": 233,
+          "path": "assets/track_000119_torso_05_frame_000233.jpg",
+          "quality": 0.5855619253741599
+        },
+        {
+          "frame_index": 238,
+          "path": "assets/track_000119_torso_06_frame_000238.jpg",
+          "quality": 0.6356907464420923
+        },
+        {
+          "frame_index": 244,
+          "path": "assets/track_000119_torso_07_frame_000244.jpg",
+          "quality": 0.49834403732610455
+        },
+        {
+          "frame_index": 247,
+          "path": "assets/track_000119_torso_08_frame_000247.jpg",
+          "quality": 0.5992747711781024
+        },
+        {
+          "frame_index": 249,
+          "path": "assets/track_000119_torso_09_frame_000249.jpg",
+          "quality": 0.6983698727478777
+        },
+        {
+          "frame_index": 260,
+          "path": "assets/track_000119_torso_10_frame_000260.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.7666849126795936,
+      "current_v2_label": "devils",
+      "frame_end": 260,
+      "frame_start": 220,
+      "legacy_label": "devils",
+      "legacy_match_fraction": 0.9411764705882353,
+      "legacy_votes": {
+        "devils": 32,
+        "unknown": 2
+      },
+      "observation_count": 34,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.7666849126795936,
+        "crop_votes": {
+          "devils": 9,
+          "flyers": 1,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.04502138977590025,
+          "blur_variance": 95.77556143986368,
+          "median_bbox_aspect": 2.0656410256410256,
+          "orange": 0.020365200427534834,
+          "quality": 0.8119085102741862,
+          "red": 0.2910940554759555,
+          "red_hue_consistency": 0.872275172502998,
+          "red_saturation": 0.613595093108993,
+          "stripe": 0.08662620966909368,
+          "white": 0.5847740245258486,
+          "white_brightness": 0.8535787799231437
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.9411764705882353,
+        "legacy_reliable_label": "devils"
+      },
+      "torso_crop_count": 10,
+      "track_id": 119
+    },
+    {
+      "context_frame_index": 247,
+      "context_path": "assets/track_000120_context_frame_000247.jpg",
+      "crops": [
+        {
+          "frame_index": 234,
+          "path": "assets/track_000120_torso_01_frame_000234.jpg",
+          "quality": 0.8515901472010451
+        },
+        {
+          "frame_index": 242,
+          "path": "assets/track_000120_torso_02_frame_000242.jpg",
+          "quality": 0.9655074241336746
+        },
+        {
+          "frame_index": 247,
+          "path": "assets/track_000120_torso_03_frame_000247.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 249,
+          "path": "assets/track_000120_torso_04_frame_000249.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 252,
+          "path": "assets/track_000120_torso_05_frame_000252.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 254,
+          "path": "assets/track_000120_torso_06_frame_000254.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 257,
+          "path": "assets/track_000120_torso_07_frame_000257.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 262,
+          "path": "assets/track_000120_torso_08_frame_000262.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 267,
+          "path": "assets/track_000120_torso_09_frame_000267.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 272,
+          "path": "assets/track_000120_torso_10_frame_000272.jpg",
+          "quality": 0.8433333333333334
+        }
+      ],
+      "current_v2_confidence": 0.9169773687939096,
+      "current_v2_label": "unknown",
+      "frame_end": 276,
+      "frame_start": 230,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 0.868421052631579,
+      "legacy_votes": {
+        "flyers": 33,
+        "unknown": 5
+      },
+      "observation_count": 38,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9169773687939096,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.00045582798240105646,
+          "blur_variance": 178.29372539626576,
+          "median_bbox_aspect": 0.7815789473684212,
+          "orange": 0.02087685043512241,
+          "quality": 1.0,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.05412960672599358,
+          "white": 0.7171308856637313,
+          "white_brightness": 0.8128669381141662
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.868421052631579,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 120
+    },
+    {
+      "context_frame_index": 244,
+      "context_path": "assets/track_000124_context_frame_000244.jpg",
+      "crops": [
+        {
+          "frame_index": 244,
+          "path": "assets/track_000124_torso_01_frame_000244.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 247,
+          "path": "assets/track_000124_torso_02_frame_000247.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 252,
+          "path": "assets/track_000124_torso_03_frame_000252.jpg",
+          "quality": 0.8506666666666667
+        },
+        {
+          "frame_index": 257,
+          "path": "assets/track_000124_torso_04_frame_000257.jpg",
+          "quality": 0.528
+        },
+        {
+          "frame_index": 259,
+          "path": "assets/track_000124_torso_05_frame_000259.jpg",
+          "quality": 0.44
+        },
+        {
+          "frame_index": 262,
+          "path": "assets/track_000124_torso_06_frame_000262.jpg",
+          "quality": 0.406
+        },
+        {
+          "frame_index": 264,
+          "path": "assets/track_000124_torso_07_frame_000264.jpg",
+          "quality": 0.392
+        },
+        {
+          "frame_index": 267,
+          "path": "assets/track_000124_torso_08_frame_000267.jpg",
+          "quality": 0.392
+        },
+        {
+          "frame_index": 269,
+          "path": "assets/track_000124_torso_09_frame_000269.jpg",
+          "quality": 0.37333333333333335
+        },
+        {
+          "frame_index": 272,
+          "path": "assets/track_000124_torso_10_frame_000272.jpg",
+          "quality": 0.31666666666666665
+        }
+      ],
+      "current_v2_confidence": 0.7986692902011939,
+      "current_v2_label": "unknown",
+      "frame_end": 272,
+      "frame_start": 244,
+      "legacy_label": "official",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "official": 22
+      },
+      "observation_count": 22,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "legacy official match rejected because sharp striped-person evidence is insufficient",
+        "confidence": 0.7986692902011939,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.04129071699114337,
+          "blur_variance": 493.2027391801374,
+          "median_bbox_aspect": 1.1795522388059703,
+          "orange": 0.0,
+          "quality": 0.7770136726167868,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.2588803629310638,
+          "white": 0.7256901465830953,
+          "white_brightness": 0.8494866338692552
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "official"
+      },
+      "torso_crop_count": 10,
+      "track_id": 124
+    },
+    {
+      "context_frame_index": 276,
+      "context_path": "assets/track_000125_context_frame_000276.jpg",
+      "crops": [
+        {
+          "frame_index": 247,
+          "path": "assets/track_000125_torso_01_frame_000247.jpg",
+          "quality": 0.136
+        },
+        {
+          "frame_index": 249,
+          "path": "assets/track_000125_torso_02_frame_000249.jpg",
+          "quality": 0.136
+        },
+        {
+          "frame_index": 252,
+          "path": "assets/track_000125_torso_03_frame_000252.jpg",
+          "quality": 0.136
+        },
+        {
+          "frame_index": 257,
+          "path": "assets/track_000125_torso_04_frame_000257.jpg",
+          "quality": 0.136
+        },
+        {
+          "frame_index": 264,
+          "path": "assets/track_000125_torso_05_frame_000264.jpg",
+          "quality": 0.196
+        },
+        {
+          "frame_index": 266,
+          "path": "assets/track_000125_torso_06_frame_000266.jpg",
+          "quality": 0.3
+        },
+        {
+          "frame_index": 269,
+          "path": "assets/track_000125_torso_07_frame_000269.jpg",
+          "quality": 0.506
+        },
+        {
+          "frame_index": 271,
+          "path": "assets/track_000125_torso_08_frame_000271.jpg",
+          "quality": 0.7101053519163764
+        },
+        {
+          "frame_index": 274,
+          "path": "assets/track_000125_torso_09_frame_000274.jpg",
+          "quality": 0.8886700016983473
+        },
+        {
+          "frame_index": 276,
+          "path": "assets/track_000125_torso_10_frame_000276.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.9200771368263069,
+      "current_v2_label": "unknown",
+      "frame_end": 276,
+      "frame_start": 244,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.5,
+      "legacy_votes": {
+        "flyers": 14,
+        "unknown": 14
+      },
+      "observation_count": 28,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "white background lacks person-like dark/red uniform detail",
+        "confidence": 0.9200771368263069,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 10,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.0,
+          "blur_variance": 110.0565851030855,
+          "median_bbox_aspect": 1.043859649122807,
+          "orange": 0.1120351896856918,
+          "quality": 0.7277885589898858,
+          "red": 0.0,
+          "red_hue_consistency": 0.0,
+          "red_saturation": 0.0,
+          "stripe": 0.19458450484865883,
+          "white": 0.5935638985103322,
+          "white_brightness": 0.821968947005531
+        },
+        "high_quality_crops_used": 10,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.5,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 125
+    },
+    {
+      "context_frame_index": 249,
+      "context_path": "assets/track_000126_context_frame_000249.jpg",
+      "crops": [
+        {
+          "frame_index": 249,
+          "path": "assets/track_000126_torso_01_frame_000249.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 251,
+          "path": "assets/track_000126_torso_02_frame_000251.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 254,
+          "path": "assets/track_000126_torso_03_frame_000254.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 256,
+          "path": "assets/track_000126_torso_04_frame_000256.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 259,
+          "path": "assets/track_000126_torso_05_frame_000259.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 261,
+          "path": "assets/track_000126_torso_06_frame_000261.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 264,
+          "path": "assets/track_000126_torso_07_frame_000264.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 266,
+          "path": "assets/track_000126_torso_08_frame_000266.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 269,
+          "path": "assets/track_000126_torso_09_frame_000269.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 274,
+          "path": "assets/track_000126_torso_10_frame_000274.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.8988039245519247,
+      "current_v2_label": "flyers",
+      "frame_end": 276,
+      "frame_start": 248,
+      "legacy_label": "flyers",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "flyers": 29
+      },
+      "observation_count": 29,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.8988039245519247,
+        "crop_votes": {
+          "devils": 9,
+          "flyers": 1,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.08528289436863092,
+          "blur_variance": 229.14541116094512,
+          "median_bbox_aspect": 2.608314263920671,
+          "orange": 0.004405675013545546,
+          "quality": 1.0,
+          "red": 0.16680615388509082,
+          "red_hue_consistency": 0.9956899583339691,
+          "red_saturation": 0.533113420009613,
+          "stripe": 0.13250270074926856,
+          "white": 0.5987913159465438,
+          "white_brightness": 0.8196804046630859
+        },
+        "high_quality_crops_used": 10,
+        "label": "flyers",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "flyers"
+      },
+      "torso_crop_count": 10,
+      "track_id": 126
+    },
+    {
+      "context_frame_index": 259,
+      "context_path": "assets/track_000131_context_frame_000259.jpg",
+      "crops": [
+        {
+          "frame_index": 250,
+          "path": "assets/track_000131_torso_01_frame_000250.jpg",
+          "quality": 0.11262876292335117
+        },
+        {
+          "frame_index": 251,
+          "path": "assets/track_000131_torso_02_frame_000251.jpg",
+          "quality": 0.24933333333333332
+        },
+        {
+          "frame_index": 252,
+          "path": "assets/track_000131_torso_03_frame_000252.jpg",
+          "quality": 0.266
+        },
+        {
+          "frame_index": 253,
+          "path": "assets/track_000131_torso_04_frame_000253.jpg",
+          "quality": 0.308
+        },
+        {
+          "frame_index": 254,
+          "path": "assets/track_000131_torso_05_frame_000254.jpg",
+          "quality": 0.322
+        },
+        {
+          "frame_index": 255,
+          "path": "assets/track_000131_torso_06_frame_000255.jpg",
+          "quality": 0.378
+        },
+        {
+          "frame_index": 256,
+          "path": "assets/track_000131_torso_07_frame_000256.jpg",
+          "quality": 0.42933333333333334
+        },
+        {
+          "frame_index": 257,
+          "path": "assets/track_000131_torso_08_frame_000257.jpg",
+          "quality": 0.55
+        },
+        {
+          "frame_index": 258,
+          "path": "assets/track_000131_torso_09_frame_000258.jpg",
+          "quality": 0.6533333333333333
+        },
+        {
+          "frame_index": 259,
+          "path": "assets/track_000131_torso_10_frame_000259.jpg",
+          "quality": 0.76
+        }
+      ],
+      "current_v2_confidence": 0.6704463038175617,
+      "current_v2_label": "unknown",
+      "frame_end": 259,
+      "frame_start": 250,
+      "legacy_label": "official",
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "official": 10
+      },
+      "observation_count": 10,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "legacy official match rejected because sharp striped-person evidence is insufficient",
+        "confidence": 0.6704463038175617,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 1,
+          "official": 5,
+          "unknown": 3
+        },
+        "evidence": {
+          "black": 0.5803463504796713,
+          "blur_variance": 315.4296783811519,
+          "median_bbox_aspect": 1.393939393939394,
+          "orange": 0.01985787341247806,
+          "quality": 0.49106334222485176,
+          "red": 0.015389851894670497,
+          "red_hue_consistency": 0.5786906978286804,
+          "red_saturation": 0.23632687580508724,
+          "stripe": 0.43474462786643386,
+          "white": 0.2735327976601776,
+          "white_brightness": 0.7598925377370526
+        },
+        "high_quality_crops_used": 9,
+        "label": "unknown",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": "official"
+      },
+      "torso_crop_count": 10,
+      "track_id": 131
+    },
+    {
+      "context_frame_index": 251,
+      "context_path": "assets/track_000132_context_frame_000251.jpg",
+      "crops": [
+        {
+          "frame_index": 251,
+          "path": "assets/track_000132_torso_01_frame_000251.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 252,
+          "path": "assets/track_000132_torso_02_frame_000252.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 255,
+          "path": "assets/track_000132_torso_03_frame_000255.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 257,
+          "path": "assets/track_000132_torso_04_frame_000257.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 258,
+          "path": "assets/track_000132_torso_05_frame_000258.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 259,
+          "path": "assets/track_000132_torso_06_frame_000259.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 260,
+          "path": "assets/track_000132_torso_07_frame_000260.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 262,
+          "path": "assets/track_000132_torso_08_frame_000262.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 265,
+          "path": "assets/track_000132_torso_09_frame_000265.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 267,
+          "path": "assets/track_000132_torso_10_frame_000267.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6924541961451423,
+      "current_v2_label": "unknown",
+      "frame_end": 267,
+      "frame_start": 251,
+      "legacy_label": null,
+      "legacy_match_fraction": 1.0,
+      "legacy_votes": {
+        "unknown": 13
+      },
+      "observation_count": 13,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "10 sharp striped-torso crops match successful officials",
+        "confidence": 0.94,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 0,
+          "official": 10,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.18272701205432862,
+          "blur_variance": 408.5174001667773,
+          "median_bbox_aspect": 1.9285714285714286,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.018389173189473782,
+          "red_hue_consistency": 0.9991789638996125,
+          "red_saturation": 0.41608591079711915,
+          "stripe": 0.6252255627439776,
+          "white": 0.4730902187845537,
+          "white_brightness": 0.7928182184696198
+        },
+        "high_quality_crops_used": 10,
+        "label": "official",
+        "legacy_reliable_fraction": 1.0,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 132
+    },
+    {
+      "context_frame_index": 263,
+      "context_path": "assets/track_000141_context_frame_000263.jpg",
+      "crops": [
+        {
+          "frame_index": 261,
+          "path": "assets/track_000141_torso_01_frame_000261.jpg",
+          "quality": 0.7258844214509443
+        },
+        {
+          "frame_index": 262,
+          "path": "assets/track_000141_torso_02_frame_000262.jpg",
+          "quality": 0.7821115575029838
+        },
+        {
+          "frame_index": 263,
+          "path": "assets/track_000141_torso_03_frame_000263.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 264,
+          "path": "assets/track_000141_torso_04_frame_000264.jpg",
+          "quality": 0.7755802014356503
+        },
+        {
+          "frame_index": 265,
+          "path": "assets/track_000141_torso_05_frame_000265.jpg",
+          "quality": 0.8483193839244283
+        },
+        {
+          "frame_index": 271,
+          "path": "assets/track_000141_torso_06_frame_000271.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 272,
+          "path": "assets/track_000141_torso_07_frame_000272.jpg",
+          "quality": 0.8489440748216258
+        },
+        {
+          "frame_index": 273,
+          "path": "assets/track_000141_torso_08_frame_000273.jpg",
+          "quality": 0.9287026139242462
+        },
+        {
+          "frame_index": 274,
+          "path": "assets/track_000141_torso_09_frame_000274.jpg",
+          "quality": 0.9411928665247612
+        },
+        {
+          "frame_index": 275,
+          "path": "assets/track_000141_torso_10_frame_000275.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6335249567929484,
+      "current_v2_label": "devils",
+      "frame_end": 275,
+      "frame_start": 261,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.5454545454545454,
+      "legacy_votes": {
+        "devils": 5,
+        "unknown": 6
+      },
+      "observation_count": 11,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "retained stable non-unknown V2 label for manual confirmation",
+        "confidence": 0.6335249567929484,
+        "crop_votes": {
+          "devils": 10,
+          "flyers": 0,
+          "official": 0,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.18329281551462065,
+          "blur_variance": 93.5492075357596,
+          "median_bbox_aspect": 1.9749843652282677,
+          "orange": 0.0001692755957470545,
+          "quality": 0.8958369671941406,
+          "red": 0.28758716357935454,
+          "red_hue_consistency": 0.9972330884404863,
+          "red_saturation": 0.6219354685371686,
+          "stripe": 0.34667157631090967,
+          "white": 0.4780650782664011,
+          "white_brightness": 0.7552943580754982
+        },
+        "high_quality_crops_used": 10,
+        "label": "devils",
+        "legacy_reliable_fraction": 0.5454545454545454,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 10,
+      "track_id": 141
+    },
+    {
+      "context_frame_index": 265,
+      "context_path": "assets/track_000142_context_frame_000265.jpg",
+      "crops": [
+        {
+          "frame_index": 265,
+          "path": "assets/track_000142_torso_01_frame_000265.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 270,
+          "path": "assets/track_000142_torso_02_frame_000270.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 272,
+          "path": "assets/track_000142_torso_03_frame_000272.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 273,
+          "path": "assets/track_000142_torso_04_frame_000273.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 274,
+          "path": "assets/track_000142_torso_05_frame_000274.jpg",
+          "quality": 1.0
+        },
+        {
+          "frame_index": 275,
+          "path": "assets/track_000142_torso_06_frame_000275.jpg",
+          "quality": 1.0
+        }
+      ],
+      "current_v2_confidence": 0.6632742955141908,
+      "current_v2_label": "unknown",
+      "frame_end": 275,
+      "frame_start": 265,
+      "legacy_label": null,
+      "legacy_match_fraction": 0.6666666666666666,
+      "legacy_votes": {
+        "devils": 4,
+        "unknown": 2
+      },
+      "observation_count": 6,
+      "short_track_crop_notice": null,
+      "suggestion": {
+        "basis": "ambiguous evidence; visual review required",
+        "confidence": 0.6632742955141908,
+        "crop_votes": {
+          "devils": 0,
+          "flyers": 1,
+          "official": 5,
+          "unknown": 0
+        },
+        "evidence": {
+          "black": 0.3006013005221228,
+          "blur_variance": 378.81258402907315,
+          "median_bbox_aspect": 2.155168269230769,
+          "orange": 0.0,
+          "quality": 1.0,
+          "red": 0.05252058078646305,
+          "red_hue_consistency": 0.9967415233453115,
+          "red_saturation": 0.45024602115154266,
+          "stripe": 0.5155072873656287,
+          "white": 0.49903250719407993,
+          "white_brightness": 0.7964913249015808
+        },
+        "high_quality_crops_used": 6,
+        "label": "unknown",
+        "legacy_reliable_fraction": 0.6666666666666666,
+        "legacy_reliable_label": null
+      },
+      "torso_crop_count": 6,
+      "track_id": 142
+    }
+  ]
+}

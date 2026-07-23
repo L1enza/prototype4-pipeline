@@ -1,0 +1,27 @@
+{
+  "accepted_track_count": 60,
+  "automatic_suggestions": {
+    "devils": 16,
+    "flyers": 15,
+    "official": 4,
+    "unknown": 25
+  },
+  "current_v2_labels": {
+    "devils": 16,
+    "flyers": 15,
+    "official": 2,
+    "unknown": 27
+  },
+  "final_render_ready": true,
+  "override_path_expected": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/prototype4_pipeline/outputs/njdevils/hockey_polygon_demo_v2/team_track_review/team_label_overrides.json",
+  "tracks_with_fewer_than_six_distinct_observations": [
+    19,
+    64,
+    66,
+    67,
+    71,
+    74,
+    110,
+    114
+  ]
+}

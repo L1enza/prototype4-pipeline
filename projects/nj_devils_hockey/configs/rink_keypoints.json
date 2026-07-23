@@ -1,0 +1,1353 @@
+{
+  "schema": "prototype4_field_keypoint_annotations_v1",
+  "run_id": "njdevils",
+  "video": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/njdevils.mp4",
+  "landmark_config": "configs/canonical_hockey_rink_landmarks.json",
+  "notes": [
+    "Manual hockey rink correspondences only. Do not fabricate points.",
+    "Click an exact canonical marking and the identical physical point in the broadcast frame.",
+    "Stored homographies will map broadcast image coordinates to canonical rink coordinates."
+  ],
+  "annotations": [
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_crease_center",
+      "image_xy": [
+        228.31275513408278,
+        412.80777067574735
+      ],
+      "canonical_xy": [
+        185.5,
+        489.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_crease_top",
+      "image_xy": [
+        246.83388808641587,
+        399.43149021687555
+      ],
+      "canonical_xy": [
+        185.5,
+        432.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_crease_bottom",
+      "image_xy": [
+        208.7626703510645,
+        436.4734976414436
+      ],
+      "canonical_xy": [
+        185.5,
+        546.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_bottom_faceoff_center",
+      "image_xy": [
+        485.5507128053759,
+        564.0626343260669
+      ],
+      "canonical_xy": [
+        321.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_top_faceoff_center",
+      "image_xy": [
+        704.7174527413176,
+        332.5500879225165
+      ],
+      "canonical_xy": [
+        321.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_top_faceoff_circle_top",
+      "image_xy": [
+        755.136092444891,
+        265.66868562815756
+      ],
+      "canonical_xy": [
+        321.5,
+        214.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_top_faceoff_circle_right",
+      "image_xy": [
+        972.2449287194625,
+        352.10003628548304
+      ],
+      "canonical_xy": [
+        425.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_bottom_faceoff_circle_right",
+      "image_xy": [
+        791.1494065188721,
+        581.5546933876685
+      ],
+      "canonical_xy": [
+        425.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_bottom_faceoff_circle_left",
+      "image_xy": [
+        202.58895936695347,
+        540.3969073603706
+      ],
+      "canonical_xy": [
+        217.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000000",
+      "frame_index": 0,
+      "timestamp_seconds": 0,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000000.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_crease_edge",
+      "image_xy": [
+        340.4685046787666,
+        418.981438579842
+      ],
+      "canonical_xy": [
+        228.5,
+        489.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000035",
+      "frame_index": 35,
+      "timestamp_seconds": 1.1678333333333333,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000035.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_crease_edge",
+      "image_xy": [
+        208.7626703510645,
+        459.1102799564574
+      ],
+      "canonical_xy": [
+        228.5,
+        489.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000035",
+      "frame_index": 35,
+      "timestamp_seconds": 1.1678333333333333,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000035.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_crease_top",
+      "image_xy": [
+        107.9253909439176,
+        432.3577190387138
+      ],
+      "canonical_xy": [
+        185.5,
+        432.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000035",
+      "frame_index": 35,
+      "timestamp_seconds": 1.1678333333333333,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000035.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_crease_bottom",
+      "image_xy": [
+        67.79626954719588,
+        468.37078181259943
+      ],
+      "canonical_xy": [
+        185.5,
+        546.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000035",
+      "frame_index": 35,
+      "timestamp_seconds": 1.1678333333333333,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000035.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_top_faceoff_center",
+      "image_xy": [
+        580.2142812284118,
+        367.5342060457197
+      ],
+      "canonical_xy": [
+        321.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000035",
+      "frame_index": 35,
+      "timestamp_seconds": 1.1678333333333333,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000035.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_top_faceoff_circle_top",
+      "image_xy": [
+        649.1540538843183,
+        296.5370251486309
+      ],
+      "canonical_xy": [
+        321.5,
+        214.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000035",
+      "frame_index": 35,
+      "timestamp_seconds": 1.1678333333333333,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000035.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_top_faceoff_circle_right",
+      "image_xy": [
+        859.0602273440935,
+        380.9104865045915
+      ],
+      "canonical_xy": [
+        425.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000035",
+      "frame_index": 35,
+      "timestamp_seconds": 1.1678333333333333,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000035.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_bottom_faceoff_center",
+      "image_xy": [
+        354.873830308359,
+        604.1914757026823
+      ],
+      "canonical_xy": [
+        321.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000070",
+      "frame_index": 70,
+      "timestamp_seconds": 2.3356666666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000070.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_top_faceoff_circle_right",
+      "image_xy": [
+        524.6508823714124,
+        398.4025455661931
+      ],
+      "canonical_xy": [
+        425.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000070",
+      "frame_index": 70,
+      "timestamp_seconds": 2.3356666666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000070.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_top_faceoff_center",
+      "image_xy": [
+        262.26816554669347,
+        386.05520975800374
+      ],
+      "canonical_xy": [
+        321.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000070",
+      "frame_index": 70,
+      "timestamp_seconds": 2.3356666666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000070.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_bottom_faceoff_center",
+      "image_xy": [
+        36.92771462664071,
+        624.7703687163313
+      ],
+      "canonical_xy": [
+        321.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000070",
+      "frame_index": 70,
+      "timestamp_seconds": 2.3356666666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000070.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "left_bottom_faceoff_circle_right",
+      "image_xy": [
+        348.70011932424796,
+        637.1177045245206
+      ],
+      "canonical_xy": [
+        425.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000070",
+      "frame_index": 70,
+      "timestamp_seconds": 2.3356666666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000070.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "neutral_dot_top_left",
+      "image_xy": [
+        1171.8615838723858,
+        421.03932788120693
+      ],
+      "canonical_xy": [
+        628.5,
+        333.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000070",
+      "frame_index": 70,
+      "timestamp_seconds": 2.3356666666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000070.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "neutral_dot_bottom_left",
+      "image_xy": [
+        1107.03761853922,
+        677.246545901136
+      ],
+      "canonical_xy": [
+        628.5,
+        645.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000105",
+      "frame_index": 105,
+      "timestamp_seconds": 3.5035000000000003,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000105.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "center_spot",
+      "image_xy": [
+        285.93405765245245,
+        510.5575124905797
+      ],
+      "canonical_xy": [
+        783.5,
+        489.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000105",
+      "frame_index": 105,
+      "timestamp_seconds": 3.5035000000000003,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000105.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "neutral_dot_bottom_right",
+      "image_xy": [
+        720.1517302015952,
+        640.2045384765679
+      ],
+      "canonical_xy": [
+        938.5,
+        645.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000105",
+      "frame_index": 105,
+      "timestamp_seconds": 3.5035000000000003,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000105.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_left",
+      "image_xy": [
+        1257.2645858192552,
+        391.19993301141596
+      ],
+      "canonical_xy": [
+        1141.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000105",
+      "frame_index": 105,
+      "timestamp_seconds": 3.5035000000000003,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000105.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_blue_line_top_boards",
+      "image_xy": [
+        713.9780192174842,
+        311.97119490886763
+      ],
+      "canonical_xy": [
+        977.5,
+        155
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_edge",
+      "image_xy": [
+        894.0445895873893,
+        457.05239065509255
+      ],
+      "canonical_xy": [
+        1338.5,
+        489.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_top",
+      "image_xy": [
+        980.4765433649438,
+        435.44455299076117
+      ],
+      "canonical_xy": [
+        1381.5,
+        432.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_bottom",
+      "image_xy": [
+        1017.51880926961,
+        466.31289251123457
+      ],
+      "canonical_xy": [
+        1381.5,
+        546.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_center",
+      "image_xy": [
+        516.419267725931,
+        372.67892929913194
+      ],
+      "canonical_xy": [
+        1244.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_center",
+      "image_xy": [
+        741.7597186459838,
+        605.2204203533648
+      ],
+      "canonical_xy": [
+        1244.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_left",
+      "image_xy": [
+        426.900458456321,
+        624.7703687163313
+      ],
+      "canonical_xy": [
+        1141.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_left",
+      "image_xy": [
+        249.9207435784714,
+        396.3446562648282
+      ],
+      "canonical_xy": [
+        1141.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_goal_line_top_boards",
+      "image_xy": [
+        800.4099729950386,
+        291.3923018952187
+      ],
+      "canonical_xy": [
+        1381.5,
+        155
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_right",
+      "image_xy": [
+        1015.4609056082396,
+        567.1494682781142
+      ],
+      "canonical_xy": [
+        1349.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_top",
+      "image_xy": [
+        655.3277648684293,
+        518.7890696960393
+      ],
+      "canonical_xy": [
+        1245.5,
+        556.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000138",
+      "frame_index": 138,
+      "timestamp_seconds": 4.6046000000000005,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000138.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_bottom",
+      "image_xy": [
+        598.7354141807448,
+        433.38666368939624
+      ],
+      "canonical_xy": [
+        1245.5,
+        422.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_goal_line_top_boards",
+      "image_xy": [
+        390.88714438234,
+        267.7265749295224
+      ],
+      "canonical_xy": [
+        1381.5,
+        155
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_top",
+      "image_xy": [
+        651.2119575456886,
+        469.39972646328187
+      ],
+      "canonical_xy": [
+        1381.5,
+        432.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_bottom",
+      "image_xy": [
+        706.775356402688,
+        517.7601250453569
+      ],
+      "canonical_xy": [
+        1381.5,
+        546.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_top",
+      "image_xy": [
+        172.74935627708345,
+        601.104641750635
+      ],
+      "canonical_xy": [
+        1245.5,
+        556.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_bottom",
+      "image_xy": [
+        94.54901714501037,
+        500.26806598375526
+      ],
+      "canonical_xy": [
+        1245.5,
+        422.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_right",
+      "image_xy": [
+        358.98963763109964,
+        355.18687023753034
+      ],
+      "canonical_xy": [
+        1349.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_right",
+      "image_xy": [
+        733.5281040005024,
+        666.9570993943115
+      ],
+      "canonical_xy": [
+        1349.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_center",
+      "image_xy": [
+        10.174967028826226,
+        393.2578223127809
+      ],
+      "canonical_xy": [
+        1244.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000175",
+      "frame_index": 175,
+      "timestamp_seconds": 5.839166666666666,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000175.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_edge",
+      "image_xy": [
+        525.6798342020976,
+        508.49962318921484
+      ],
+      "canonical_xy": [
+        1338.5,
+        489.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000210",
+      "frame_index": 210,
+      "timestamp_seconds": 7.007000000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000210.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_edge",
+      "image_xy": [
+        631.6618727626703,
+        512.6154017919446
+      ],
+      "canonical_xy": [
+        1338.5,
+        489.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000210",
+      "frame_index": 210,
+      "timestamp_seconds": 7.007000000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000210.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_bottom",
+      "image_xy": [
+        818.9311059473717,
+        530.1074608535462
+      ],
+      "canonical_xy": [
+        1381.5,
+        546.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000210",
+      "frame_index": 210,
+      "timestamp_seconds": 7.007000000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000210.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_top",
+      "image_xy": [
+        766.4545625824279,
+        462.1971139085048
+      ],
+      "canonical_xy": [
+        1381.5,
+        432.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000210",
+      "frame_index": 210,
+      "timestamp_seconds": 7.007000000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000210.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_center",
+      "image_xy": [
+        97.63587263706587,
+        400.460434867558
+      ],
+      "canonical_xy": [
+        1244.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000210",
+      "frame_index": 210,
+      "timestamp_seconds": 7.007000000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000210.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_bottom",
+      "image_xy": [
+        199.50210387489795,
+        504.38384458648505
+      ],
+      "canonical_xy": [
+        1245.5,
+        422.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000210",
+      "frame_index": 210,
+      "timestamp_seconds": 7.007000000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000210.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_top",
+      "image_xy": [
+        296.2235759593041,
+        605.2204203533648
+      ],
+      "canonical_xy": [
+        1245.5,
+        556.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000210",
+      "frame_index": 210,
+      "timestamp_seconds": 7.007000000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000210.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_goal_line_top_boards",
+      "image_xy": [
+        541.1141116623752,
+        304.7685823540905
+      ],
+      "canonical_xy": [
+        1381.5,
+        155
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000245",
+      "frame_index": 245,
+      "timestamp_seconds": 8.174833333333334,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000245.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_center",
+      "image_xy": [
+        101.75167995980657,
+        393.2578223127809
+      ],
+      "canonical_xy": [
+        1244.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000245",
+      "frame_index": 245,
+      "timestamp_seconds": 8.174833333333334,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000245.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_center",
+      "image_xy": [
+        402.2056145198769,
+        685.4781031065955
+      ],
+      "canonical_xy": [
+        1244.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000245",
+      "frame_index": 245,
+      "timestamp_seconds": 8.174833333333334,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000245.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_bottom",
+      "image_xy": [
+        198.47315204421278,
+        481.74706227147124
+      ],
+      "canonical_xy": [
+        1245.5,
+        422.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000245",
+      "frame_index": 245,
+      "timestamp_seconds": 8.174833333333334,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000245.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_top",
+      "image_xy": [
+        292.10776863656343,
+        577.4389147849388
+      ],
+      "canonical_xy": [
+        1245.5,
+        556.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000245",
+      "frame_index": 245,
+      "timestamp_seconds": 8.174833333333334,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000245.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_bottom",
+      "image_xy": [
+        759.2518997676317,
+        504.38384458648505
+      ],
+      "canonical_xy": [
+        1381.5,
+        546.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000245",
+      "frame_index": 245,
+      "timestamp_seconds": 8.174833333333334,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000245.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_crease_edge",
+      "image_xy": [
+        587.416944043208,
+        486.89178552488346
+      ],
+      "canonical_xy": [
+        1338.5,
+        489.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000245",
+      "frame_index": 245,
+      "timestamp_seconds": 8.174833333333334,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000245.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_top",
+      "image_xy": [
+        29.7250518118445,
+        308.8843609568203
+      ],
+      "canonical_xy": [
+        1245.5,
+        214.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000276",
+      "frame_index": 276,
+      "timestamp_seconds": 9.209200000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000276.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_top",
+      "image_xy": [
+        116.15700558939898,
+        292.4212465459011
+      ],
+      "canonical_xy": [
+        1245.5,
+        214.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000276",
+      "frame_index": 276,
+      "timestamp_seconds": 9.209200000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000276.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_center",
+      "image_xy": [
+        187.15468190667588,
+        367.5342060457197
+      ],
+      "canonical_xy": [
+        1244.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000276",
+      "frame_index": 276,
+      "timestamp_seconds": 9.209200000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000276.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_top",
+      "image_xy": [
+        349.72907115493314,
+        534.223239456276
+      ],
+      "canonical_xy": [
+        1245.5,
+        556.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000276",
+      "frame_index": 276,
+      "timestamp_seconds": 9.209200000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000276.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_center",
+      "image_xy": [
+        452.62425422345035,
+        629.9150919697435
+      ],
+      "canonical_xy": [
+        1244.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000276",
+      "frame_index": 276,
+      "timestamp_seconds": 9.209200000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000276.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_top_faceoff_circle_right",
+      "image_xy": [
+        481.4349054826352,
+        332.5500879225165
+      ],
+      "canonical_xy": [
+        1349.5,
+        318.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    },
+    {
+      "view_name": "frame_000276",
+      "frame_index": 276,
+      "timestamp_seconds": 9.209200000000001,
+      "frame_path": "outputs/njdevils/hockey_polygon_demo/rink_registration_annotations/representative_frames/frame_000276.png",
+      "source_frame_width": 1280,
+      "source_frame_height": 720,
+      "landmark_id": "right_bottom_faceoff_circle_right",
+      "image_xy": [
+        790.1204546881869,
+        584.6415273397158
+      ],
+      "canonical_xy": [
+        1349.5,
+        660.5
+      ],
+      "visibility": "visible",
+      "confidence": "manual",
+      "note": ""
+    }
+  ]
+}
