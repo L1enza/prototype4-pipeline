@@ -10,9 +10,8 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SRC_ROOT = PROJECT_ROOT / "src"
-if str(SRC_ROOT) not in sys.path:
-    sys.path.insert(0, str(SRC_ROOT))
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from prototype4_pipeline.integrations.track_jersey_inference import (  # noqa: E402
     DEFAULT_CONFIG,
@@ -30,7 +29,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--allow-network-vision",
         action="store_true",
-        help="Allow an OpenAI-compatible vision request if OPENAI_API_KEY is present.",
+        help="Allow OpenAI-compatible vision requests (needs the configured API key unless api_key_env is null).",
+    )
+    parser.add_argument("--vision-model", default=None, help="Override vision_backend.model.")
+    parser.add_argument(
+        "--vision-endpoint",
+        default=None,
+        help="Override vision_backend.endpoint; a localhost endpoint (e.g. Ollama) runs without an API key.",
     )
     parser.add_argument("--max-source-frames-per-track", type=int, default=None)
     return parser.parse_args()
@@ -46,6 +51,13 @@ def main() -> int:
         config.setdefault("vision_backend", {})["name"] = args.vision_backend
     if args.allow_network_vision:
         config.setdefault("vision_backend", {})["allow_network"] = True
+    if args.vision_model:
+        config.setdefault("vision_backend", {})["model"] = args.vision_model
+    if args.vision_endpoint:
+        backend = config.setdefault("vision_backend", {})
+        backend["endpoint"] = args.vision_endpoint
+        if "localhost" in args.vision_endpoint or "127.0.0.1" in args.vision_endpoint:
+            backend["api_key_env"] = None
     if args.max_source_frames_per_track is not None:
         if args.max_source_frames_per_track < 1:
             raise ValueError("--max-source-frames-per-track must be positive")

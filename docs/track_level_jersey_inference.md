@@ -47,36 +47,52 @@ These views are saved under `evidence_views/` in the output directory.
 
 ## Vision Backend
 
-The implementation supports an OpenAI-compatible multimodal vision backend. It
-sends several views from the same track together and asks for:
+The implementation supports an OpenAI-compatible multimodal vision backend.
 
-- candidate jersey number
-- one-digit vs two-digit status
-- full, partial, or unreadable visibility
-- confidence
-- evidence frame IDs
-- alternative candidate
-- conflict or unreadable reasons
+In the default `per_frame` mode it reads each selected source frame in its own
+request, using the single-image prompt `JERSEY_READ_PROMPT`, so every read is
+independent evidence. `scripts/eval_jersey_readers.py` scores that same prompt
+against the manual eval set, so a reader's measured accuracy applies directly to
+this stage. Reads marked `visibility: none` are dropped.
 
-The default config sets `allow_network` to `false`, so no API call is made unless
-explicitly enabled:
+The legacy `track` mode sends every view of a track in one request. Its answer
+counts as one read: frames the model says it used are kept as
+`claimed_evidence_frames` but never count as independent support.
+
+The default config sets `allow_network` to `false`, so no request is made unless
+explicitly enabled. A cloud endpoint needs the key named by `api_key_env`; a
+localhost endpoint such as Ollama needs no key:
 
 ```bash
 .venv/bin/python scripts/run_track_level_jersey_inference.py --allow-network-vision
+.venv/bin/python scripts/run_track_level_jersey_inference.py --allow-network-vision \
+    --vision-endpoint http://localhost:11434/v1/chat/completions --vision-model gemma3:12b
 ```
 
-If `OPENAI_API_KEY` is absent or network vision is disabled, the stage falls back
-to existing crop OCR evidence and records that the vision model was not run.
+If the key is absent or network vision is disabled, the stage falls back to
+existing crop OCR evidence and records that the vision model was not run.
+
+Measured on the 130-crop eval set, small local models (gemma3:4b) and Tesseract
+both invent numbers on unreadable crops, and gemma3:4b repeats the same wrong
+number across frames. Score a reader with `eval_jersey_readers.py` before
+trusting it here.
 
 ## Aggregation Policy
 
 The stage never forces a number.
 
-High confidence requires the same valid roster number from at least two distinct
-source frames with no strong conflict.
+High confidence requires the same number, valid on the assigned team's roster,
+from at least `aggregation.min_agreeing_frames` (default 2) distinct source frames
+with no conflicting candidate.
 
-Medium confidence requires one strong read plus compatible partial evidence and
-roster validation.
+Medium confidence (one strong read plus roster validation) is off by default.
+Readers were measured to be confidently wrong, so a single read stays `low`
+unless `aggregation.allow_single_frame_medium` is set to `true`.
+
+After all tracks are aggregated, a number claimed by two same-team tracks whose
+time spans overlap is withdrawn from both, since one team cannot field two players
+with the same number at once. Non-overlapping duplicates are kept, because they
+usually mean one player's track was split into fragments.
 
 Low or unknown covers conflicting reads, threshold artifacts, advertisement text,
 insufficient visibility, missing team validation, or invalid roster numbers.

@@ -28,15 +28,14 @@ from pathlib import Path
 from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+# Score the exact prompt that track-level jersey inference sends per frame.
+from prototype4_pipeline.integrations.track_jersey_inference import JERSEY_READ_PROMPT as READ_PROMPT  # noqa: E402
+
 DEFAULT_LABELS = "review_exports/nll_test4_manual_jersey_eval/label_sheet.json"
 DEFAULT_IMAGES = "review_exports/nll_test4_manual_jersey_eval/images"
-
-READ_PROMPT = (
-    "This is a crop of one player from an indoor lacrosse broadcast. Read the jersey number printed on the "
-    "player's shirt, if one is visible. Do not guess: if you cannot clearly see digits on the jersey itself, "
-    "answer null. Ignore text on boards, ads, or the background. "
-    'Reply with only JSON: {"number": "<digits>" or null, "visibility": "full"|"partial"|"none"}'
-)
 
 
 def parse_args() -> argparse.Namespace:

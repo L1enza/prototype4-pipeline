@@ -21,12 +21,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageOps
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG = "configs/nll_test4_track_jersey_inference.json"
 
 PREFERRED_ENHANCED_VARIANTS = [
@@ -69,6 +68,8 @@ def clean_number(value: Any) -> str | None:
 
 
 def image_stats(path: Path) -> dict[str, Any]:
+    import cv2  # Imported here so the aggregation logic stays usable without OpenCV.
+
     image = cv2.imread(str(path), cv2.IMREAD_COLOR)
     if image is None:
         return {"path": str(path), "exists": False}
@@ -338,22 +339,95 @@ def collapse_ocr_by_source(predictions: list[dict[str, Any]]) -> dict[tuple[int,
     return output
 
 
+JERSEY_READ_PROMPT = (
+    "This is a crop of one player from an indoor lacrosse broadcast. Read the jersey number printed on the "
+    "player's shirt, if one is visible. Do not guess: if you cannot clearly see digits on the jersey itself, "
+    "answer null. Ignore text on boards, ads, or the background. "
+    'Reply with only JSON: {"number": "<digits>" or null, "visibility": "full"|"partial"|"none"}'
+)
+
+
 def vision_backend_status(config: dict[str, Any]) -> dict[str, Any]:
     backend = config.get("vision_backend", {})
     name = backend.get("name", "auto")
     allow_network = bool(backend.get("allow_network", False))
+    # A null api_key_env means a keyless OpenAI-compatible server, e.g. local Ollama.
     env_key = backend.get("api_key_env", "OPENAI_API_KEY")
-    has_key = bool(os.environ.get(env_key))
+    has_key = bool(env_key and os.environ.get(env_key))
     return {
         "requested_backend": name,
-        "openai_module_installed": False,
-        "httpx_available": True,
+        "mode": backend.get("mode", "per_frame"),
+        "endpoint": backend.get("endpoint"),
         "api_key_env": env_key,
         "api_key_present": has_key,
         "allow_network": allow_network,
         "model": backend.get("model"),
-        "will_call_vision_model": name in {"openai", "auto"} and allow_network and has_key,
+        "will_call_vision_model": name in {"openai", "auto"} and allow_network and (has_key or not env_key),
     }
+
+
+def post_vision_request(content: list[dict[str, Any]], config: dict[str, Any], max_tokens: int) -> dict[str, Any]:
+    backend = config.get("vision_backend", {})
+    env_key = backend.get("api_key_env", "OPENAI_API_KEY")
+    headers = {"Content-Type": "application/json"}
+    if env_key:
+        headers["Authorization"] = f"Bearer {os.environ[env_key]}"
+    request_payload = {
+        "model": backend.get("model", "gpt-4o-mini"),
+        "response_format": {"type": "json_object"},
+        "messages": [{"role": "user", "content": content}],
+        "temperature": 0,
+        "max_tokens": max_tokens,
+    }
+    request = urllib.request.Request(
+        backend.get("endpoint", "https://api.openai.com/v1/chat/completions"),
+        data=json.dumps(request_payload).encode("utf-8"),
+        headers=headers,
+        method="POST",
+    )
+    with urllib.request.urlopen(request, timeout=float(backend.get("timeout_seconds", 60))) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def run_vision_per_frame(track_id: int, selected: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, Any]:
+    """Read each selected source frame in its own request so each read is independent evidence.
+
+    Uses the same single-image prompt that scripts/eval_jersey_readers.py scores, so
+    measured reader accuracy applies directly to this stage.
+    """
+    status = vision_backend_status(config)
+    frames = []
+    for row in selected:
+        views = row.get("preserved_views", {})
+        view_path = views.get("best_enhanced_region") or views.get("original_crop")
+        record: dict[str, Any] = {"frame_index": int(row["frame_index"]), "view_path": view_path}
+        if not view_path or not Path(view_path).is_file():
+            frames.append({**record, "status": "missing_view"})
+            continue
+        content = [
+            {"type": "text", "text": JERSEY_READ_PROMPT},
+            {"type": "image_url", "image_url": {"url": encode_image_data_url(Path(view_path))}},
+        ]
+        try:
+            response_payload = post_vision_request(content, config, max_tokens=100)
+            text = response_payload["choices"][0]["message"]["content"]
+            frames.append({**record, "status": "complete", "raw_text": text, "parsed": parse_json_object(text)})
+        except Exception as exc:  # noqa: BLE001 - metadata should capture backend failures.
+            frames.append({**record, "status": "error", "error": f"{type(exc).__name__}: {exc}"})
+    return {"status": "complete", "mode": "per_frame", "track_id": track_id, "backend_status": status, "frames": frames}
+
+
+def run_vision_backend(track_id: int, team_label: str | None, selected: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, Any]:
+    status = vision_backend_status(config)
+    if not status["will_call_vision_model"]:
+        return {
+            "status": "not_run",
+            "reason": "Vision backend not enabled, or its API key is missing; used existing OCR evidence only.",
+            "backend_status": status,
+        }
+    if status["mode"] == "per_frame":
+        return run_vision_per_frame(track_id, selected, config)
+    return run_openai_vision_track(track_id, team_label, selected, config)
 
 
 def encode_image_data_url(path: Path) -> str:
@@ -374,18 +448,12 @@ def parse_json_object(text: str) -> dict[str, Any]:
 
 
 def run_openai_vision_track(track_id: int, team_label: str | None, selected: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, Any]:
-    backend = config.get("vision_backend", {})
-    status = vision_backend_status(config)
-    if not status["will_call_vision_model"]:
-        return {
-            "status": "not_run",
-            "reason": "Vision backend not enabled or missing API key; used existing OCR evidence only.",
-            "backend_status": status,
-        }
+    """Legacy mode: one request with every view of the track.
 
-    endpoint = backend.get("endpoint", "https://api.openai.com/v1/chat/completions")
-    model = backend.get("model", "gpt-4o-mini")
-    api_key = os.environ[status["api_key_env"]]
+    The model's claimed evidence frames are not independent reads, so this mode's
+    candidate counts as a single piece of evidence during aggregation.
+    """
+    status = vision_backend_status(config)
     content: list[dict[str, Any]] = [
         {
             "type": "text",
@@ -412,22 +480,8 @@ def run_openai_vision_track(track_id: int, team_label: str | None, selected: lis
             )
             content.append({"type": "image_url", "image_url": {"url": encode_image_data_url(Path(view_path))}})
 
-    request_payload = {
-        "model": model,
-        "response_format": {"type": "json_object"},
-        "messages": [{"role": "user", "content": content}],
-        "temperature": 0,
-        "max_tokens": 500,
-    }
-    request = urllib.request.Request(
-        endpoint,
-        data=json.dumps(request_payload).encode("utf-8"),
-        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-        method="POST",
-    )
     try:
-        with urllib.request.urlopen(request, timeout=float(backend.get("timeout_seconds", 60))) as response:
-            response_payload = json.loads(response.read().decode("utf-8"))
+        response_payload = post_vision_request(content, config, max_tokens=500)
         text = response_payload["choices"][0]["message"]["content"]
         parsed = parse_json_object(text)
         return {
@@ -486,28 +540,52 @@ def roster_validate(number: str | None, team_label: str | None, config: dict[str
     }
 
 
-def candidate_from_vision(result: dict[str, Any]) -> dict[str, Any] | None:
+def candidates_from_vision(result: dict[str, Any]) -> list[dict[str, Any]]:
     if result.get("status") != "complete":
-        return None
+        return []
+    if result.get("mode") == "per_frame":
+        candidates = []
+        for frame in result.get("frames", []):
+            parsed = frame.get("parsed") or {}
+            number = clean_number(parsed.get("number"))
+            if frame.get("status") != "complete" or not number or parsed.get("visibility") == "none":
+                continue
+            candidates.append(
+                {
+                    "number": number,
+                    "source": "vision_frame",
+                    # Self-reported confidence was measured to be uninformative, so reads carry a flat weight.
+                    "confidence": 0.5,
+                    "evidence_frames": [int(frame["frame_index"])],
+                    "visibility": parsed.get("visibility"),
+                    "raw": parsed,
+                }
+            )
+        return candidates
+
     parsed = result.get("parsed") or {}
     number = clean_number(parsed.get("candidate_number"))
     if not number:
-        return None
+        return []
     confidence = parsed.get("confidence")
     if isinstance(confidence, str):
         confidence_value = {"high": 0.9, "medium": 0.65, "low": 0.35}.get(confidence.lower(), 0.5)
     else:
         confidence_value = float(confidence or 0.5)
     frames = parsed.get("evidence_frame_ids") or []
-    return {
-        "number": number,
-        "source": "vision_track",
-        "confidence": max(0.0, min(1.0, confidence_value)),
-        "evidence_frames": sorted({int(frame) for frame in frames if str(frame).isdigit()}),
-        "visibility": parsed.get("visibility"),
-        "alternative_candidate": clean_number(parsed.get("alternative_candidate")),
-        "raw": parsed,
-    }
+    return [
+        {
+            "number": number,
+            "source": "vision_track",
+            "confidence": max(0.0, min(1.0, confidence_value)),
+            # One request is one read, whatever frames the model says it used.
+            "evidence_frames": [],
+            "claimed_evidence_frames": sorted({int(frame) for frame in frames if str(frame).isdigit()}),
+            "visibility": parsed.get("visibility"),
+            "alternative_candidate": clean_number(parsed.get("alternative_candidate")),
+            "raw": parsed,
+        }
+    ]
 
 
 def aggregate_track(
@@ -562,10 +640,8 @@ def aggregate_track(
                 }
             )
 
-    vision_candidate = candidate_from_vision(vision_result)
-    all_candidates = list(per_frame_candidates)
-    if vision_candidate:
-        all_candidates.append(vision_candidate)
+    vision_candidates = candidates_from_vision(vision_result)
+    all_candidates = per_frame_candidates + vision_candidates
 
     numbers = sorted({row["number"] for row in all_candidates})
     candidate_summary = []
@@ -596,7 +672,9 @@ def aggregate_track(
     conflicts = []
     if len({row["number"] for row in candidate_summary}) > 1:
         conflicts.append("multiple_candidate_numbers")
-    if vision_candidate and per_frame_candidates and vision_candidate["number"] not in {row["number"] for row in per_frame_candidates}:
+    vision_numbers = {row["number"] for row in vision_candidates}
+    ocr_numbers = {row["number"] for row in per_frame_candidates}
+    if vision_numbers and ocr_numbers and not vision_numbers & ocr_numbers:
         conflicts.append("vision_candidate_conflicts_with_existing_ocr")
 
     final_number = None
@@ -613,14 +691,25 @@ def aggregate_track(
         frame_count = int(best["distinct_source_frame_count"])
         mean_conf = float(best["mean_confidence"])
         strong_conflict = bool(conflicts and len(candidate_summary) > 1)
-        if valid_team and frame_count >= 2 and not strong_conflict:
+        aggregation = config.get("aggregation", {})
+        min_frames = int(aggregation.get("min_agreeing_frames", 2))
+        if valid_team and frame_count >= min_frames and not strong_conflict:
             final_number = best["number"]
             confidence_label = "high"
             reasons.append("same_valid_roster_number_supported_by_multiple_distinct_frames")
-        elif valid_team and mean_conf >= float(config["aggregation"].get("medium_min_mean_confidence", 0.55)) and not strong_conflict:
+        elif (
+            aggregation.get("allow_single_frame_medium", False)
+            and valid_team
+            and mean_conf >= float(aggregation.get("medium_min_mean_confidence", 0.55))
+            and not strong_conflict
+        ):
             final_number = best["number"]
             confidence_label = "medium"
             reasons.append("single_strong_read_or_compatible_partial_evidence_with_roster_validation")
+        elif valid_team and not strong_conflict:
+            # Readers were measured to repeat confident wrong numbers, so one read is never enough.
+            reasons.append("too_few_independent_frames_for_identity")
+            confidence_label = "low"
         elif valid_any and not valid_team:
             reasons.append("candidate_exists_on_roster_but_team_mapping_or_assigned_team_validation_is_missing")
             confidence_label = "low"
@@ -653,6 +742,51 @@ def aggregate_track(
         "roster_player": roster_player if confidence_label in {"high", "medium"} else None,
         "player_name_assigned": bool(roster_player and confidence_label in {"high", "medium"}),
     }
+
+
+def load_track_spans(tracking_path: Path) -> dict[int, tuple[int, int]]:
+    if not tracking_path.is_file():
+        return {}
+    frames: dict[int, list[int]] = defaultdict(list)
+    for detection in read_json(tracking_path).get("detections", []):
+        try:
+            frames[int(detection["track_id"])].append(int(detection["frame_index"]))
+        except (KeyError, TypeError, ValueError):
+            continue
+    return {track_id: (min(values), max(values)) for track_id, values in frames.items() if values}
+
+
+def resolve_duplicate_numbers(predictions: list[dict[str, Any]], track_spans: dict[int, tuple[int, int]]) -> int:
+    """Withdraw numbers that two same-team tracks claim while both are on the floor.
+
+    One team cannot field two players with the same number at once, so at least one
+    read is wrong and neither is kept. Tracks with no known time span are left alone.
+    Returns the number of tracks whose number was withdrawn.
+    """
+    claimed: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    for pred in predictions:
+        team = pred.get("roster_validation_result", {}).get("team_abbreviation")
+        if pred.get("final_number") and team and int(pred["track_id"]) in track_spans:
+            claimed[(team, pred["final_number"])].append(pred)
+
+    withdrawn: set[int] = set()
+    for rows in claimed.values():
+        for i, first in enumerate(rows):
+            for second in rows[i + 1:]:
+                a = track_spans[int(first["track_id"])]
+                b = track_spans[int(second["track_id"])]
+                if a[0] <= b[1] and b[0] <= a[1]:
+                    withdrawn.update({int(first["track_id"]), int(second["track_id"])})
+
+    for pred in predictions:
+        if int(pred["track_id"]) in withdrawn:
+            pred["withdrawn_number"] = pred["final_number"]
+            pred["final_number"] = None
+            pred["confidence"] = "low"
+            pred["roster_player"] = None
+            pred["player_name_assigned"] = False
+            pred["rejection_or_conflict_reasons"].append("same_number_claimed_by_overlapping_same_team_track")
+    return len(withdrawn)
 
 
 def propagate_to_detections(tracking_path: Path, track_predictions: list[dict[str, Any]]) -> dict[str, Any]:
@@ -744,7 +878,7 @@ def run_track_level_inference(config: dict[str, Any]) -> dict[str, Any]:
         team_label = None
         if team_assignment:
             team_label = team_assignment.get("final_class") or team_assignment.get("assigned_class")
-        vision_result = run_openai_vision_track(track_id, team_label, selected, config)
+        vision_result = run_vision_backend(track_id, team_label, selected, config)
         pred = aggregate_track(
             track_id,
             team_assignment,
@@ -764,6 +898,7 @@ def run_track_level_inference(config: dict[str, Any]) -> dict[str, Any]:
             }
         )
 
+    duplicate_withdrawals = resolve_duplicate_numbers(predictions, load_track_spans(tracking_path))
     propagated = propagate_to_detections(tracking_path, predictions)
     contact_sheet = make_contact_sheet(predictions, output_dir / "track_jersey_review_contact_sheet.png")
     prediction_path = output_dir / "track_jersey_predictions.json"
@@ -805,11 +940,13 @@ def run_track_level_inference(config: dict[str, Any]) -> dict[str, Any]:
             "unresolved_tracks": unresolved,
             "roster_valid_candidates": roster_valid,
             "conflicting_candidates": conflicting,
+            "duplicate_number_withdrawals": duplicate_withdrawals,
             "propagated_detection_count": len(propagated.get("detections", [])),
             "player_names_assigned": sum(1 for row in predictions if row.get("player_name_assigned")),
         },
         "known_limitations": [
-            "Vision-model inference is opt-in and was skipped unless enabled with API credentials.",
+            "Vision-model inference is opt-in; it reads each selected frame separately unless mode is 'track'.",
+            "A single read never assigns a number unless aggregation.allow_single_frame_medium is set.",
             "Existing OCR predictions are treated as weak supporting evidence, not final identity.",
             "Team labels require a confirmed mapping to roster abbreviations before player names are assigned.",
             "A track can remain unresolved even when a plausible number exists.",

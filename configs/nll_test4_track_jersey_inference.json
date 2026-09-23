@@ -24,6 +24,7 @@
   },
   "vision_backend": {
     "name": "auto",
+    "mode": "per_frame",
     "provider": "openai_compatible",
     "model": "gpt-4o-mini",
     "endpoint": "https://api.openai.com/v1/chat/completions",
@@ -64,6 +65,8 @@
     }
   },
   "aggregation": {
+    "min_agreeing_frames": 2,
+    "allow_single_frame_medium": false,
     "medium_min_mean_confidence": 0.55,
     "treat_existing_ocr_as_weak_evidence": true,
     "never_force_assignment": true
