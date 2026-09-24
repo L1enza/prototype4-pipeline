@@ -99,17 +99,33 @@ insufficient visibility, missing team validation, or invalid roster numbers.
 
 ## Roster Validation
 
-For `nll_test4`, the current confirmed mapping is:
+Team assignment names its two colour clusters by size (`team_a` is the larger
+one), not by team, so `team_a` can be either team depending on the clip and on
+which tracks were found. The mapping to real teams is therefore confirmed by a
+person for each team-assignment result:
 
-- `team_a` -> Toronto Rock (`TOR`), white uniforms with blue/red trim
-- `team_b` -> Oshawa FireWolves (`OSH`), dark maroon uniforms with tan/orange details
+```bash
+# 1. Review: prints each label's track count and whether its shirts look light or dark.
+python scripts/confirm_team_mapping.py
 
-The mapping is stored in `team_label_to_abbreviation`, and the uniform notes are
-stored in `team_label_metadata`. Labels such as `official` and `unknown` remain
-unmapped and are not roster matched.
+# 2. After checking the team assignment overlay or contact sheets, confirm:
+python scripts/confirm_team_mapping.py --team-a TOR --team-b OSH --confirmed-by "your name" \
+    --notes "team_a white with blue/red trim, team_b maroon"
+```
 
-When a mapping is not set for a label, the stage can still report whether a
-candidate number exists on any roster, but it will not assign a player name.
+This writes `inputs.team_mapping_confirmation`
+(`configs/nll_test4_team_mapping_confirmation.json` for `nll_test4`) with a
+fingerprint of every track's team label. The stage uses the mapping only when
+that fingerprint matches the current team assignments. If team assignment is
+re-run and any label changes, including `team_a`/`team_b` swapping, the
+confirmation is reported as `stale` and must be redone. Any
+`team_label_to_abbreviation` written directly into the config is ignored.
+
+The summary's `team_mapping.status` is one of `confirmed`, `missing`, `stale`,
+`invalid`, or `no_team_assignments`. Anything other than `confirmed` leaves every
+team unmapped. The stage still reports whether a candidate number exists on any
+roster, but it assigns no final number and no player name. Labels such as
+`official` and `unknown` are never mapped.
 
 Player names are only attached when:
 

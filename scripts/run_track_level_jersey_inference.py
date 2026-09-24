@@ -65,6 +65,12 @@ def main() -> int:
 
     summary = run_track_level_inference(config)
     print(json.dumps(summary["counts"], indent=2, sort_keys=True))
+    team_mapping = summary["team_mapping"]
+    if team_mapping["status"] == "confirmed":
+        print(f"team mapping: {team_mapping['mapping']} (confirmed by {team_mapping['confirmed_by']})")
+    else:
+        print(f"WARNING: team mapping {team_mapping['status']}; no numbers or names were assigned.")
+        print(f"  {team_mapping['reason']}")
     print("outputs:")
     for key, value in summary["outputs"].items():
         print(f"  {key}: {value}")

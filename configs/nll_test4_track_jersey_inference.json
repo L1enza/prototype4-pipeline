@@ -6,7 +6,8 @@
     "crop_ocr_predictions": "outputs/nll_test4/jersey_ocr_enhanced_local_results/crop_ocr_predictions.json",
     "tracking_metadata": "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_metadata.json",
     "team_assignments": "outputs/nll_test4/team_assignment_demo_v2_hybrid/track_team_assignments_v2.json",
-    "jersey_number_lookup": "outputs/roster_metadata_validation/jersey_number_lookup.json"
+    "jersey_number_lookup": "outputs/roster_metadata_validation/jersey_number_lookup.json",
+    "team_mapping_confirmation": "configs/nll_test4_team_mapping_confirmation.json"
   },
   "outputs": {
     "output_dir": "outputs/nll_test4/track_level_jersey_inference"
@@ -31,38 +32,6 @@
     "api_key_env": "OPENAI_API_KEY",
     "allow_network": false,
     "timeout_seconds": 60
-  },
-  "team_label_to_abbreviation": {
-    "team_a": "TOR",
-    "team_b": "OSH",
-    "official": null,
-    "unknown": null
-  },
-  "team_label_metadata": {
-    "team_a": {
-      "team_name": "Toronto Rock",
-      "team_abbreviation": "TOR",
-      "uniform_description": "white Toronto uniforms with blue/red trim",
-      "mapping_source": "manual footage review"
-    },
-    "team_b": {
-      "team_name": "Oshawa FireWolves",
-      "team_abbreviation": "OSH",
-      "uniform_description": "dark maroon Oshawa uniforms with tan/orange details",
-      "mapping_source": "manual footage review"
-    },
-    "official": {
-      "team_name": null,
-      "team_abbreviation": null,
-      "uniform_description": "official/referee track, not roster matched",
-      "mapping_source": "team assignment classifier"
-    },
-    "unknown": {
-      "team_name": null,
-      "team_abbreviation": null,
-      "uniform_description": "unknown team label, not roster matched",
-      "mapping_source": "team assignment classifier"
-    }
   },
   "aggregation": {
     "min_agreeing_frames": 2,

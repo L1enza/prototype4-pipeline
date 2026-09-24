@@ -24,6 +24,8 @@ from typing import Any
 import numpy as np
 from PIL import Image, ImageDraw, ImageOps
 
+from prototype4_pipeline.integrations.team_mapping import load_confirmed_mapping
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG = "configs/nll_test4_track_jersey_inference.json"
@@ -877,6 +879,15 @@ def run_track_level_inference(config: dict[str, Any]) -> dict[str, Any]:
     ocr_by_source = collapse_ocr_by_source(load_ocr_predictions(ocr_path))
     team_assignments = load_team_assignments(team_path)
     roster_lookup = roster_number_lookup(roster_path)
+    # team_a/team_b are cluster names, not teams, so only a human confirmation made for
+    # these exact assignments may map them to rosters. Any mapping typed into the config is ignored.
+    confirmation_input = inputs.get("team_mapping_confirmation")
+    team_mapping = load_confirmed_mapping(
+        project_path(confirmation_input) if confirmation_input else None,
+        team_assignments,
+        set(roster_lookup.get("by_team_and_number", {})) or None,
+    )
+    config = {**config, "team_label_to_abbreviation": team_mapping["mapping"]}
     max_sources = int(config["selection"].get("max_source_frames_per_track", 5))
     min_sources = int(config["selection"].get("min_source_frames_per_track", 3))
 
@@ -940,8 +951,7 @@ def run_track_level_inference(config: dict[str, Any]) -> dict[str, Any]:
             "detections_with_track_jersey_numbers": str(propagated_path),
         },
         "backend": vision_backend_status(config),
-        "team_label_to_abbreviation": config.get("team_label_to_abbreviation", {}),
-        "team_label_metadata": config.get("team_label_metadata", {}),
+        "team_mapping": team_mapping,
         "confidence_policy": config.get("confidence_policy"),
         "counts": {
             "tracks_processed": len(predictions),
@@ -959,7 +969,8 @@ def run_track_level_inference(config: dict[str, Any]) -> dict[str, Any]:
             "Vision-model inference is opt-in; it reads each selected frame separately unless mode is 'track'.",
             "A single read never assigns a number unless aggregation.allow_single_frame_medium is set.",
             "Existing OCR predictions are treated as weak supporting evidence, not final identity.",
-            "Team labels require a confirmed mapping to roster abbreviations before player names are assigned.",
+            "Team labels map to rosters only through a human confirmation made for these exact team assignments; "
+            "without one, no number or player name is assigned.",
             "A track can remain unresolved even when a plausible number exists.",
             "Thresholded/enhanced variants from the same source crop are collapsed into one frame of evidence.",
         ],
