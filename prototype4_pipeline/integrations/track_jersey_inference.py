@@ -63,8 +63,14 @@ def clean_number(value: Any) -> str | None:
         return None
     digits = "".join(ch for ch in str(value) if ch.isdigit())
     if len(digits) in (1, 2):
-        return str(int(digits)) if len(digits) == 1 else digits
+        # "07" and "7" are the same roster number; keep one spelling so they never look like a conflict.
+        return str(int(digits))
     return None
+
+
+def number_or(value: Any, default: float) -> float:
+    """Like `value or default`, but a real 0.0 score stays 0.0 instead of becoming the default."""
+    return default if value is None else float(value)
 
 
 def image_stats(path: Path) -> dict[str, Any]:
@@ -207,8 +213,8 @@ def source_score(row: dict[str, Any]) -> float:
     area = float(row.get("source_crop_width") or 0) * float(row.get("source_crop_height") or 0)
     area_score = min(1.0, area / 16000.0)
     quality = row.get("quality", {})
-    blur_score = float(quality.get("low_motion_blur_score") or 0.45)
-    occlusion_score = float(quality.get("occlusion_score") or 0.5)
+    blur_score = number_or(quality.get("low_motion_blur_score"), 0.45)
+    occlusion_score = number_or(quality.get("occlusion_score"), 0.5)
     readiness = float(row.get("ocr_readiness_score") or 0.0)
     view_bonus = 0.08 if row.get("likely_view") in {"front", "back"} else 0.0
     return 0.36 * readiness + 0.24 * area_score + 0.18 * blur_score + 0.10 * occlusion_score + crop_type_bonus + view_bonus
@@ -313,7 +319,7 @@ def collapse_ocr_by_source(predictions: list[dict[str, Any]]) -> dict[tuple[int,
                 by_number[number].append(row)
         rankings = []
         for number, number_rows in by_number.items():
-            conf_sum = sum(float(row.get("confidence") or 0.25) for row in number_rows)
+            conf_sum = sum(number_or(row.get("confidence"), 0.25) for row in number_rows)
             rankings.append(
                 {
                     "number": number,
@@ -439,12 +445,17 @@ def encode_image_data_url(path: Path) -> str:
 
 def parse_json_object(text: str) -> dict[str, Any]:
     try:
-        return json.loads(text)
+        parsed = json.loads(text)
     except json.JSONDecodeError:
         match = re.search(r"\{.*\}", text, flags=re.DOTALL)
-        if match:
-            return json.loads(match.group(0))
-        raise
+        if not match:
+            raise
+        parsed = json.loads(match.group(0))
+    # Valid JSON that is not an object (e.g. a bare 27) must fail here, where callers record it
+    # as a per-frame error, rather than crash the whole run later.
+    if not isinstance(parsed, dict):
+        raise ValueError(f"expected a JSON object, got {type(parsed).__name__}")
+    return parsed
 
 
 def run_openai_vision_track(track_id: int, team_label: str | None, selected: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, Any]:

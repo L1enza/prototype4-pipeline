@@ -31,8 +31,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-# Score the exact prompt that track-level jersey inference sends per frame.
-from prototype4_pipeline.integrations.track_jersey_inference import JERSEY_READ_PROMPT as READ_PROMPT  # noqa: E402
+# Score the exact prompt and number parsing that track-level jersey inference uses per frame.
+from prototype4_pipeline.integrations.track_jersey_inference import (  # noqa: E402
+    JERSEY_READ_PROMPT as READ_PROMPT,
+    clean_number,
+    parse_json_object,
+)
 
 DEFAULT_LABELS = "review_exports/nll_test4_manual_jersey_eval/label_sheet.json"
 DEFAULT_IMAGES = "review_exports/nll_test4_manual_jersey_eval/images"
@@ -67,29 +71,12 @@ def write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def clean_number(value: Any) -> str | None:
-    if value is None:
-        return None
-    digits = re.sub(r"\D", "", str(value))
-    return digits[:2] if digits else None
-
-
 def reader_slug(reader: str) -> str:
     return re.sub(r"[^A-Za-z0-9_.-]+", "_", reader)
 
 
 def image_path(row: dict[str, Any], images_dir: Path) -> Path:
     return images_dir / Path(row["copied_image_path"]).name
-
-
-def parse_json_object(text: str) -> dict[str, Any]:
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError:
-        match = re.search(r"\{.*\}", text, flags=re.DOTALL)
-        if match:
-            return json.loads(match.group(0))
-        raise
 
 
 def read_with_vision_model(path: Path, model: str, args: argparse.Namespace) -> dict[str, Any]:

@@ -4,9 +4,15 @@ The cases mirror failure modes measured on the nll_test4 manual eval set: reader
 repeat confident wrong numbers, and one model call must not pose as several frames.
 """
 
+import pytest
+
 from prototype4_pipeline.integrations.track_jersey_inference import (
     aggregate_track,
+    clean_number,
+    collapse_ocr_by_source,
+    parse_json_object,
     resolve_duplicate_numbers,
+    source_score,
     vision_backend_status,
 )
 
@@ -121,3 +127,43 @@ def test_local_endpoint_needs_no_api_key(monkeypatch):
     cloud = {"vision_backend": {"name": "auto", "allow_network": True, "api_key_env": "OPENAI_API_KEY"}}
     assert vision_backend_status(local)["will_call_vision_model"] is True
     assert vision_backend_status(cloud)["will_call_vision_model"] is False
+
+
+def test_leading_zero_is_the_same_number():
+    assert clean_number("07") == clean_number("7") == "7"
+    assert clean_number("123") is None
+    pred = aggregate(per_frame((1, "42", "full"), (2, "042", "full"), (3, "42", "full")))
+    assert pred["final_number"] == "42"
+    lookup_seven = aggregate_track(
+        7,
+        {"final_class": "team_b"},
+        selected(1, 2),
+        {},
+        per_frame((1, "07", "full"), (2, "7", "full")),
+        CONFIG,
+        {"by_number": {"7": [{"name": "OSH seven"}]}, "by_team_and_number": {"OSH": {"7": [{"name": "OSH seven"}]}}},
+    )
+    assert lookup_seven["final_number"] == "7"
+    assert lookup_seven["confidence"] == "high"
+
+
+def test_zero_quality_scores_are_not_replaced_by_defaults():
+    worst = {"quality": {"low_motion_blur_score": 0.0, "occlusion_score": 0.0}}
+    missing = {"quality": {}}
+    assert source_score(worst) < source_score(missing)
+
+
+def test_zero_ocr_confidence_is_not_replaced_by_default():
+    rows = [{"track_id": 1, "frame_index": 1, "candidate_number": "4", "confidence": 0.0}] * 2
+    votes = collapse_ocr_by_source(rows)[(1, 1, "")]["variant_candidate_votes"]
+    assert votes[0]["confidence_sum"] == 0.0
+
+
+@pytest.mark.parametrize("text", ["27", '"27"', "[27]", "null"])
+def test_model_reply_that_is_not_an_object_is_rejected(text):
+    with pytest.raises(ValueError):
+        parse_json_object(text)
+
+
+def test_model_reply_wrapped_in_prose_still_parses():
+    assert parse_json_object('Sure! {"number": "42", "visibility": "full"}') == {"number": "42", "visibility": "full"}
