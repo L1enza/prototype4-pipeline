@@ -89,6 +89,46 @@ def test_write_filtered_frame_keeps_field_players_and_rejects_bench(tmp_path):
     assert det["sam_confidence_score"] == 0.9
 
 
+def write_frame(tmp_path, masks, config=None):
+    frame_path = tmp_path / "frame_000.jpg"
+    image = green_image()
+    image.save(frame_path)
+    scores = FakeTensor([0.9] * len(masks))
+    return write_filtered_frame(image, frame_path, 0, np.stack(masks), scores, None, tmp_path, resolve_filter_config(config), "p")
+
+
+def test_same_person_detected_twice_keeps_only_the_larger_mask(tmp_path):
+    full_body = box_mask(50, 30, 70, 95)
+    head_to_knees = box_mask(52, 30, 70, 80)  # entirely inside full_body, like T4 inside T2
+
+    record = write_frame(tmp_path, [head_to_knees, full_body])
+
+    assert [r["mask_index"] for r in record["kept_masks"]] == [1]
+    [dup] = record["rejected_masks"]
+    assert dup["mask_index"] == 0
+    assert dup["rejection_reasons"] == ["duplicate_inside_mask_1"]
+    assert dup["duplicate_of_mask_index"] == 1
+    assert [d["mask_id"] for d in load_detections(tmp_path, {})[0]["detections"]] == [1]
+
+
+def test_overlapping_different_players_are_both_kept(tmp_path):
+    front = box_mask(50, 30, 70, 95)
+    behind = box_mask(64, 32, 84, 92)  # 30% of its pixels overlap the front player
+
+    record = write_frame(tmp_path, [front, behind])
+
+    assert record["kept_mask_count"] == 2
+
+
+def test_duplicate_check_can_be_disabled(tmp_path):
+    full_body = box_mask(50, 30, 70, 95)
+    head_to_knees = box_mask(52, 30, 70, 80)
+
+    record = write_frame(tmp_path, [head_to_knees, full_body], {"max_mask_containment": None})
+
+    assert record["kept_mask_count"] == 2
+
+
 def test_result_to_arrays_handles_frames_with_no_people():
     masks, scores, boxes = result_to_arrays(FakeResult(), (WIDTH, HEIGHT))
     assert masks.shape == (0, HEIGHT, WIDTH)

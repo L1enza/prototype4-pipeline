@@ -343,12 +343,45 @@ def resolve_filter_config(config=None):
         "green_sample_radius": 5,
         "green_sample_y_offset": 6,
         "min_mask_pixels": 35,
+        # A kept mask lying at least this much inside a larger kept mask is the
+        # same person detected twice (measured 0.88-0.97 for duplicates, at most
+        # 0.27 for different people). None disables the check.
+        "max_mask_containment": 0.8,
     }
     if config:
         defaults.update(config)
     if defaults["filter_mode"] not in FILTER_MODES:
         raise ValueError("filter_mode must be one of {}".format(sorted(FILTER_MODES)))
     return defaults
+
+
+def reject_duplicate_masks(masks, records, max_containment):
+    """Reject kept masks that mostly lie inside a larger kept mask.
+
+    Detectors sometimes return one person twice (e.g. full body and head to
+    knees). Two tracks for one player would make later stages treat a single
+    jersey number as claimed twice, so only the larger mask is kept.
+    """
+    if max_containment is None:
+        return
+    kept = sorted((r for r in records if r["kept"]), key=lambda r: r["mask_pixel_count"], reverse=True)
+    survivors = []
+    for record in kept:
+        mask = masks[record["mask_index"]].astype(bool)
+        area = int(mask.sum())
+        duplicate_of = None
+        for larger in survivors:
+            inside = int((mask & masks[larger["mask_index"]].astype(bool)).sum())
+            if area and inside / area >= max_containment:
+                duplicate_of = larger
+                break
+        if duplicate_of is None:
+            survivors.append(record)
+            continue
+        record["kept"] = False
+        record["rejection_reasons"].append("duplicate_inside_mask_{}".format(duplicate_of["mask_index"]))
+        record["duplicate_of_mask_index"] = duplicate_of["mask_index"]
+        record["containment_in_duplicate"] = float(inside / area)
 
 
 def write_filtered_frame(image, frame_path, frame_index, masks, scores, boxes, output_dir, config, prompt):
@@ -365,15 +398,17 @@ def write_filtered_frame(image, frame_path, frame_index, masks, scores, boxes, o
     frame_dir.mkdir(parents=True, exist_ok=True)
     original_path = frame_dir / "original.jpg"
     image.save(original_path)
-    records = []
+    records = [
+        classify_mask(mask, mask_index, scores, image_array, config, field_polygon_pixels=field_polygon_pixels)
+        for mask_index, mask in enumerate(masks)
+    ]
+    reject_duplicate_masks(masks, records, config.get("max_mask_containment"))
     kept = []
     rejected = []
-    for mask_index, mask in enumerate(masks):
-        record = classify_mask(mask, mask_index, scores, image_array, config, field_polygon_pixels=field_polygon_pixels)
+    for mask_index, (mask, record) in enumerate(zip(masks, records)):
         mask_path, overlay_path = save_individual_mask(mask, image, frame_dir, frame_index, mask_index, record["kept"])
         record["mask_path"] = mask_path
         record["single_mask_overlay_path"] = overlay_path
-        records.append(record)
         if record["kept"]:
             kept.append(record)
         else:

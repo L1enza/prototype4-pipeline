@@ -57,6 +57,7 @@ def parse_args():
     parser.add_argument("--bench-y-cutoff", type=float, default=0.36, help="Normalized or pixel y cutoff for bench strip rejection.")
     parser.add_argument("--field-polygon-json", default=None, help="Optional JSON field polygon as [[x,y], ...] or {points: [...]}.")
     parser.add_argument("--min-mask-pixels", type=int, default=35, help="Minimum mask area to keep.")
+    parser.add_argument("--max-mask-containment", type=float, default=0.8, help="Reject a mask lying at least this much inside a larger kept mask (same person detected twice). 0 disables.")
     parser.add_argument("--green-sample-radius", type=int, default=5, help="Green foot-point diagnostic radius.")
     parser.add_argument("--green-sample-y-offset", type=int, default=6, help="Green foot-point diagnostic y offset.")
 
@@ -501,6 +502,7 @@ def main():
             "field_y_max": args.field_y_max,
             "field_polygon": parse_polygon_json(args.field_polygon_json) if args.field_polygon_json else None,
             "min_mask_pixels": args.min_mask_pixels,
+            "max_mask_containment": args.max_mask_containment if args.max_mask_containment > 0 else None,
             "green_sample_radius": args.green_sample_radius,
             "green_sample_y_offset": args.green_sample_y_offset,
         }
