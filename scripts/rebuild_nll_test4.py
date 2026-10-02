@@ -11,6 +11,7 @@ jersey stage until a person has confirmed which colour cluster is which team.
 
 import argparse
 import json
+import math
 import subprocess
 import sys
 import urllib.request
@@ -35,10 +36,11 @@ def parse_args():
     parser.add_argument("--start-time", type=float, default=20.0, help="Segment start (s). Matches the segment_20s_10s output tag.")
     parser.add_argument("--duration", type=float, default=10.0)
     parser.add_argument("--frame-stride", type=int, default=5)
-    parser.add_argument("--max-frames", type=int, default=60, help="10 s at 30 fps with stride 5 is 60 frames.")
+    parser.add_argument("--max-frames", type=int, default=None, help="Default: enough frames to cover --duration at the video's own frame rate.")
     parser.add_argument("--detector", choices=["yolo", "sam3"], default="yolo")
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--vision-model", default="gemma3:12b", help="Ollama model that reads jersey numbers.")
+    parser.add_argument("--vision-timeout", type=float, default=600.0, help="Seconds per jersey read; gemma3:12b took 58-100 s per image on CPU.")
     parser.add_argument("--allow-download-weights", action="store_true", help="Let YOLO and ResNet-18 fetch weights if not cached.")
     parser.add_argument("--force", action="append", default=[], metavar="STAGE", help="Re-run this stage even if its output exists. Repeatable.")
     parser.add_argument("--stop-after", default=None, metavar="STAGE", help="Stop after this stage.")
@@ -111,7 +113,8 @@ def stages(args):
             "output": RUN + "/track_level_jersey_inference/track_jersey_predictions.json",
             "needs_team_confirmation": True,
             "cmd": [py, "scripts/run_track_level_jersey_inference.py", "--config", JERSEY_CONFIG,
-                    "--allow-network-vision", "--vision-endpoint", OLLAMA_ENDPOINT, "--vision-model", args.vision_model],
+                    "--allow-network-vision", "--vision-endpoint", OLLAMA_ENDPOINT, "--vision-model", args.vision_model,
+                    "--vision-timeout", str(args.vision_timeout)],
         },
     ]
 
@@ -145,11 +148,53 @@ def team_confirmation_status():
     return result["status"] == "confirmed", result["status"]
 
 
+def frame_budget(fps, total_frames, start_time, duration, stride):
+    """Frames needed to sample the whole segment at this video's real frame rate.
+
+    A fixed cap silently truncates the segment: 60 frames at stride 5 covers 10 s
+    of 30 fps video but only 5 s of 59.94 fps broadcast video.
+    """
+    if not fps or fps <= 0:
+        raise ValueError("video reports no frame rate, so the segment length in frames is unknown")
+    start = int(math.floor(start_time * fps))
+    end = start + int(math.ceil(duration * fps))
+    if total_frames and start >= total_frames:
+        raise ValueError("segment starts at {:.1f} s but the video is only {:.1f} s long".format(start_time, total_frames / fps))
+    if total_frames:
+        end = min(end, total_frames)
+    return max(1, int(math.ceil((end - start) / float(stride))))
+
+
+def resolve_frame_budget(args, video):
+    import cv2
+
+    capture = cv2.VideoCapture(str(video))
+    try:
+        if not capture.isOpened():
+            raise ValueError("OpenCV cannot open the video")
+        fps = float(capture.get(cv2.CAP_PROP_FPS) or 0.0)
+        total = int(capture.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
+        width = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH) or 0)
+        height = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT) or 0)
+    finally:
+        capture.release()
+    if args.max_frames is None:
+        args.max_frames = frame_budget(fps, total, args.start_time, args.duration, args.frame_stride)
+    return "{}x{} at {:.2f} fps; tracking {:.0f}-{:.0f} s as {} frames (every {}th)".format(
+        width, height, fps, args.start_time, args.start_time + args.duration, args.max_frames, args.frame_stride
+    )
+
+
 def preflight(args):
     problems = []
     video = PROJECT_ROOT / args.video if not Path(args.video).is_absolute() else Path(args.video)
     if not video.exists():
         problems.append("Source video missing: copy nll_test4.mp4 to {}".format(video))
+    else:
+        try:
+            print("Video: " + resolve_frame_budget(args, video))
+        except ValueError as exc:
+            problems.append("Cannot plan tracking frames: {}".format(exc))
     weights = PROJECT_ROOT / ".cache" / "models" / "yolo11m-seg.pt"
     if args.detector == "yolo" and not weights.exists() and not args.allow_download_weights:
         problems.append("YOLO weights not cached: add --allow-download-weights (about 45 MB, once)")
@@ -163,12 +208,12 @@ def preflight(args):
 
 def main():
     args = parse_args()
+    _video, problems = preflight(args)
     plan = stages(args)
     names = [stage["name"] for stage in plan]
     for name in args.force + ([args.stop_after] if args.stop_after else []):
         if name not in names:
             raise SystemExit("Unknown stage {!r}; stages are: {}".format(name, ", ".join(names)))
-    video, problems = preflight(args)
 
     if args.check:
         print("Stages (output exists = will be skipped):")
@@ -207,6 +252,8 @@ def main():
             result = subprocess.run(stage["cmd"], cwd=str(PROJECT_ROOT))
             if result.returncode != 0:
                 print("[fail] {} exited with {}. Fix it, then re-run; finished stages are skipped.".format(stage["name"], result.returncode))
+                if output.exists():
+                    print("       It still wrote {}, so re-run with --force {} or it will be skipped.".format(stage["output"], stage["name"]))
                 return result.returncode
             if not output.exists():
                 print("[fail] {} finished but did not write {}".format(stage["name"], stage["output"]))

@@ -104,13 +104,34 @@ def test_stage_warnings_are_read_from_the_stage_report(tmp_path, harness):
 
 
 def test_real_plan_puts_team_confirmation_before_the_only_naming_stage(monkeypatch):
-    monkeypatch.setattr(sys, "argv", ["rebuild_nll_test4.py"])
+    monkeypatch.setattr(sys, "argv", ["rebuild_nll_test4.py", "--max-frames", "60"])
     plan = rebuild.stages(rebuild.parse_args())
     gated = [stage["name"] for stage in plan if stage.get("needs_team_confirmation")]
     assert gated == ["jersey"]
     assert plan[-1]["name"] == "jersey"
     jersey_inputs = " ".join(plan[-1]["cmd"])
     assert "--allow-network-vision" in jersey_inputs and "localhost:11434" in jersey_inputs
+    # A 12B model on CPU needs 60-100 s per image; the config's 60 s would time most reads out.
+    assert "--vision-timeout 600.0" in jersey_inputs
+
+
+@pytest.mark.parametrize(
+    "fps,total,expected",
+    [
+        (30.0, 0, 60),          # 10 s at 30 fps, every 5th frame
+        (59.94, 0, 120),        # broadcast 720p60: a fixed 60 would cover only 5 s
+        (30.0, 750, 30),        # segment 20-30 s clipped to a 25 s video
+    ],
+)
+def test_frame_budget_covers_the_segment_at_the_videos_frame_rate(fps, total, expected):
+    assert rebuild.frame_budget(fps, total, 20.0, 10.0, 5) == expected
+
+
+def test_frame_budget_refuses_unknown_rate_or_segment_past_the_end():
+    with pytest.raises(ValueError, match="no frame rate"):
+        rebuild.frame_budget(0.0, 0, 20.0, 10.0, 5)
+    with pytest.raises(ValueError, match="only 10.0 s long"):
+        rebuild.frame_budget(30.0, 300, 20.0, 10.0, 5)
 
 
 class TestCalibrationPointCheck:
