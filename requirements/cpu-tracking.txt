@@ -1,0 +1,7 @@
+# CPU-only player tracking (--detector yolo). Install torch from the CPU index first:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+ultralytics
+opencv-python
+pillow
+numpy
+pytest

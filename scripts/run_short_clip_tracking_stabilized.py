@@ -15,6 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from prototype4_pipeline.integrations.sam3_filtering import DEFAULT_FILTER_PROMPT, FILTER_MODES, parse_polygon_json, run_filtered_masks
+from prototype4_pipeline.integrations.yolo_filtering import DEFAULT_YOLO_MODEL, run_yolo_filtered_masks
 from render_tracklet_overlay_video import render_frame, write_gif, write_mp4
 from run_player_tracklet_smoke import bbox_iou, distance_2d, load_detections, track_summary, write_json
 from run_short_clip_tracking_smoke import DEFAULT_SAM3_REPO, decode_clip, flatten_detections
@@ -33,6 +34,10 @@ def parse_args():
     parser.add_argument("--run-id", required=True, help="Prototype 4 run id.")
     parser.add_argument("--start-time", type=float, default=0.0, help="Clip start time in seconds.")
     parser.add_argument("--duration", type=float, default=3.0, help="Clip duration in seconds.")
+    parser.add_argument("--detector", choices=["sam3", "yolo"], default="sam3", help="Per-frame player mask source. yolo runs on CPU without the SAM 3 repo.")
+    parser.add_argument("--yolo-model", default=DEFAULT_YOLO_MODEL, help="Ultralytics segmentation weights; bare names are stored under .cache/models/.")
+    parser.add_argument("--yolo-conf", type=float, default=0.25, help="YOLO person confidence threshold.")
+    parser.add_argument("--yolo-imgsz", type=int, default=1280, help="YOLO inference size; broadcast players are small, so keep this high.")
     parser.add_argument("--device", default="cuda", help="Torch device for SAM 3 smoke inference.")
     parser.add_argument("--frame-stride", type=int, default=5, help="Decode every Nth source frame inside the clip.")
     parser.add_argument("--max-frames", type=int, default=30, help="Maximum decoded frames to process.")
@@ -481,7 +486,7 @@ def main():
         "status": "running",
         "stage": "short_clip_tracking_stabilized",
         "run_id": args.run_id,
-        "inputs": {"video": str(args.video), "sam3_repo": str(args.repo)},
+        "inputs": {"video": str(args.video), "detector": args.detector, "sam3_repo": str(args.repo) if args.detector == "sam3" else None},
         "known_limitations": KNOWN_LIMITATIONS,
     }
     lifecycle_debug = {"status": "running", "events": [], "per_frame": {}, "fragment_merges": []}
@@ -499,23 +504,37 @@ def main():
             "green_sample_radius": args.green_sample_radius,
             "green_sample_y_offset": args.green_sample_y_offset,
         }
-        sam3_result = run_filtered_masks(
-            PROJECT_ROOT,
-            args.run_id,
-            Path(args.repo),
-            filtered_dir,
-            args.prompt,
-            len(frame_paths),
-            args.device,
-            args.dtype,
-            args.allow_download_weights,
-            disable_fused_kernels=args.disable_fused_kernels,
-            config=filter_config,
-            frame_paths=frame_paths,
-            require_allow_download_weights=False,
-        )
+        if args.detector == "yolo":
+            sam3_result = run_yolo_filtered_masks(
+                PROJECT_ROOT,
+                args.run_id,
+                filtered_dir,
+                frame_paths,
+                device=args.device,
+                model=args.yolo_model,
+                allow_download_weights=args.allow_download_weights,
+                conf=args.yolo_conf,
+                imgsz=args.yolo_imgsz,
+                config=filter_config,
+            )
+        else:
+            sam3_result = run_filtered_masks(
+                PROJECT_ROOT,
+                args.run_id,
+                Path(args.repo),
+                filtered_dir,
+                args.prompt,
+                len(frame_paths),
+                args.device,
+                args.dtype,
+                args.allow_download_weights,
+                disable_fused_kernels=args.disable_fused_kernels,
+                config=filter_config,
+                frame_paths=frame_paths,
+                require_allow_download_weights=False,
+            )
         if sam3_result.get("status") != "complete":
-            raise RuntimeError("SAM 3 filtered stabilized stage failed: {}".format(sam3_result.get("error")))
+            raise RuntimeError("{} filtered stabilized stage failed: {}".format(args.detector, sam3_result.get("error")))
 
         detections_by_frame = load_detections(filtered_dir, {})
         valid_frame_indices = set(range(len(frame_paths)))
@@ -546,6 +565,8 @@ def main():
         metadata.update({
             "status": "complete",
             "parameters": {
+                "detector": args.detector,
+                "yolo_model": args.yolo_model if args.detector == "yolo" else None,
                 "start_time": args.start_time,
                 "duration": args.duration,
                 "frame_stride": args.frame_stride,

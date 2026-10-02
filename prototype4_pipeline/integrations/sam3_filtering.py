@@ -332,6 +332,79 @@ def save_filter_debug_overlay(image, masks, records, output_path, field_polygon_
     return str(output_path)
 
 
+def resolve_filter_config(config=None):
+    defaults = {
+        "filter_mode": "combined",
+        "bench_y_cutoff": 0.18,
+        "field_y_min": 0.18,
+        "field_y_max": 0.96,
+        "field_polygon": None,
+        "require_green_surface": False,
+        "green_sample_radius": 5,
+        "green_sample_y_offset": 6,
+        "min_mask_pixels": 35,
+    }
+    if config:
+        defaults.update(config)
+    if defaults["filter_mode"] not in FILTER_MODES:
+        raise ValueError("filter_mode must be one of {}".format(sorted(FILTER_MODES)))
+    return defaults
+
+
+def write_filtered_frame(image, frame_path, frame_index, masks, scores, boxes, output_dir, config, prompt):
+    """Classify one frame's masks, save them, and write frame_metadata.json.
+
+    Shared by every detector so tracking reads the same per-frame layout
+    regardless of which model produced the masks.
+    """
+    import numpy as np
+
+    image_array = np.asarray(image.convert("RGB"))
+    field_polygon_pixels = polygon_to_pixels(config.get("field_polygon"), image.width, image.height)
+    frame_dir = output_dir / "frame_{:03d}".format(frame_index)
+    frame_dir.mkdir(parents=True, exist_ok=True)
+    original_path = frame_dir / "original.jpg"
+    image.save(original_path)
+    records = []
+    kept = []
+    rejected = []
+    for mask_index, mask in enumerate(masks):
+        record = classify_mask(mask, mask_index, scores, image_array, config, field_polygon_pixels=field_polygon_pixels)
+        mask_path, overlay_path = save_individual_mask(mask, image, frame_dir, frame_index, mask_index, record["kept"])
+        record["mask_path"] = mask_path
+        record["single_mask_overlay_path"] = overlay_path
+        records.append(record)
+        if record["kept"]:
+            kept.append(record)
+        else:
+            rejected.append(record)
+    all_overlay_path = save_multi_overlay(image, masks, records, frame_dir / "all_sam3_masks_overlay.png", kept_only=False)
+    filtered_overlay_path = save_multi_overlay(image, masks, records, frame_dir / "filtered_active_player_masks_overlay.png", kept_only=True)
+    debug_overlay_path = save_filter_debug_overlay(image, masks, records, frame_dir / "filter_debug_overlay.png", field_polygon_pixels, config)
+    frame_record = {
+        "frame_index": frame_index,
+        "frame_path": str(frame_path),
+        "original_path": str(original_path),
+        "prompt": prompt,
+        "image_stats": image_stats(image),
+        "all_masks_overlay_path": all_overlay_path,
+        "filtered_active_player_masks_overlay_path": filtered_overlay_path,
+        "filter_debug_overlay_path": debug_overlay_path,
+        "all_mask_count": len(records),
+        "kept_mask_count": len(kept),
+        "rejected_mask_count": len(rejected),
+        "all_masks": records,
+        "kept_masks": kept,
+        "rejected_masks": rejected,
+        "boxes": tensor_to_list(boxes),
+        "scores": tensor_to_list(scores),
+    }
+    metadata_path = frame_dir / "frame_metadata.json"
+    write_json(metadata_path, frame_record)
+    frame_record["metadata_path"] = str(metadata_path)
+    return frame_record
+
+
 def run_filtered_masks(project_root, run_id, repo_path, output_dir, prompt, frame_count, device, dtype_name, allow_download_weights, disable_fused_kernels=True, config=None, frame_paths=None, require_allow_download_weights=True):
     result = {
         "status": "not_run",
@@ -353,21 +426,7 @@ def run_filtered_masks(project_root, run_id, repo_path, output_dir, prompt, fram
         "dtype_diagnostics": [],
         "error": None,
     }
-    defaults = {
-        "filter_mode": "combined",
-        "bench_y_cutoff": 0.18,
-        "field_y_min": 0.18,
-        "field_y_max": 0.96,
-        "field_polygon": None,
-        "require_green_surface": False,
-        "green_sample_radius": 5,
-        "green_sample_y_offset": 6,
-        "min_mask_pixels": 35,
-    }
-    if config:
-        defaults.update(config)
-    if defaults["filter_mode"] not in FILTER_MODES:
-        raise ValueError("filter_mode must be one of {}".format(sorted(FILTER_MODES)))
+    defaults = resolve_filter_config(config)
     result["filter_config"] = defaults
     output_dir.mkdir(parents=True, exist_ok=True)
     if frame_paths is None:
@@ -421,12 +480,6 @@ def run_filtered_masks(project_root, run_id, repo_path, output_dir, prompt, fram
                 for frame_index, frame_path in enumerate(frames):
                     current_stage = "frame_{}".format(frame_index)
                     image = Image.open(frame_path).convert("RGB")
-                    image_array = np.asarray(image.convert("RGB"))
-                    field_polygon_pixels = polygon_to_pixels(defaults.get("field_polygon"), image.width, image.height)
-                    frame_dir = output_dir / "frame_{:03d}".format(frame_index)
-                    frame_dir.mkdir(parents=True, exist_ok=True)
-                    original_path = frame_dir / "original.jpg"
-                    image.save(original_path)
                     state = set_image_with_dtype(
                         processor,
                         image,
@@ -452,43 +505,7 @@ def run_filtered_masks(project_root, run_id, repo_path, output_dir, prompt, fram
                     boxes = output.get("boxes") if isinstance(output, dict) else None
                     scores = output.get("scores") if isinstance(output, dict) else None
                     masks = tensor_masks_to_numpy(masks_tensor)
-                    records = []
-                    kept = []
-                    rejected = []
-                    for mask_index, mask in enumerate(masks):
-                        record = classify_mask(mask, mask_index, scores, image_array, defaults, field_polygon_pixels=field_polygon_pixels)
-                        mask_path, overlay_path = save_individual_mask(mask, image, frame_dir, frame_index, mask_index, record["kept"])
-                        record["mask_path"] = mask_path
-                        record["single_mask_overlay_path"] = overlay_path
-                        records.append(record)
-                        if record["kept"]:
-                            kept.append(record)
-                        else:
-                            rejected.append(record)
-                    all_overlay_path = save_multi_overlay(image, masks, records, frame_dir / "all_sam3_masks_overlay.png", kept_only=False)
-                    filtered_overlay_path = save_multi_overlay(image, masks, records, frame_dir / "filtered_active_player_masks_overlay.png", kept_only=True)
-                    debug_overlay_path = save_filter_debug_overlay(image, masks, records, frame_dir / "filter_debug_overlay.png", field_polygon_pixels, defaults)
-                    frame_record = {
-                        "frame_index": frame_index,
-                        "frame_path": str(frame_path),
-                        "original_path": str(original_path),
-                        "prompt": prompt,
-                        "image_stats": image_stats(image),
-                        "all_masks_overlay_path": all_overlay_path,
-                        "filtered_active_player_masks_overlay_path": filtered_overlay_path,
-                        "filter_debug_overlay_path": debug_overlay_path,
-                        "all_mask_count": len(records),
-                        "kept_mask_count": len(kept),
-                        "rejected_mask_count": len(rejected),
-                        "all_masks": records,
-                        "kept_masks": kept,
-                        "rejected_masks": rejected,
-                        "boxes": tensor_to_list(boxes),
-                        "scores": tensor_to_list(scores),
-                    }
-                    metadata_path = frame_dir / "frame_metadata.json"
-                    write_json(metadata_path, frame_record)
-                    frame_record["metadata_path"] = str(metadata_path)
+                    frame_record = write_filtered_frame(image, frame_path, frame_index, masks, scores, boxes, output_dir, defaults, prompt)
                     result["frame_metadata"].append(frame_record)
                 result["status"] = "complete"
     except Exception as exc:

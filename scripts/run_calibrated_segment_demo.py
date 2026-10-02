@@ -20,6 +20,8 @@ def parse_args():
     parser.add_argument("--duration", type=float, required=True, help="Segment duration in seconds.")
     parser.add_argument("--frame-stride", type=int, default=5, help="Tracking frame stride.")
     parser.add_argument("--max-frames", type=int, default=45, help="Maximum decoded tracking frames.")
+    parser.add_argument("--detector", choices=["sam3", "yolo"], default="sam3", help="Per-frame player mask source passed to the tracker.")
+    parser.add_argument("--yolo-model", default=None, help="Ultralytics segmentation weights for --detector yolo.")
     parser.add_argument("--device", default="cuda", help="Torch device for SAM 3 tracking smoke path.")
     parser.add_argument("--homography-config", required=True, help="Manual homography config JSON for this camera view.")
     parser.add_argument("--field-template", required=True, help="Top-down field template image.")
@@ -103,7 +105,10 @@ def main():
         "--repo", args.repo,
         "--dtype", args.dtype,
         "--output-dir", str(output_dir),
+        "--detector", args.detector,
     ]
+    if args.yolo_model:
+        tracking_cmd.extend(["--yolo-model", args.yolo_model])
     if args.allow_download_weights:
         tracking_cmd.append("--allow-download-weights")
     tracking_cmd.append("--disable-fused-kernels" if args.disable_fused_kernels else "--no-disable-fused-kernels")
@@ -183,6 +188,7 @@ def main():
             "duration": args.duration,
             "frame_stride": args.frame_stride,
             "max_frames": args.max_frames,
+            "detector": args.detector,
             "device": args.device,
             "dtype": args.dtype,
         },

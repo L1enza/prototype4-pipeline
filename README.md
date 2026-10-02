@@ -90,6 +90,20 @@ A separate script exists for the next step, but it is intentionally not part of 
 
 This script uses only 4 to 8 sampled frames and writes lightweight metadata under `outputs/nll-test1/world_reconstruction/vggt_inference_smoke/`. It refuses to run without `--allow-download-weights`, because `VGGT.from_pretrained(...)` may download checkpoint weights. By default it requires CUDA; use `--device cpu` only for an intentional CPU smoke test. Do not use it for full-video inference.
 
+## CPU Tracking Without SAM 3
+
+Machines without CUDA or a `../sam3` checkout can produce the same `tracking_metadata.json` with a YOLO segmentation detector. It writes SAM 3's per-frame mask layout and passes through the same field/bench filter, so later stages read it unchanged.
+
+```bash
+python -m venv .venv
+.venv/Scripts/python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu   # .venv/bin/python on Linux
+.venv/Scripts/python -m pip install -r requirements/cpu-tracking.txt
+.venv/Scripts/python scripts/run_short_clip_tracking_stabilized.py --video <clip.mp4> --run-id <run_id> \
+    --detector yolo --device cpu --allow-download-weights
+```
+
+Weights (`yolo11m-seg.pt` by default, about 45 MB) are fetched only with `--allow-download-weights` and are stored under `.cache/models/`. `run_calibrated_segment_demo.py` accepts the same `--detector yolo`.
+
 ## Integration Points
 
 VGGT planned call:
