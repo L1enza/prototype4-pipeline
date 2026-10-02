@@ -30,6 +30,7 @@ from prototype4_pipeline.integrations.team_mapping import (  # noqa: E402
     SCHEMA,
     assignment_fingerprint,
     label_color_summary,
+    split_warnings,
 )
 from prototype4_pipeline.integrations.track_jersey_inference import (  # noqa: E402
     DEFAULT_CONFIG,
@@ -49,6 +50,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--team-b", default=None, help="Roster abbreviation for team_b, e.g. OSH.")
     parser.add_argument("--confirmed-by", default=None, help="Who reviewed the footage.")
     parser.add_argument("--notes", default="", help="What was checked, e.g. uniform colours seen.")
+    parser.add_argument(
+        "--accept-warnings",
+        action="store_true",
+        help="Confirm even though the split looks wrong; only after checking the overlay video.",
+    )
     return parser.parse_args()
 
 
@@ -71,6 +77,11 @@ def main() -> int:
     for label, info in summary.items():
         print(f"  {label:<10} {info['track_count']:>3} tracks   looks {info['looks']}   lightness {info['mean_lightness']}/100")
     print()
+    warnings = split_warnings(summary)
+    for warning in warnings:
+        print(f"WARNING: {warning}")
+    if warnings:
+        print()
 
     if not (args.team_a or args.team_b):
         print("Review only; nothing written. Check the team assignment overlay or contact sheets, then re-run with")
@@ -82,6 +93,13 @@ def main() -> int:
     if args.team_a.upper() == args.team_b.upper():
         print("team_a and team_b must be different teams.", file=sys.stderr)
         return 2
+    if warnings and not args.accept_warnings:
+        print(
+            "Not confirming: the team split looks wrong (see WARNING above). Names would be looked up "
+            "on the wrong roster. Re-run team assignment, or pass --accept-warnings after checking the overlay.",
+            file=sys.stderr,
+        )
+        return 2
 
     confirmation = {
         "schema": SCHEMA,
@@ -92,6 +110,7 @@ def main() -> int:
         "confirmed_at_utc": datetime.now(timezone.utc).isoformat(),
         "notes": args.notes,
         "label_color_summary_at_confirmation": summary,
+        "warnings_accepted": warnings,
     }
     write_json(output_path, confirmation)
     print(f"Wrote {output_path}")

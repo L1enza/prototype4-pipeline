@@ -27,7 +27,7 @@ def fail_stage(name, output):
 def harness(tmp_path, monkeypatch):
     monkeypatch.setattr(rebuild, "PROJECT_ROOT", tmp_path)
     monkeypatch.setattr(rebuild, "preflight", lambda args: (None, []))
-    monkeypatch.setattr(rebuild, "team_confirmation_status", lambda: (False, "missing"))
+    monkeypatch.setattr(rebuild, "team_confirmation_status", lambda assignments: (False, "missing"))
 
     def run(plan, *argv):
         monkeypatch.setattr(rebuild, "stages", lambda args: plan)
@@ -81,7 +81,7 @@ def test_stops_before_naming_players_until_teams_are_confirmed(tmp_path, harness
     assert ran() == ["teams"]
     assert "confirm_team_mapping.py" in capsys.readouterr().out
 
-    monkeypatch.setattr(rebuild, "team_confirmation_status", lambda: (True, "confirmed"))
+    monkeypatch.setattr(rebuild, "team_confirmation_status", lambda assignments: (True, "confirmed"))
     assert run(plan) == 0
     assert ran() == ["teams", "jersey"]
 
@@ -158,3 +158,15 @@ class TestCalibrationPointCheck:
     def test_points_outside_a_smaller_frame_are_an_error(self):
         with pytest.raises(ValueError, match="outside the 960x540 decoded frame \\(b\\)"):
             self.check({}, self.POINTS, {"width": 960, "height": 540})
+
+
+def test_jersey_stage_reads_colour_teams_unless_hybrid_is_chosen(monkeypatch):
+    monkeypatch.setattr(sys, "argv", ["rebuild_nll_test4.py", "--max-frames", "60"])
+    plan = rebuild.stages(rebuild.parse_args())
+    assert "teams_hybrid" not in [stage["name"] for stage in plan]
+    assert rebuild.TEAM_SOURCES["colour"]["assignments"] in plan[-1]["cmd"]
+
+    monkeypatch.setattr(sys, "argv", ["rebuild_nll_test4.py", "--max-frames", "60", "--team-source", "hybrid"])
+    plan = rebuild.stages(rebuild.parse_args())
+    assert "teams_hybrid" in [stage["name"] for stage in plan]
+    assert rebuild.TEAM_SOURCES["hybrid"]["assignments"] in plan[-1]["cmd"]

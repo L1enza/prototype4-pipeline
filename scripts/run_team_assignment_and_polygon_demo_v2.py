@@ -464,35 +464,94 @@ def standardize_features(features):
     return (arr - mean) / std, mean, std
 
 
-def diagonal_gmm_two(features, seed=17, iterations=80):
+def team_feature_matrix(signatures, track_ids, feature_weights, max_components=3):
+    """Low-dimensional per-track features in which the configured block weights hold.
+
+    Each block (colour histogram, optional appearance embedding) is centred and scaled
+    to unit RMS spread, then multiplied by sqrt(weight), so its share of the squared
+    distances equals its weight. Standardising every dimension separately would cancel
+    those weights and let rare histogram bins dominate. The result is projected to at
+    most `max_components` principal components because a clip has only tens of tracks.
+    """
+    blocks = [(np.stack([signatures[t]["color_signature"] for t in track_ids]), float(feature_weights.get("color", 1.0)))]
+    appearance = [signatures[t].get("appearance_signature") for t in track_ids]
+    appearance_weight = float(feature_weights.get("appearance", 0.0))
+    if appearance_weight > 0 and all(vec is not None for vec in appearance):
+        blocks.append((np.stack(appearance), appearance_weight))
+    parts = []
+    for block, weight in blocks:
+        centred = np.asarray(block, dtype=np.float64) - np.mean(block, axis=0)
+        spread = math.sqrt(float(np.sum(centred ** 2)) / max(1, len(centred)))
+        parts.append(centred / max(spread, 1e-9) * math.sqrt(max(weight, 0.0)))
+    x = np.concatenate(parts, axis=1)
+    components = max(1, min(max_components, len(track_ids) - 1, x.shape[1]))
+    _u, _s, vt = np.linalg.svd(x, full_matrices=False)
+    return x @ vt[:components].T
+
+
+def kmeans_two(x, seed=17, restarts=16, iterations=60):
+    """Plain 2-means with k-means++ starts; returns (labels, centers) of the lowest-SSE run."""
     rng = np.random.default_rng(seed)
-    x = np.asarray(features, dtype=np.float32)
-    n, d = x.shape
-    if n < 2:
-        return np.zeros(n, dtype=np.int32), np.ones((n, 1), dtype=np.float32), x.copy(), np.ones((1, d), dtype=np.float32)
-    dist = np.linalg.norm(x[:, None, :] - x[None, :, :], axis=2)
-    i, j = np.unravel_index(int(np.argmax(dist)), dist.shape)
-    means = np.stack([x[i], x[j]], axis=0)
-    variances = np.stack([np.var(x, axis=0) + 1e-3, np.var(x, axis=0) + 1e-3], axis=0)
-    priors = np.array([0.5, 0.5], dtype=np.float32)
-    resp = np.zeros((n, 2), dtype=np.float32)
-    for _ in range(iterations):
-        logp = []
-        for k in range(2):
-            var = np.maximum(variances[k], 1e-4)
-            ll = -0.5 * (np.sum(np.log(2.0 * np.pi * var)) + np.sum(((x - means[k]) ** 2) / var, axis=1))
-            logp.append(np.log(max(priors[k], 1e-6)) + ll)
-        logp = np.stack(logp, axis=1)
-        logp -= np.max(logp, axis=1, keepdims=True)
-        prob = np.exp(logp)
-        resp = prob / np.maximum(np.sum(prob, axis=1, keepdims=True), 1e-8)
-        nk = np.sum(resp, axis=0) + 1e-6
-        priors = nk / n
-        for k in range(2):
-            means[k] = np.sum(resp[:, k:k+1] * x, axis=0) / nk[k]
-            variances[k] = np.sum(resp[:, k:k+1] * ((x - means[k]) ** 2), axis=0) / nk[k] + 1e-3
-    labels = np.argmax(resp, axis=1).astype(np.int32)
-    return labels, resp, means, variances
+    n = len(x)
+    best = None
+    for _ in range(restarts):
+        first = int(rng.integers(n))
+        d2 = np.sum((x - x[first]) ** 2, axis=1)
+        second = int(rng.choice(n, p=d2 / d2.sum())) if d2.sum() > 0 else (first + 1) % n
+        centers = x[[first, second]].astype(np.float64)
+        for _ in range(iterations):
+            dist = np.linalg.norm(x[:, None, :] - centers[None, :, :], axis=2)
+            labels = np.argmin(dist, axis=1)
+            updated = np.array([x[labels == k].mean(axis=0) if np.any(labels == k) else centers[k] for k in range(2)])
+            if np.allclose(updated, centers):
+                break
+            centers = updated
+        dist = np.linalg.norm(x[:, None, :] - centers[None, :, :], axis=2)
+        labels = np.argmin(dist, axis=1)
+        sse = float(np.sum(np.min(dist, axis=1) ** 2))
+        if best is None or sse < best[0]:
+            best = (sse, labels, centers)
+    return best[1], best[2]
+
+
+def robust_two_team_split(x, seed=17, min_team_size=2, outlier_factor=3.0, max_rounds=6):
+    """Split tracks into two teams while setting aside tracks that fit neither.
+
+    One odd track (a trainer, a missed referee, a bad crop) can otherwise claim a
+    whole cluster and push both teams into the other. A cluster smaller than
+    `min_team_size` is treated as outliers, as is any track farther from its nearest
+    centre than `outlier_factor` times the typical distance; the split is then refit.
+    Returns (labels, centers, inlier_mask), or None when too few tracks remain.
+    """
+    x = np.asarray(x, dtype=np.float64)
+    inliers = np.ones(len(x), dtype=bool)
+    for _ in range(max_rounds):
+        idx = np.flatnonzero(inliers)
+        if len(idx) < 2 * min_team_size:
+            return None
+        labels, centers = kmeans_two(x[idx], seed)
+        small = [k for k in range(2) if np.sum(labels == k) < min_team_size]
+        if small:
+            for k in small:
+                inliers[idx[labels == k]] = False
+            continue
+        own = np.min(np.linalg.norm(x[:, None, :] - centers[None, :, :], axis=2), axis=1)
+        typical = float(np.median(own[idx]))
+        separation = float(np.linalg.norm(centers[0] - centers[1]))
+        # Floor the radius at a quarter of the team separation so tight clusters do not reject normal spread.
+        radius = max(outlier_factor * typical, 0.25 * separation)
+        far = inliers & (own > radius)
+        if not np.any(far):
+            break
+        inliers &= ~far
+    idx = np.flatnonzero(inliers)
+    if len(idx) < 2 * min_team_size:
+        return None
+    labels, centers = kmeans_two(x[idx], seed)
+    if min(np.sum(labels == 0), np.sum(labels == 1)) < min_team_size:
+        return None
+    all_labels = np.argmin(np.linalg.norm(x[:, None, :] - centers[None, :, :], axis=2), axis=1)
+    return all_labels, centers, inliers
 
 
 def assign_tracks(signatures, cfg, v1_assignments):
@@ -500,7 +559,6 @@ def assign_tracks(signatures, cfg, v1_assignments):
     official_cfg = cfg["official"]
     prelim = {}
     cluster_ids = []
-    cluster_feats = []
     for track_id, sig in sorted(signatures.items()):
         v1_cls = v1_assignments.get(track_id, {}).get("assigned_class")
         official_score = float(sig["official_score"])
@@ -515,33 +573,57 @@ def assign_tracks(signatures, cfg, v1_assignments):
             prelim[track_id] = make_assignment(sig, "official", official_score, "official_neutral_dark_white_track_evidence")
         else:
             cluster_ids.append(track_id)
-            cluster_feats.append(sig["combined_signature"])
-    if len(cluster_ids) < 2:
+    clustering = cfg["clustering"]
+    min_team_size = int(clustering.get("min_team_size", 2))
+    split = None
+    if len(cluster_ids) >= 2 * min_team_size:
+        x = team_feature_matrix(signatures, cluster_ids, cfg["feature_weights"])
+        split = robust_two_team_split(
+            x,
+            int(clustering["gmm_random_seed"]),
+            min_team_size=min_team_size,
+            outlier_factor=float(clustering.get("outlier_distance_factor", 3.0)),
+        )
+    if split is None:
         for track_id in cluster_ids:
-            prelim[track_id] = make_assignment(signatures[track_id], "unknown", 0.0, "not_enough_tracks_for_two_team_gmm")
-        return prelim, {"status": "skipped_not_enough_tracks"}
-    x, mean, std = standardize_features(cluster_feats)
-    labels, posterior, centers, variances = diagonal_gmm_two(x, int(cfg["clustering"]["gmm_random_seed"]))
-    counts = [int(np.sum(labels == 0)), int(np.sum(labels == 1))]
+            prelim[track_id] = make_assignment(signatures[track_id], "unknown", 0.0, "not_enough_tracks_for_two_teams")
+        return prelim, {"status": "skipped_not_enough_tracks", "method": "robust_two_means"}
+    labels, centers, inliers = split
+    own_distances = np.min(np.linalg.norm(x[:, None, :] - centers[None, :, :], axis=2), axis=1)
+    separation_ratio = float(np.linalg.norm(centers[0] - centers[1]) / max(float(np.median(own_distances[inliers])), 1e-12))
+    if separation_ratio < float(clustering.get("min_separation_ratio", 8.0)):
+        # 2-means always returns two groups, even from one team's tracks. On synthetic
+        # shirts a one-team clip split at a ratio of about 5-6, real two-team clips at 14+.
+        for track_id in cluster_ids:
+            prelim[track_id] = make_assignment(signatures[track_id], "unknown", 0.0, "no_clear_two_team_split")
+        return prelim, {"status": "no_clear_two_team_split", "method": "robust_two_means", "separation_ratio": separation_ratio}
+    counts = [int(np.sum(labels[inliers] == 0)), int(np.sum(labels[inliers] == 1))]
+    # team_a is the larger cluster; the label carries no team identity (see team_mapping.py).
     if counts[1] > counts[0]:
         label_to_team = {1: "team_a", 0: "team_b"}
     else:
         label_to_team = {0: "team_a", 1: "team_b"}
+    outlier_ids = []
     for idx, track_id in enumerate(cluster_ids):
         sig = signatures[track_id]
         label = int(labels[idx])
-        post = float(posterior[idx, label])
-        other = 1 - label
-        margin = float(abs(posterior[idx, label] - posterior[idx, other]))
         dists = [float(np.linalg.norm(x[idx] - centers[0])), float(np.linalg.norm(x[idx] - centers[1]))]
-        reason = "gmm_posterior_team_assignment"
+        own, other = dists[label], dists[1 - label]
+        # Relative distance replaces the old Gaussian posterior, which was always 1.0 in this
+        # many dimensions; a track midway between the teams now scores about 0.5.
+        post = float(other / max(own + other, 1e-12))
+        margin = float((other - own) / max(own + other, 1e-12))
+        reason = "nearest_team_center"
         cls = label_to_team[label]
         confidence = float(max(0.0, min(1.0, 0.58 * post + 0.25 * margin + 0.17 * sig["evidence_quality"])))
-        if post < float(cfg["clustering"]["unknown_posterior_threshold"]):
-            cls, reason = "unknown", "low_gmm_posterior"
-        elif margin < float(cfg["clustering"]["assignment_margin_threshold"]):
+        if not inliers[idx]:
+            cls, reason = "unknown", "far_from_both_team_centers"
+            outlier_ids.append(int(track_id))
+        elif post < float(clustering["unknown_posterior_threshold"]):
+            cls, reason = "unknown", "between_team_centers"
+        elif margin < float(clustering["assignment_margin_threshold"]):
             cls, reason = "unknown", "low_assignment_margin"
-        elif sig["evidence_quality"] < float(cfg["clustering"]["min_evidence_quality"]):
+        elif sig["evidence_quality"] < float(clustering["min_evidence_quality"]):
             cls, reason = "unknown", "low_evidence_quality"
         prelim[track_id] = make_assignment(sig, cls, confidence, reason)
         prelim[track_id].update({
@@ -551,15 +633,19 @@ def assign_tracks(signatures, cfg, v1_assignments):
             "distance_to_team_b_center": dists[[k for k, v in label_to_team.items() if v == "team_b"][0]],
             "assignment_margin": margin,
         })
+    smaller_share = float(min(counts) / max(1, sum(counts)))
     diagnostics = {
         "status": "complete",
-        "method": "internal_diagonal_gaussian_mixture",
-        "sklearn_gaussian_mixture_available": False,
+        "method": "robust_two_means",
+        "feature_dimensions": int(x.shape[1]),
+        "feature_weights": {key: float(value) for key, value in cfg["feature_weights"].items()},
         "cluster_counts": {"cluster_0": counts[0], "cluster_1": counts[1]},
         "label_to_team": {str(k): v for k, v in label_to_team.items()},
-        "centers_standardized": centers.tolist(),
-        "variances_standardized": variances.tolist(),
-        "feature_standardization": {"mean": mean.tolist(), "std": std.tolist()},
+        "centers": centers.tolist(),
+        "outlier_track_ids": outlier_ids,
+        "separation_ratio": separation_ratio,
+        "smaller_team_share": smaller_share,
+        "lopsided_split": smaller_share < float(clustering.get("min_team_share", 0.25)),
     }
     return prelim, diagnostics
 

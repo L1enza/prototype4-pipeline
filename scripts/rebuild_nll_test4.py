@@ -28,6 +28,18 @@ TRACKING = SEGMENT + "/tracking_metadata.json"
 JERSEY_CONFIG = "configs/nll_test4_track_jersey_inference.json"
 OLLAMA_ENDPOINT = "http://localhost:11434/v1/chat/completions"
 ROSTERS = ["data/rosters/nll_2026/toronto_rock_roster.json", "data/rosters/nll_2026/oshawa_firewolves_roster.json"]
+# Which team assignment the jersey stage reads. Colour-only is the default: the hybrid
+# ResNet-18 features have not been checked on real footage.
+TEAM_SOURCES = {
+    "colour": {
+        "assignments": RUN + "/team_assignment_demo_v2/track_team_assignments_v2.json",
+        "overlay": RUN + "/team_assignment_demo_v2/team_assignment_overlay_v2.mp4",
+    },
+    "hybrid": {
+        "assignments": RUN + "/team_assignment_demo_v2_hybrid/track_team_assignments_v2.json",
+        "overlay": RUN + "/team_assignment_demo_v2_hybrid/team_assignment_overlay_v2_hybrid.mp4",
+    },
+}
 
 
 def parse_args():
@@ -42,6 +54,8 @@ def parse_args():
     parser.add_argument("--vision-model", default="gemma3:12b", help="Ollama model that reads jersey numbers.")
     parser.add_argument("--vision-timeout", type=float, default=600.0, help="Seconds per jersey read; gemma3:12b took 58-100 s per image on CPU.")
     parser.add_argument("--allow-download-weights", action="store_true", help="Let YOLO and ResNet-18 fetch weights if not cached.")
+    parser.add_argument("--team-source", choices=sorted(TEAM_SOURCES), default="colour",
+                        help="Team assignment the jersey stage uses; hybrid adds unvalidated ResNet-18 features.")
     parser.add_argument("--force", action="append", default=[], metavar="STAGE", help="Re-run this stage even if its output exists. Repeatable.")
     parser.add_argument("--stop-after", default=None, metavar="STAGE", help="Stop after this stage.")
     parser.add_argument("--check", action="store_true", help="Report what each stage needs and has, then exit.")
@@ -51,7 +65,7 @@ def parse_args():
 def stages(args):
     py = sys.executable
     weights = ["--allow-download-weights"] if args.allow_download_weights else []
-    return [
+    plan = [
         {
             "name": "roster",
             "why": "Jersey number -> player lookup for TOR and OSH.",
@@ -81,14 +95,14 @@ def stages(args):
         },
         {
             "name": "teams_color",
-            "why": "Split tracks into two shirt-colour clusters (colour only).",
+            "why": "Split tracks into two teams by shirt colour.",
             "output": RUN + "/team_assignment_demo_v2/track_team_assignments_v2.json",
             "cmd": [py, "scripts/run_team_assignment_and_polygon_demo_v2.py", "--config", "configs/nll_test4_team_assignment_v2.json",
                     "--video", args.video, "--embedding-backend", "none"],
         },
         {
             "name": "teams_hybrid",
-            "why": "Same split with an appearance embedding added; the jersey stage reads this one.",
+            "why": "Same split with ResNet-18 appearance features added (--team-source hybrid).",
             "output": RUN + "/team_assignment_demo_v2_hybrid/track_team_assignments_v2.json",
             "cmd": [py, "scripts/run_team_assignment_and_polygon_demo_v2.py", "--config", "configs/nll_test4_team_assignment_v2.json",
                     "--video", args.video, "--embedding-backend", "auto",
@@ -114,9 +128,13 @@ def stages(args):
             "needs_team_confirmation": True,
             "cmd": [py, "scripts/run_track_level_jersey_inference.py", "--config", JERSEY_CONFIG,
                     "--allow-network-vision", "--vision-endpoint", OLLAMA_ENDPOINT, "--vision-model", args.vision_model,
-                    "--vision-timeout", str(args.vision_timeout)],
+                    "--vision-timeout", str(args.vision_timeout),
+                    "--team-assignments", TEAM_SOURCES[args.team_source]["assignments"]],
         },
     ]
+    if args.team_source != "hybrid":
+        plan = [stage for stage in plan if stage["name"] != "teams_hybrid"]
+    return plan
 
 
 def stage_warnings(stage):
@@ -135,10 +153,10 @@ def ollama_has(model):
     return model in names or "{}:latest".format(model) in names
 
 
-def team_confirmation_status():
+def team_confirmation_status(assignments_file):
     config = json.loads((PROJECT_ROOT / JERSEY_CONFIG).read_text(encoding="utf-8"))
     inputs = config["inputs"]
-    assignments_path = PROJECT_ROOT / inputs["team_assignments"]
+    assignments_path = PROJECT_ROOT / assignments_file
     if not assignments_path.exists():
         return False, "team assignments not built yet"
     from prototype4_pipeline.integrations.track_jersey_inference import load_team_assignments
@@ -220,7 +238,7 @@ def main():
         for stage in plan:
             done = (PROJECT_ROOT / stage["output"]).exists()
             print("  [{}] {:<15} {}".format("x" if done else " ", stage["name"], stage["why"]))
-        confirmed, status = team_confirmation_status()
+        confirmed, status = team_confirmation_status(TEAM_SOURCES[args.team_source]["assignments"])
         print("Team mapping confirmation: {}".format(status))
         print("Problems:" if problems else "No problems found.")
         for problem in problems:
@@ -239,13 +257,16 @@ def main():
             print("[skip] {} ({} exists)".format(stage["name"], stage["output"]))
         else:
             if stage.get("needs_team_confirmation"):
-                confirmed, status = team_confirmation_status()
+                confirmed, status = team_confirmation_status(TEAM_SOURCES[args.team_source]["assignments"])
                 if not confirmed:
                     print("\n[stop] Team mapping is {}. Before any names are attached, a person must say which".format(status))
                     print("       colour cluster is which team. TOR wears white, OSH dark maroon.")
-                    print("       1. Watch {}/team_assignment_demo_v2_hybrid/team_assignment_overlay_v2_hybrid.mp4".format(RUN))
-                    print("       2. python scripts/confirm_team_mapping.py            (shows which label looks light or dark)")
-                    print("       3. python scripts/confirm_team_mapping.py --team-a TOR --team-b OSH --confirmed-by <you> --notes \"<what you saw>\"")
+                    teams = TEAM_SOURCES[args.team_source]
+                    print("       1. Watch {}".format(teams["overlay"]))
+                    print("       2. python scripts/confirm_team_mapping.py --assignments {}".format(teams["assignments"]))
+                    print("          (shows which label looks light or dark, and warns if the split looks wrong)")
+                    print("       3. python scripts/confirm_team_mapping.py --assignments {} --team-a TOR --team-b OSH \\".format(teams["assignments"]))
+                    print("            --confirmed-by <you> --notes \"<what you saw>\"")
                     print("          (swap TOR/OSH if team_a is the maroon side), then re-run this script.")
                     return 2
             print("[run]  {}: {}".format(stage["name"], stage["why"]), flush=True)

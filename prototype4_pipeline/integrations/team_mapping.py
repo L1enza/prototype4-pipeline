@@ -59,14 +59,44 @@ def label_color_summary(assignments: dict[int, dict[str, Any]]) -> dict[str, Any
         rows = by_label[label]
         labs = [row["representative_median_lab"] for row in rows if row.get("representative_median_lab")]
         mean_lab = [round(sum(values) / len(values), 1) for values in zip(*labs)] if labs else None
+        lightness = [lightness_from_opencv_lab(lab) for lab in labs]
         summary[label] = {
             "track_count": len(rows),
             "track_ids": sorted(int(row["track_id"]) for row in rows),
             "mean_shirt_lab": mean_lab,
             "mean_lightness": round(lightness_from_opencv_lab(mean_lab)) if mean_lab else None,
+            "lightness_range": [round(min(lightness)), round(max(lightness))] if lightness else None,
+            # Same thresholds as describe_lab: one label holding both kinds of shirt is two teams merged.
+            "mixed_light_and_dark": bool(lightness) and max(lightness) >= 65 and min(lightness) <= 40,
             "looks": describe_lab(mean_lab) if mean_lab else "no colour evidence",
         }
     return summary
+
+
+def split_warnings(summary: dict[str, Any], min_team_share: float = 0.25) -> list[str]:
+    """Signs that team_a/team_b are not cleanly the two teams, shown before anyone confirms.
+
+    A single odd track can take a whole cluster and push both teams into the other,
+    and one team on screen still yields two clusters; either would send one team's
+    numbers to the other team's roster.
+    """
+    teams = {label: info for label, info in summary.items() if label in TEAM_LABELS}
+    warnings = []
+    missing = [label for label in TEAM_LABELS if label not in teams]
+    if missing:
+        warnings.append(f"no tracks are labelled {', '.join(missing)}; the clip may show one team or the split failed")
+    for label, info in teams.items():
+        if info.get("mixed_light_and_dark"):
+            low, high = info["lightness_range"]
+            warnings.append(f"{label} mixes light and dark shirts (lightness {low}-{high}/100); both teams may be merged in it")
+    if len(teams) == 2:
+        counts = [teams[label]["track_count"] for label in TEAM_LABELS]
+        if sum(counts) and min(counts) / sum(counts) < min_team_share:
+            warnings.append(f"lopsided split: only {min(counts)} of {sum(counts)} team tracks are in the smaller label")
+        tones = {info["looks"].split(" (")[0] for info in teams.values()}
+        if len(tones) == 1 and "no colour evidence" not in tones:
+            warnings.append(f"team_a and team_b both look {tones.pop()}; they may not be the two teams")
+    return warnings
 
 
 def load_confirmed_mapping(
