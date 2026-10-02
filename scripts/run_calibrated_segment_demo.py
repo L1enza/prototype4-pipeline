@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SAM3_REPO = "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/sam3"
+DEFAULT_SAM3_REPO = str(PROJECT_ROOT.parent / "sam3")
 
 
 def parse_args():

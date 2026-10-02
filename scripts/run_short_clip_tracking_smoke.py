@@ -17,8 +17,8 @@ from prototype4_pipeline.integrations.sam3_filtering import DEFAULT_FILTER_PROMP
 from run_player_tracklet_smoke import assign_tracklets, load_detections, track_summary, write_json
 from render_tracklet_overlay_video import render_frame, write_gif, write_mp4
 
-DEFAULT_VIDEO = "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/nll-test1.mp4"
-DEFAULT_SAM3_REPO = "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/sam3"
+DEFAULT_VIDEO = str(PROJECT_ROOT / "data" / "videos" / "nll-test1.mp4")
+DEFAULT_SAM3_REPO = str(PROJECT_ROOT.parent / "sam3")
 KNOWN_LIMITATIONS = [
     "Referee may still survive active-player filtering.",
     "Player clusters can cause ID switches.",

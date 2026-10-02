@@ -61,7 +61,7 @@ def validation_config(profile_config):
     return {
         "run_id": "nll_test4",
         "inputs": {
-            "video": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4",
+            "video": str(PROJECT_ROOT / "data" / "videos" / "nll_test4.mp4"),
             "clean_crop_metadata": "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json",
             "v1_assignments": "outputs/nll_test4/team_assignment_demo/track_team_assignments.json",
         },
@@ -170,7 +170,7 @@ def render_overlay(tracking, assignments, output_dir, fps):
     for det in tracking.get("detections", []):
         det_by_frame[int(det["frame_index"])].append(det)
     needed_sources = [row["source_frame_index"] for row in frame_lookup.values()]
-    frames_by_source = v1.read_needed_frames(Path("/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4"), needed_sources)
+    frames_by_source = v1.read_needed_frames(PROJECT_ROOT / "data" / "videos" / "nll_test4.mp4", needed_sources)
     frames_dir = output_dir / "overlay_frames"
     rendered = []
     for frame_index in sorted(det_by_frame):

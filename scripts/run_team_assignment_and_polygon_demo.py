@@ -37,7 +37,7 @@ def parse_args():
     parser.add_argument("--run-id", default="nll_test4")
     parser.add_argument("--tracking-metadata", default="outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_metadata.json")
     parser.add_argument("--projected-points", default="outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/projected_player_points.json")
-    parser.add_argument("--video", default="/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4")
+    parser.add_argument("--video", default=str(PROJECT_ROOT / "data" / "videos" / "nll_test4.mp4"))
     parser.add_argument("--field-template", default="assets/field_templates/nll_field_topdown.png")
     parser.add_argument("--team-output-dir", default="outputs/nll_test4/team_assignment_demo")
     parser.add_argument("--polygon-output-dir", default="outputs/nll_test4/team_polygon_demo")

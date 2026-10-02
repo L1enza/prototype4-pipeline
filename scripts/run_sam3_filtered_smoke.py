@@ -23,7 +23,7 @@ def parse_args():
     parser.add_argument("--frame-count", type=int, default=4, help="Number of sampled frames to evaluate, capped at 8.")
     parser.add_argument("--device", default="cuda", choices=["cuda", "cpu"], help="Requested device.")
     parser.add_argument("--dtype", default="float32", choices=["float32", "float16", "bfloat16"], help="SAM 3 smoke dtype.")
-    parser.add_argument("--repo", default="/afs/ece.cmu.edu/usr/zllenza/research/prototype4/sam3", help="Local SAM 3 repo path.")
+    parser.add_argument("--repo", default=str(PROJECT_ROOT.parent / "sam3"), help="Local SAM 3 repo path.")
     parser.add_argument("--prompt", default=DEFAULT_FILTER_PROMPT, help="Prompt used for SAM 3 masks before filtering.")
     parser.add_argument("--allow-download-weights", action="store_true", help="Allow model construction/inference; may download checkpoints.")
     parser.add_argument("--disable-fused-kernels", action=argparse.BooleanOptionalAction, default=True, help="Disable SAM 3 fused MLP kernels during smoke inference. Defaults to true.")

@@ -61,7 +61,7 @@ def parse_args():
     parser.add_argument("--assignments", default="outputs/nll_test4/team_assignment_demo_v2/track_team_assignments_v2.json")
     parser.add_argument("--profile", default="outputs/nll_test4/game_team_color_profile/team_color_profile.json")
     parser.add_argument("--field-template", default="assets/field_templates/nll_field_topdown.png")
-    parser.add_argument("--video", default="/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4")
+    parser.add_argument("--video", default=str(PROJECT_ROOT / "data" / "videos" / "nll_test4.mp4"))
     parser.add_argument("--output-dir", default="outputs/nll_test4/team_polygon_demo")
     parser.add_argument("--min-team-confidence", type=float, default=0.65)
     parser.add_argument("--fps", type=float, default=6.0)

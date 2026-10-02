@@ -12,7 +12,7 @@ import cv2
 from PIL import Image, ImageDraw
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_VIDEO = "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4"
+DEFAULT_VIDEO = str(PROJECT_ROOT / "data" / "videos" / "nll_test4.mp4")
 
 
 def parse_args():
@@ -25,7 +25,7 @@ def parse_args():
     parser.add_argument("--max-frames", type=int, default=30, help="Maximum tracking frames in the segment.")
     parser.add_argument("--device", default="cuda", help="Tracking device.")
     parser.add_argument("--segment-tag", default=None, help="Segment output tag. Defaults to segment_<start>s_<duration>s.")
-    parser.add_argument("--repo", default="/afs/ece.cmu.edu/usr/zllenza/research/prototype4/sam3", help="Local SAM 3 repo path.")
+    parser.add_argument("--repo", default=str(PROJECT_ROOT.parent / "sam3"), help="Local SAM 3 repo path.")
     parser.add_argument("--dtype", choices=["float32", "float16", "bfloat16"], default="float32", help="SAM 3 smoke dtype.")
     parser.add_argument("--allow-download-weights", action="store_true", help="Pass through to stabilized tracking if needed.")
     parser.add_argument("--disable-fused-kernels", action=argparse.BooleanOptionalAction, default=True, help="Disable SAM 3 fused kernels in tracking smoke path.")

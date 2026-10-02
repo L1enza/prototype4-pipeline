@@ -14,7 +14,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_VIDEO = "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4"
+DEFAULT_VIDEO = str(PROJECT_ROOT / "data" / "videos" / "nll_test4.mp4")
 DEFAULT_TRACKING = (
     "outputs/nll_test4/calibrated_segment_demos/"
     "segment_20s_10s_calibrated/tracking_metadata.json"

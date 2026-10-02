@@ -4,7 +4,7 @@
     "tracking_metadata": "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/tracking_metadata.json",
     "projected_points": "outputs/nll_test4/calibrated_segment_demos/segment_20s_10s_calibrated/projected_player_points.json",
     "clean_crop_metadata": "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json",
-    "video": "/afs/ece.cmu.edu/usr/zllenza/research/prototype4/videos/nll_test4.mp4",
+    "video": "data/videos/nll_test4.mp4",
     "field_template": "assets/field_templates/nll_field_topdown.png",
     "v1_assignments": "outputs/nll_test4/team_assignment_demo/track_team_assignments.json"
   },

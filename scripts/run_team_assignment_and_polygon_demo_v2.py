@@ -1080,7 +1080,7 @@ def main():
     tracking_path = project_path(inputs["tracking_metadata"])
     projected_path = project_path(inputs["projected_points"])
     clean_path = project_path(inputs["clean_crop_metadata"])
-    video_path = Path(inputs["video"])
+    video_path = project_path(inputs["video"])
     field_template_path = project_path(inputs["field_template"])
     team_output = project_path(outputs["team_assignment_dir"])
     polygon_output = project_path(outputs["team_polygon_dir"])

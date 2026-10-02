@@ -27,3 +27,6 @@ outputs/
 # OS/editor
 .DS_Store
 .vscode/
+
+# Source game videos (large; copy in locally)
+data/videos/
