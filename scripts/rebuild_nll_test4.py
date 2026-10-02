@@ -62,6 +62,7 @@ def stages(args):
             "name": "tracking",
             "why": "Find, filter and track players, then project feet onto the field.",
             "output": SEGMENT + "/projected_player_points.json",
+            "warnings_from": SEGMENT + "/calibration_metadata.json",
             "cmd": [py, "scripts/run_calibrated_segment_demo.py", "--video", args.video, "--run-id", "nll_test4",
                     "--start-time", str(args.start_time), "--duration", str(args.duration),
                     "--frame-stride", str(args.frame_stride), "--max-frames", str(args.max_frames),
@@ -113,6 +114,13 @@ def stages(args):
                     "--allow-network-vision", "--vision-endpoint", OLLAMA_ENDPOINT, "--vision-model", args.vision_model],
         },
     ]
+
+
+def stage_warnings(stage):
+    path = PROJECT_ROOT / stage["warnings_from"] if stage.get("warnings_from") else None
+    if not path or not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8")).get("warnings") or []
 
 
 def ollama_has(model):
@@ -203,6 +211,8 @@ def main():
             if not output.exists():
                 print("[fail] {} finished but did not write {}".format(stage["name"], stage["output"]))
                 return 1
+        for warning in stage_warnings(stage):
+            print("[warn] {}: {}".format(stage["name"], warning))
         if stage["name"] == args.stop_after:
             print("[stop] --stop-after {}".format(stage["name"]))
             return 0

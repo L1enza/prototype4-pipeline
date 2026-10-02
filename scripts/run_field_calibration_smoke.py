@@ -101,6 +101,36 @@ def validate_points(points, min_points):
         raise ValueError("Invalid homography config: " + " ".join(errors))
 
 
+def check_point_frame_size(config, points, decode):
+    """Refuse calibration points that cannot belong to the decoded video's resolution.
+
+    video_xy values are pixels of the frame they were picked on. On a copy of the
+    video at another resolution the homography still computes, but every projected
+    position is wrong, so a mismatch is an error rather than a warning.
+    """
+    width, height = int(decode.get("width") or 0), int(decode.get("height") or 0)
+    if not width or not height:
+        return ["Decoded frame size unknown; cannot check calibration points against it."]
+    expected = config.get("video_frame_size")
+    if expected and [int(v) for v in expected] != [width, height]:
+        raise ValueError(
+            "Calibration points were picked on a {}x{} frame but the video decodes at {}x{}; "
+            "re-pick them with scripts/pick_homography_points.py.".format(expected[0], expected[1], width, height)
+        )
+    outside = [p.get("name", "?") for p in points if not (0 <= p["video_xy"][0] < width and 0 <= p["video_xy"][1] < height)]
+    if outside:
+        raise ValueError(
+            "Calibration points fall outside the {}x{} decoded frame ({}); the video resolution differs from "
+            "the one the points were picked on.".format(width, height, ", ".join(outside))
+        )
+    if not expected:
+        return [
+            "Homography config has no video_frame_size; points fit the {}x{} frame but the resolution "
+            "is unverified. After checking calibration_points_video.png, add \"video_frame_size\": [{}, {}].".format(width, height, width, height)
+        ]
+    return []
+
+
 def draw_calibration_points(image_path, points, key, output_path, point_radius):
     image = Image.open(image_path).convert("RGB")
     draw = ImageDraw.Draw(image)
@@ -236,7 +266,7 @@ def main():
         if not tracking_metadata_path.exists():
             raise FileNotFoundError("Tracking metadata does not exist: {}".format(tracking_metadata_path))
         tracking_metadata = load_json(tracking_metadata_path)
-        calibration_warnings = []
+        calibration_warnings = check_point_frame_size(config, points, tracking_metadata.get("decode", {}))
         if not video_frame.exists():
             # The frame only illustrates the points; the homography uses their numbers.
             # Drawing them on this clip instead shows whether they still sit on the field lines.
