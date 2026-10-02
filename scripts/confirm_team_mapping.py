@@ -69,7 +69,7 @@ def main() -> int:
     print(f"Team assignments: {assignments_path}")
     print(f"Fingerprint:      {fingerprint}\n")
     for label, info in summary.items():
-        print(f"  {label:<10} {info['track_count']:>3} tracks   looks {info['looks']}   mean L*a*b {info['mean_shirt_lab']}")
+        print(f"  {label:<10} {info['track_count']:>3} tracks   looks {info['looks']}   lightness {info['mean_lightness']}/100")
     print()
 
     if not (args.team_a or args.team_b):

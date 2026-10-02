@@ -8,13 +8,15 @@ from conftest import PROJECT_ROOT
 from prototype4_pipeline.integrations.team_mapping import (
     SCHEMA,
     assignment_fingerprint,
+    describe_lab,
     label_color_summary,
     load_confirmed_mapping,
 )
 from prototype4_pipeline.integrations.track_jersey_inference import run_track_level_inference
 
-WHITE = [85.0, 0.0, 2.0]
-MAROON = [25.0, 30.0, 10.0]
+# OpenCV 8-bit Lab, as team assignment writes it: L is 0-255 and a/b are offset by 128.
+WHITE = [217.0, 128.0, 130.0]
+MAROON = [64.0, 158.0, 138.0]
 ASSIGNMENTS = {
     5: {"track_id": 5, "final_class": "team_a", "representative_median_lab": WHITE},
     6: {"track_id": 6, "final_class": "team_b", "representative_median_lab": MAROON},
@@ -159,3 +161,10 @@ def test_confirm_script_reviews_then_writes(tmp_path):
     written = json.loads((tmp_path / "confirmation.json").read_text(encoding="utf-8"))
     assert written["mapping"] == {"team_a": "TOR", "team_b": "OSH"}
     assert load_confirmed_mapping(tmp_path / "confirmation.json", ASSIGNMENTS, KNOWN)["status"] == "confirmed"
+
+
+def test_color_hint_reads_opencv_lab_lightness():
+    # Real maroon (L* ~25) is stored as ~64 by OpenCV; before rescaling it read as mid-tone.
+    assert describe_lab(MAROON).startswith("dark")
+    assert describe_lab([127.0, 128.0, 128.0]) == "mid-tone"  # L* ~50 grey must not read as light
+    assert label_color_summary(ASSIGNMENTS)["team_b"]["mean_lightness"] == 25

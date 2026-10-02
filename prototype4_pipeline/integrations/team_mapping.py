@@ -29,8 +29,18 @@ def assignment_fingerprint(assignments: dict[int, dict[str, Any]]) -> str:
     return hashlib.sha256("\n".join(lines).encode("utf-8")).hexdigest()[:16]
 
 
+def lightness_from_opencv_lab(lab: list[float]) -> float:
+    """True L* (0-100) from OpenCV's 8-bit Lab, which stores L scaled to 0-255.
+
+    Team assignment computes `representative_median_lab` with cv2.COLOR_RGB2LAB on
+    uint8 crops, so a and b are offset by 128 and L must be rescaled before any
+    threshold on real lightness applies.
+    """
+    return float(lab[0]) * 100.0 / 255.0
+
+
 def describe_lab(lab: list[float]) -> str:
-    lightness = lab[0]
+    lightness = lightness_from_opencv_lab(lab)
     if lightness >= 65:
         return "light (e.g. white uniforms)"
     if lightness <= 40:
@@ -53,6 +63,7 @@ def label_color_summary(assignments: dict[int, dict[str, Any]]) -> dict[str, Any
             "track_count": len(rows),
             "track_ids": sorted(int(row["track_id"]) for row in rows),
             "mean_shirt_lab": mean_lab,
+            "mean_lightness": round(lightness_from_opencv_lab(mean_lab)) if mean_lab else None,
             "looks": describe_lab(mean_lab) if mean_lab else "no colour evidence",
         }
     return summary
