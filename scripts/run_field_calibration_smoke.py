@@ -231,18 +231,28 @@ def main():
         validate_points(points, args.min_points)
         video_frame = project_path(config["video_frame"])
         field_template = project_path(config["field_template"])
-        if not video_frame.exists():
-            raise FileNotFoundError("Configured video_frame does not exist: {}".format(video_frame))
         if not field_template.exists():
             raise FileNotFoundError("Configured field_template does not exist: {}".format(field_template))
         if not tracking_metadata_path.exists():
             raise FileNotFoundError("Tracking metadata does not exist: {}".format(tracking_metadata_path))
+        tracking_metadata = load_json(tracking_metadata_path)
+        calibration_warnings = []
+        if not video_frame.exists():
+            # The frame only illustrates the points; the homography uses their numbers.
+            # Drawing them on this clip instead shows whether they still sit on the field lines.
+            decoded = tracking_metadata.get("decode", {}).get("decoded_frames", [])
+            fallback = Path(decoded[0]["frame_path"]) if decoded else None
+            calibration_warnings.append(
+                "Configured video_frame {} is missing; points are drawn on {} instead. Check they sit on the field lines.".format(video_frame, fallback)
+            )
+            video_frame = fallback
 
         matrix, inliers = compute_homography(points)
         np.save(output_dir / "homography_matrix.npy", matrix)
-        video_diag = draw_calibration_points(video_frame, points, "video_xy", output_dir / "calibration_points_video.png", args.point_radius)
+        video_diag = None
+        if video_frame and video_frame.exists():
+            video_diag = draw_calibration_points(video_frame, points, "video_xy", output_dir / "calibration_points_video.png", args.point_radius)
         template_diag = draw_calibration_points(field_template, points, "field_xy", output_dir / "calibration_points_template.png", args.point_radius)
-        tracking_metadata = load_json(tracking_metadata_path)
         template_image = Image.open(field_template).convert("RGB")
         projected = extract_projected_points(tracking_metadata, matrix, template_image.size)
         write_json(output_dir / "projected_player_points.json", {"points": projected})
@@ -250,6 +260,7 @@ def main():
         topdown_gif = write_topdown_gif(field_template, projected, output_dir / "projected_tracks_topdown_by_frame.gif", args.point_radius, args.trail_width, args.gif_fps)
         metadata.update({
             "status": "complete",
+            "warnings": calibration_warnings,
             "config": config,
             "homography_matrix": matrix.tolist(),
             "homography_inliers": inliers.flatten().astype(int).tolist() if inliers is not None else None,
