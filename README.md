@@ -104,6 +104,14 @@ python -m venv .venv
 
 Weights (`yolo11m-seg.pt` by default, about 45 MB) are fetched only with `--allow-download-weights` and are stored under `.cache/models/`. `run_calibrated_segment_demo.py` accepts the same `--detector yolo`.
 
+## Jersey Readability Filter
+
+Number readers invent numbers on crops where no number is visible, and the same invented number repeated across frames passes the two-frame agreement rule. Before any crop reaches a reader, `audit_jersey_crop_visibility.py` scores it with the hockey-trained ResNet34 legibility classifier from Koshkina & Elder, "A General Framework for Jersey Number Recognition in Sports Video" (CVPR 2024 workshops), and rejects crops scoring 0.5 or less as `not_legible_by_classifier`.
+
+On the 130 manually labelled nll_test4 crops it passed 0 of 94 unreadable crops and 13 of 20 clear ones, and cut gemma3:4b's wrong reads from 115 to 6 (`scripts/eval_legibility_classifier.py`). It also rejects all partly visible numbers, so some players who could be named will not be. It reacts to text in general, so board advertisements behind a player can pass.
+
+The weights (85 MB) are licensed CC BY-NC 3.0, research use only, and are never committed. `--allow-download-weights` fetches them to `.cache/models/` and checks their SHA-256; `--no-legibility-gate` turns the filter off.
+
 ## Integration Points
 
 VGGT planned call:

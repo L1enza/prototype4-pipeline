@@ -8,6 +8,7 @@ import csv
 import json
 import math
 import shutil
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -16,6 +17,17 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from prototype4_pipeline.integrations.legibility import (  # noqa: E402
+    DEFAULT_THRESHOLD,
+    DEFAULT_WEIGHTS,
+    ensure_weights,
+    load_model,
+    score_images,
+)
+
 DEFAULT_METADATA = "outputs/nll_test4/jersey_ocr_clean_crops/clean_crop_metadata.json"
 DEFAULT_OUTPUT = "outputs/nll_test4/jersey_crop_visibility_audit"
 MANUAL_REVIEW_FIELDS = [
@@ -46,6 +58,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--contact-thumb-width", type=int, default=180)
     parser.add_argument("--contact-thumb-height", type=int, default=205)
     parser.add_argument("--contact-sheet-limit", type=int, default=96)
+    parser.add_argument("--legibility-weights", default=DEFAULT_WEIGHTS, help="Hockey ResNet34 legibility classifier (CC BY-NC 3.0).")
+    parser.add_argument("--legibility-threshold", type=float, default=DEFAULT_THRESHOLD, help="Crops at or below this are not OCR candidates.")
+    parser.add_argument("--no-legibility-gate", action="store_true", help="Let readers see crops the classifier would reject.")
+    parser.add_argument("--allow-download-weights", action="store_true", help="Fetch the legibility weights if missing (85 MB).")
     return parser.parse_args()
 
 
@@ -354,6 +370,33 @@ def audit_crop(crop: dict, detectors: dict, args: argparse.Namespace) -> dict:
     }
 
 
+def apply_legibility_gate(records: list[dict], scores: dict[str, float], threshold: float) -> dict:
+    """Reject crops the legibility classifier scores at or below `threshold`.
+
+    Readers invent numbers on illegible crops, so an illegible crop never becomes an
+    OCR candidate, whatever its sharpness or contrast. Crops without a score (the
+    file could not be read) keep the status the audit gave them.
+    """
+    before = sum(bool(record["ocr_candidate"]) for record in records)
+    for record in records:
+        score = scores.get(record["crop_path"])
+        record["legibility_score"] = score
+        record["legible_by_classifier"] = None if score is None else bool(score > threshold)
+        if score is None or score > threshold:
+            continue
+        reasons = list(record.get("rejection_reasons") or []) + ["not_legible_by_classifier"]
+        record["rejection_reasons"] = reasons
+        record["rejection_reason"] = ";".join(reasons)
+        record["ocr_candidate"] = False
+        record["audit_status"] = "rejected"
+    return {
+        "crops_scored": len(scores),
+        "crops_legible": sum(score > threshold for score in scores.values()),
+        "ocr_ready_before_gate": before,
+        "ocr_ready_after_gate": sum(bool(record["ocr_candidate"]) for record in records),
+    }
+
+
 def ranked(records: list[dict]) -> list[dict]:
     return sorted(
         records,
@@ -449,6 +492,15 @@ def build_track_summaries(records: list[dict], top_count: int) -> list[dict]:
     return summaries
 
 
+def audit_warnings(candidates: list[dict], legibility_gate: dict) -> list[str]:
+    warnings = []
+    if not legibility_gate.get("enabled"):
+        warnings.append("Legibility gate disabled: readers will see crops a classifier would reject, so invented numbers are likely.")
+    if not candidates:
+        warnings.append("No crop passed the visibility audit and legibility gate, so no jersey numbers will be read for this clip.")
+    return warnings
+
+
 def write_manual_review_csv(path: Path, records: list[dict]) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
@@ -488,6 +540,19 @@ def main() -> int:
     clean_metadata = read_json(metadata_path)
     detectors = load_face_detectors()
     records = [audit_crop(crop, detectors, args) for crop in clean_metadata.get("crops", [])]
+    legibility_gate = {"enabled": False}
+    if not args.no_legibility_gate:
+        weights = ensure_weights(project_path(args.legibility_weights), args.allow_download_weights)
+        readable = [record for record in records if "crop_width" in record]
+        scores = score_images(load_model(weights), [record["crop_path"] for record in readable])
+        legibility_gate = {
+            "enabled": True,
+            "weights": str(weights),
+            "threshold": args.legibility_threshold,
+            **apply_legibility_gate(
+                records, {record["crop_path"]: score for record, score in zip(readable, scores)}, args.legibility_threshold
+            ),
+        }
     track_summaries = build_track_summaries(records, args.top_per_track)
     candidates = [record for record in records if record["ocr_candidate"]]
     front_candidates = [record for record in candidates if record["likely_view"] == "front"]
@@ -560,6 +625,8 @@ def main() -> int:
             "minimum_contrast": args.minimum_contrast,
             "maximum_bbox_overlap": args.maximum_bbox_overlap,
         },
+        "legibility_gate": legibility_gate,
+        "warnings": audit_warnings(candidates, legibility_gate),
         "counts": {
             "tracks_audited": len(track_summaries),
             "total_crops_audited": len(records),
@@ -591,6 +658,7 @@ def main() -> int:
             "Number visibility is estimated from contrast, edges, and component geometry without OCR.",
             "Tracking identity switches can place different players in one track folder.",
             "Manual review remains required before OCR evaluation.",
+            "The legibility classifier was trained on hockey crops; on nll_test4 it was checked only against 130 labelled crops.",
         ],
     }
     write_json(output_dir / "crop_visibility_predictions.json", predictions_payload)

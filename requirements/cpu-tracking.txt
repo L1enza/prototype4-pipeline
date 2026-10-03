@@ -3,5 +3,6 @@
 ultralytics
 opencv-python<5  # 5.x dropped CascadeClassifier, used by audit_jersey_crop_visibility.py
 pillow
+gdown  # fetches the legibility classifier weights with --allow-download-weights
 numpy
 pytest

@@ -18,9 +18,21 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from prototype4_pipeline.integrations.legibility import (  # noqa: E402
+    DEFAULT_THRESHOLD,
+    DEFAULT_WEIGHTS,
+    ensure_weights,
+    load_model,
+    score_images,
+)
+
 DEFAULT_LABELS = "review_exports/nll_test4_manual_jersey_eval/label_sheet.json"
 DEFAULT_IMAGES = "review_exports/nll_test4_manual_jersey_eval/images"
 DEFAULT_READER_DIR = "outputs/jersey_reader_eval"
@@ -28,11 +40,12 @@ DEFAULT_READER_DIR = "outputs/jersey_reader_eval"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate a legibility classifier against manual jersey labels.")
-    parser.add_argument("--weights", default=".cache/models/legibility_resnet34_hockey.pth")
+    parser.add_argument("--weights", default=DEFAULT_WEIGHTS)
+    parser.add_argument("--allow-download-weights", action="store_true", help="Fetch the weights if missing (85 MB, CC BY-NC 3.0).")
     parser.add_argument("--labels", default=DEFAULT_LABELS)
     parser.add_argument("--images-dir", default=DEFAULT_IMAGES)
     parser.add_argument("--reader-dir", default=DEFAULT_READER_DIR, help="Folder of recorded reader predictions to gate.")
-    parser.add_argument("--threshold", type=float, default=0.5, help="Legible above this probability (the paper's default).")
+    parser.add_argument("--threshold", type=float, default=DEFAULT_THRESHOLD, help="Legible above this probability (the paper's default).")
     parser.add_argument("--output", default="outputs/jersey_reader_eval/legibility_hockey/predictions.json")
     return parser.parse_args()
 
@@ -40,46 +53,6 @@ def parse_args() -> argparse.Namespace:
 def project_path(value: str) -> Path:
     path = Path(value)
     return path if path.is_absolute() else PROJECT_ROOT / path
-
-
-def build_model(weights: Path):
-    """LegibilityClassifier34 from the paper: ResNet34 with a single sigmoid output."""
-    import torch
-    from torch import nn
-    from torchvision import models
-
-    class LegibilityClassifier34(nn.Module):
-        def __init__(self):
-            super().__init__()
-            self.model_ft = models.resnet34(weights=None)
-            self.model_ft.fc = nn.Linear(self.model_ft.fc.in_features, 1)
-
-        def forward(self, x):
-            return torch.sigmoid(self.model_ft(x))
-
-    model = LegibilityClassifier34()
-    # weights_only refuses pickled code; the published file is a plain state dict.
-    model.load_state_dict(torch.load(weights, map_location="cpu", weights_only=True))
-    return model.eval()
-
-
-def legibility_scores(model, image_paths: list[Path]) -> list[float]:
-    import torch
-    from PIL import Image
-    from torchvision import transforms
-
-    # Test-time transforms of the paper's ResNet legibility dataset.
-    transform = transforms.Compose([
-        transforms.Resize((256, 256)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    ])
-    scores = []
-    with torch.no_grad():
-        for start in range(0, len(image_paths), 16):
-            batch = torch.stack([transform(Image.open(path).convert("RGB")) for path in image_paths[start:start + 16]])
-            scores.extend(float(value) for value in model(batch).flatten())
-    return scores
 
 
 def roc_auc(positive: list[float], negative: list[float]) -> float | None:
@@ -135,7 +108,7 @@ def main() -> int:
     if missing:
         raise SystemExit(f"{len(missing)} eval images missing, e.g. {missing[0]}")
 
-    scores = legibility_scores(build_model(project_path(args.weights)), paths)
+    scores = score_images(load_model(ensure_weights(project_path(args.weights), args.allow_download_weights)), paths)
     legible = {row["eval_id"]: score > args.threshold for row, score in zip(rows, scores)}
     by_class = {label: [s for row, s in zip(rows, scores) if row["manual_readable"] == label] for label in ("yes", "partial", "no")}
     summary = {

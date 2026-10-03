@@ -20,6 +20,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
+from prototype4_pipeline.integrations.legibility import DEFAULT_WEIGHTS as LEGIBILITY_WEIGHTS  # noqa: E402
 from prototype4_pipeline.integrations.team_mapping import load_confirmed_mapping  # noqa: E402
 
 RUN = "outputs/nll_test4"
@@ -53,7 +54,8 @@ def parse_args():
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--vision-model", default="gemma3:12b", help="Ollama model that reads jersey numbers.")
     parser.add_argument("--vision-timeout", type=float, default=600.0, help="Seconds per jersey read; gemma3:12b took 58-100 s per image on CPU.")
-    parser.add_argument("--allow-download-weights", action="store_true", help="Let YOLO and ResNet-18 fetch weights if not cached.")
+    parser.add_argument("--allow-download-weights", action="store_true",
+                        help="Let YOLO, ResNet-18 and the legibility classifier fetch weights if not cached.")
     parser.add_argument("--team-source", choices=sorted(TEAM_SOURCES), default="colour",
                         help="Team assignment the jersey stage uses; hybrid adds unvalidated ResNet-18 features.")
     parser.add_argument("--force", action="append", default=[], metavar="STAGE", help="Re-run this stage even if its output exists. Repeatable.")
@@ -111,14 +113,16 @@ def stages(args):
         },
         {
             "name": "visibility",
-            "why": "Score each crop for sharpness, contrast and overlap.",
+            "why": "Keep crops that are sharp, unblocked and judged legible by the legibility classifier.",
             "output": RUN + "/jersey_crop_visibility_audit/crop_visibility_predictions.json",
-            "cmd": [py, "scripts/audit_jersey_crop_visibility.py"],
+            "warnings_from": RUN + "/jersey_crop_visibility_audit/jersey_crop_visibility_summary.json",
+            "cmd": [py, "scripts/audit_jersey_crop_visibility.py", "--legibility-weights", LEGIBILITY_WEIGHTS, *weights],
         },
         {
             "name": "number_regions",
             "why": "Enlarged, sharpened number-region views of the best crops.",
             "output": RUN + "/enhanced_number_regions/enhanced_number_region_manifest.json",
+            "warnings_from": RUN + "/enhanced_number_regions/enhanced_number_region_summary.json",
             "cmd": [py, "scripts/generate_enhanced_number_regions.py", "--force"],
         },
         {
@@ -216,6 +220,9 @@ def preflight(args):
     weights = PROJECT_ROOT / ".cache" / "models" / "yolo11m-seg.pt"
     if args.detector == "yolo" and not weights.exists() and not args.allow_download_weights:
         problems.append("YOLO weights not cached: add --allow-download-weights (about 45 MB, once)")
+    if not (PROJECT_ROOT / LEGIBILITY_WEIGHTS).exists() and not args.allow_download_weights:
+        problems.append("Legibility classifier weights not cached: add --allow-download-weights "
+                        "(85 MB, once; CC BY-NC 3.0, research use only)")
     has_model = ollama_has(args.vision_model)
     if has_model is None:
         problems.append("Ollama is not running: start it with `ollama serve`")

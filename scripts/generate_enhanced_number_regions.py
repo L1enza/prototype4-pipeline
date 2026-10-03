@@ -110,8 +110,8 @@ def join_ocr_ready_crops(clean_payload: dict, audit_payload: dict, track_payload
         joined.append(row)
     if missing:
         raise ValueError("{} OCR-ready audit crops could not be joined/read".format(len(missing)))
-    if not joined:
-        raise ValueError("No OCR-ready crops found")
+    # No candidates is a valid outcome once the legibility gate rejects every crop:
+    # the jersey stage then reads nothing instead of the whole run stopping here.
 
     grouped = defaultdict(list)
     for row in joined:
@@ -436,6 +436,7 @@ def main() -> int:
             "summary": str(summary_path),
             "regions_dir": str(output_dir / "regions"),
         },
+        "warnings": [] if rows else ["No OCR-ready crops, so the jersey stage has nothing to read for this clip."],
         "ocr_run": False,
         "training_run": False,
         "identity_assignment_performed": False,
